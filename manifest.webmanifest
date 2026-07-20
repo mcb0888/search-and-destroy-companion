@@ -1,0 +1,21 @@
+{
+  "name": "Search & Destroy Companion",
+  "short_name": "SnD Companion",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0e1310",
+  "theme_color": "#0e1310",
+  "description": "A fast, offline mid-game Search & Destroy reference manual.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "version": "0.3",
+  "author": "Michael Barnes",
+  "copyright": "Copyright \u00a9 2026 Michael Barnes. All Rights Reserved.",
+  "id": "search-destroy-companion-mb"
+}

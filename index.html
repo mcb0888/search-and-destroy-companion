@@ -1,0 +1,270 @@
+<!--
+Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0720-001
+Original software and written content. Unauthorized copying, modification, redistribution, or resale is prohibited except with written permission from the copyright holder.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e1310">
+<meta name="author" content="Michael Barnes">
+<meta name="copyright" content="Copyright © 2026 Michael Barnes. All Rights Reserved.">
+<meta name="application-name" content="Search & Destroy Companion">
+<meta name="generator" content="Search & Destroy Companion original build MB-SNDC-2026-0720-001">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<title>Search & Destroy Companion</title>
+<style>
+:root{
+  --bg:#0e1310; --card:#161d18; --card2:#1c251f; --text:#f5f7f5;
+  --muted:#aeb8b0; --line:#2b372e; --accent:#7cff8d; --accent2:#d5ffdb;
+  --warn:#ffd166; --bad:#ff7a7a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:84px}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(14,19,16,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 14px calc(10px + env(safe-area-inset-top))}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand h1{font-size:18px;margin:0}
+.brand small{display:block;color:var(--muted);font-size:12px}
+.iconbtn{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:9px 11px}
+main{padding:16px}
+.hero{padding:8px 0 12px}
+.hero h2{font-size:30px;line-height:1.08;margin:8px 0 8px}
+.hero p{color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bigbtn{min-height:96px;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:16px;padding:15px}
+.bigbtn strong{display:block;font-size:17px;margin-bottom:6px}
+.bigbtn span{color:var(--muted);font-size:13px}
+.section-title{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 10px}
+.list{display:flex;flex-direction:column;gap:9px}
+.row{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:14px}
+.row strong{display:block}
+.row small{color:var(--muted)}
+.pill{display:inline-block;background:#203025;color:var(--accent2);border:1px solid #31523a;padding:4px 8px;border-radius:999px;font-size:12px;margin:2px 4px 2px 0}
+.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--text);outline:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
+.card h3{margin:0 0 8px;font-size:18px;color:var(--accent)}
+.card p{margin:0;color:var(--text)}
+.card ul{margin:8px 0 0;padding-left:22px}
+.operation-head{margin:6px 0 18px}
+.operation-head h2{font-size:31px;line-height:1.08;margin:8px 0}
+.operation-head .num{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+.actionbar{display:flex;gap:8px;flex-wrap:wrap}
+.action{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:12px;padding:10px 12px}
+.action.active{border-color:var(--accent);color:var(--accent)}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:rgba(14,19,16,.97);border-top:1px solid var(--line);padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));display:flex;justify-content:center}
+.bottomnav-inner{width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.navbtn{background:transparent;border:0;color:var(--muted);font-size:11px;padding:7px 3px}
+.navbtn b{display:block;font-size:19px;line-height:1.1}
+.navbtn.active{color:var(--accent)}
+.back{margin-bottom:8px}
+.notearea{width:100%;min-height:120px;background:#101612;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px}
+.empty{color:var(--muted);padding:20px;text-align:center}
+.legal-footer{margin:32px 0 8px;text-align:center;color:var(--muted);font-size:12px}.about-logo{font-size:54px;text-align:center;margin:8px 0}.legal-box{white-space:pre-wrap;font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#27322b;color:white;border:1px solid var(--line);padding:10px 14px;border-radius:12px;display:none;z-index:60}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.hero h2{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div><h1>Search & Destroy Companion</h1><small>Mid-game reference manual</small></div>
+      <button class="iconbtn" onclick="showSearch()">⌕</button>
+    </div>
+  </header>
+  <main id="main"></main>
+  <footer class="legal-footer">© 2026 Michael Barnes · All Rights Reserved · <button class="navbtn" onclick="showAbout()">About</button></footer>
+</div>
+
+<div class="bottomnav">
+  <div class="bottomnav-inner">
+    <button class="navbtn active" data-tab="home" onclick="showHome()"><b>⌂</b>Home</button>
+    <button class="navbtn" data-tab="browse" onclick="showBrowse()"><b>☰</b>Browse</button>
+    <button class="navbtn" data-tab="practice" onclick="showPractice()"><b>◎</b>Practice</button>
+    <button class="navbtn" data-tab="favorites" onclick="showFavorites()"><b>★</b>Saved</button>
+    <button class="navbtn" data-tab="notes" onclick="showNotes()"><b>✎</b>Notes</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script>
+const D = window.APP_DATA;
+const APP_OWNER = 'Michael Barnes';
+const APP_VERSION = '0.3';
+const BUILD_ID = 'MB-SNDC-2026-0720-001';
+const COPYRIGHT_NOTICE = 'Copyright © 2026 Michael Barnes. All Rights Reserved.';
+const main = document.getElementById('main');
+const $ = s => document.querySelector(s);
+const state = {
+  favorites: JSON.parse(localStorage.getItem('snd-favorites')||'[]'),
+  notes: JSON.parse(localStorage.getItem('snd-notes')||'[]'),
+  practice: JSON.parse(localStorage.getItem('snd-practice')||'null')
+};
+function esc(s=''){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function setTab(name){document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1400)}
+function opById(id){return D.operations.find(o=>o.id===Number(id))}
+function opRow(op){return `<button class="row" onclick="showOperation(${op.id})"><strong>${esc(op.title)}</strong><small>Operation ${String(op.id).padStart(2,'0')}</small></button>`}
+
+function showHome(){
+ setTab('home');
+ main.innerHTML=`<section class="hero"><h2>What just happened?</h2><p>Tap the closest problem. The app will point you toward the useful page instead of making you remember chapter numbers like some kind of tactical librarian.</p></section>
+ <div class="grid">${D.diagnosis.map(d=>`<button class="bigbtn" onclick='showDiagnosis(${JSON.stringify(d.label)})'><strong>${esc(d.label)}</strong><span>${d.ops.length} relevant operations</span></button>`).join('')}</div>
+ <div class="section-title">Quick access</div>
+ <div class="grid">
+   <button class="bigbtn" onclick="showDictionary()"><strong>Field Dictionary</strong><span>Find a term fast</span></button>
+   <button class="bigbtn" onclick="showPractice()"><strong>Today's Practice</strong><span>One mission, not twelve</span></button>
+ </div>`;
+ window.scrollTo(0,0);
+}
+function showDiagnosis(label){
+ const d=D.diagnosis.find(x=>x.label===label);
+ setTab('home');
+ main.innerHTML=`<button class="action back" onclick="showHome()">← Back</button>
+ <section class="operation-head"><div class="num">Quick diagnosis</div><h2>${esc(label)}</h2><p>Start with the first result. The others are nearby causes worth checking.</p></section>
+ <div class="list">${d.ops.map(id=>opRow(opById(id))).join('')}</div>`;
+ window.scrollTo(0,0);
+}
+function showBrowse(){
+ setTab('browse');
+ main.innerHTML=`<section class="hero"><h2>Browse by problem</h2><p>Titles first, numbers second. Civilization survives another minor interface improvement.</p></section>
+ ${Object.entries(D.categories).map(([name,ids])=>`<div class="section-title">${esc(name)}</div><div class="list">${ids.map(id=>opRow(opById(id))).join('')}</div>`).join('')}
+ <div class="section-title">Reference</div>
+ <div class="list"><button class="row" onclick="showDictionary()"><strong>Field Dictionary</strong><small>${D.dictionary.length} terms</small></button></div>`;
+ window.scrollTo(0,0);
+}
+function showOperation(id){
+ const o=opById(id); setTab('browse');
+ const fav=state.favorites.includes(id);
+ main.innerHTML=`<button class="action back" onclick="history.back()">← Back</button>
+ <section class="operation-head"><div class="num">Operation ${String(o.id).padStart(2,'0')}</div><h2>${esc(o.title)}</h2>
+ <div class="actionbar">
+ <button class="action ${fav?'active':''}" onclick="toggleFavorite(${id})">${fav?'★ Saved':'☆ Save'}</button>
+ <button class="action" onclick="startPractice(${id})">◎ Practice this</button>
+ </div></section>
+ ${card('The Problem',o.problem)}
+ ${card('The Truth',o.truth)}
+ ${listCard('Common Causes',o.causes)}
+ ${card('One Thing to Try',o.try)}
+ ${card('Why It Helps',o.why)}
+ ${card('Mission',o.mission)}
+ ${listCard('Observe',o.observe)}
+ ${card('Success Looks Like This',o.success)}
+ <div class="card"><h3>Field Note</h3><textarea id="opnote" class="notearea" placeholder="What happened in the match?"></textarea><br><button class="action" onclick="saveOpNote(${id})">Save note</button></div>`;
+ history.pushState({view:'op',id},'',`#op-${id}`);
+ window.scrollTo(0,0);
+}
+function card(t,b){return `<div class="card"><h3>${esc(t)}</h3><p>${esc(b)}</p></div>`}
+function listCard(t,arr){return `<div class="card"><h3>${esc(t)}</h3><ul>${arr.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`}
+function toggleFavorite(id){
+ const i=state.favorites.indexOf(id);
+ if(i>=0)state.favorites.splice(i,1);else state.favorites.push(id);
+ localStorage.setItem('snd-favorites',JSON.stringify(state.favorites));
+ toast(i>=0?'Removed from saved':'Saved');
+ showOperation(id);
+}
+function showFavorites(){
+ setTab('favorites');
+ const ops=state.favorites.map(opById).filter(Boolean);
+ main.innerHTML=`<section class="hero"><h2>Saved Operations</h2><p>Your recurring trouble spots, gathered conveniently in one place like a tiny museum of avoidable deaths.</p></section>
+ <div class="list">${ops.length?ops.map(opRow).join(''):'<div class="empty">No saved operations yet.</div>'}</div>`;
+ window.scrollTo(0,0);
+}
+function startPractice(id){
+ const o=opById(id);
+ state.practice={id, rounds:0, remembered:0};
+ localStorage.setItem('snd-practice',JSON.stringify(state.practice));
+ toast('Practice mission started');
+ showPractice();
+}
+function showPractice(){
+ setTab('practice');
+ if(!state.practice){
+   main.innerHTML=`<section class="hero"><h2>Today's Practice</h2><p>Pick one mission. Improving everything simultaneously remains a charming human fantasy.</p></section>
+   <div class="list">${D.operations.slice(0,8).map(o=>`<button class="row" onclick="startPractice(${o.id})"><strong>${esc(o.title)}</strong><small>${esc(o.mission)}</small></button>`).join('')}</div>`;
+ } else {
+   const o=opById(state.practice.id);
+   const boxes=[0,1,2,3,4].map(i=>i<state.practice.rounds?'■':'□').join(' ');
+   main.innerHTML=`<section class="operation-head"><div class="num">Today's focus</div><h2>${esc(o.title)}</h2></section>
+   ${card('Mission',o.mission)}
+   <div class="card"><h3>Progress</h3><p style="font-size:28px;letter-spacing:.15em">${boxes}</p><p>${state.practice.remembered} remembered out of ${state.practice.rounds} rounds</p>
+   <div class="actionbar"><button class="action" onclick="recordRound(true)">Yes, remembered</button><button class="action" onclick="recordRound(false)">No, forgot</button></div></div>
+   <button class="action" onclick="clearPractice()">End practice</button>`;
+ }
+ window.scrollTo(0,0);
+}
+function recordRound(ok){
+ state.practice.rounds=Math.min(5,state.practice.rounds+1);
+ if(ok)state.practice.remembered++;
+ localStorage.setItem('snd-practice',JSON.stringify(state.practice));
+ showPractice();
+}
+function clearPractice(){state.practice=null;localStorage.removeItem('snd-practice');showPractice()}
+function saveOpNote(id){
+ const text=$('#opnote').value.trim();
+ if(!text)return;
+ state.notes.unshift({id,text,date:new Date().toLocaleString()});
+ localStorage.setItem('snd-notes',JSON.stringify(state.notes));
+ toast('Note saved');
+ $('#opnote').value='';
+}
+function showNotes(){
+ setTab('notes');
+ main.innerHTML=`<section class="hero"><h2>Field Notes</h2><p>Your observations live on this device.</p></section>
+ <div class="list">${state.notes.length?state.notes.map((n,i)=>{const o=opById(n.id);return `<div class="card"><h3>${esc(o?o.title:'General note')}</h3><p>${esc(n.text)}</p><small style="color:var(--muted)">${esc(n.date)}</small><br><button class="action" onclick="deleteNote(${i})">Delete</button></div>`}).join(''):'<div class="empty">No field notes yet.</div>'}</div>`;
+ window.scrollTo(0,0);
+}
+function deleteNote(i){state.notes.splice(i,1);localStorage.setItem('snd-notes',JSON.stringify(state.notes));showNotes()}
+function showDictionary(){
+ setTab('browse');
+ main.innerHTML=`<section class="hero"><h2>Field Dictionary</h2><p>Search the term you heard before pretending everybody else already knew it.</p></section>
+ <input class="search" id="dictq" placeholder="Search terms..." oninput="filterDictionary()">
+ <div id="dictlist" class="list" style="margin-top:12px">${dictRows(D.dictionary)}</div>`;
+ window.scrollTo(0,0);
+}
+function dictRows(items){return items.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('')}
+function filterDictionary(){
+ const q=$('#dictq').value.toLowerCase();
+ $('#dictlist').innerHTML=dictRows(D.dictionary.filter(x=>(x.term+' '+x.definition).toLowerCase().includes(q)));
+}
+function showSearch(){
+ setTab('');
+ main.innerHTML=`<section class="hero"><h2>Search</h2><p>Search titles, problems, missions, and dictionary terms.</p></section>
+ <input class="search" id="searchq" placeholder="Type what happened..." autofocus oninput="runSearch()">
+ <div id="results" class="list" style="margin-top:12px"></div>`;
+ setTimeout(()=>$('#searchq').focus(),50);
+}
+function runSearch(){
+ const q=$('#searchq').value.toLowerCase().trim();
+ if(!q){$('#results').innerHTML='';return}
+ const ops=D.operations.filter(o=>JSON.stringify(o).toLowerCase().includes(q)).slice(0,12);
+ const terms=D.dictionary.filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,8);
+ $('#results').innerHTML=ops.map(opRow).join('')+terms.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('');
+}
+
+function showAbout(){
+ setTab('');
+ main.innerHTML=`<button class="action back" onclick="history.back()">← Back</button>
+ <section class="operation-head"><div class="num">About this app</div><h2>Search & Destroy Companion</h2></section>
+ <div class="about-logo">S&amp;D</div>
+ <div class="card"><h3>Original creator</h3><p>${esc(APP_OWNER)}</p></div>
+ <div class="card"><h3>Version</h3><p>${esc(APP_VERSION)} · Build ${esc(BUILD_ID)}</p></div>
+ <div class="card"><h3>Copyright</h3><p>${esc(COPYRIGHT_NOTICE)}</p></div>
+ <div class="card"><h3>Usage rights</h3><p class="legal-box">This application, its written field-guide content, interface structure, branding, and included source files are proprietary. No permission is granted to copy, modify, redistribute, publish, rebrand, sublicense, or sell any part of this project without written permission from the copyright holder.</p></div>
+ <div class="card"><h3>Authorship fingerprint</h3><p class="legal-box">Project ID: SEARCH-DESTROY-COMPANION-MB\nBuild ID: ${esc(BUILD_ID)}\nOwner: ${esc(APP_OWNER)}</p></div>`;
+ window.scrollTo(0,0);
+}
+
+window.addEventListener('popstate',e=>{ if(e.state?.view==='op')showOperation(e.state.id); else showHome(); });
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+showHome();
+</script>
+</body>
+</html>
