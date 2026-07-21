@@ -1,9 +1,5 @@
-/*
-Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0721-006
-Original software and written content. Unauthorized copying, modification, redistribution, or resale is prohibited except with the copyright holder's written permission.
-*/
-const CACHE='snd-companion-v08-callouts';
-const ASSETS=['./','./index.html','./data.js','./maps.js','./map_focus.js','./map_action.js','./map_atlas.js','./manifest.webmanifest','./icon.svg','./LICENSE.txt','./COPYRIGHT.txt'];
+const CACHE='snd-command-atlas-v1-0';
+const ASSETS=["./", "./index.html", "./data.js", "./visual_maps.js", "./manifest.webmanifest", "./icon.svg", "./LICENSE.txt", "./COPYRIGHT.txt"];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
 self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

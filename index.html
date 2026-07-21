@@ -195,6 +195,42 @@ main{padding:16px}
 .working-callout{color:var(--muted);font-size:12px}
 @media(max-width:480px){.intel-grid{grid-template-columns:1fr}.los-targets{grid-template-columns:1fr}.atlas-spot{grid-template-columns:42px 1fr auto}.atlas-spot-icon{width:40px;height:40px}.atlas-spot strong{font-size:15px}}
 
+
+/* v1.0 Visual Squad Command Atlas */
+.map-library-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.map-library-card{min-height:118px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:16px;padding:14px;position:relative;overflow:hidden}
+.map-library-card::after{content:"";position:absolute;right:-22px;bottom:-28px;width:105px;height:105px;border:18px solid rgba(124,255,141,.06);border-radius:50%}
+.map-library-card strong{display:block;font-size:18px;margin:5px 0}.map-library-card small{display:block;color:var(--muted)}
+.rotation-badge{display:inline-block;border:1px solid #4f6f57;background:#19301f;color:#caffd1;border-radius:999px;padding:4px 8px;font-size:11px}
+.rotation-badge.staple{border-color:#59636b;background:#20282e;color:#d8e6ef}
+.map-command-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.map-command-head h2{margin:4px 0 6px;font-size:29px;line-height:1.05}
+.map-mode-tabs{display:flex;gap:7px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.map-mode-tabs::-webkit-scrollbar{display:none}
+.map-mode{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:9px 12px}.map-mode.active{border-color:var(--accent);color:var(--accent);background:#17251b}
+.map-stage{position:relative;background:#0a0f0c;border:1px solid var(--line);border-radius:18px;padding:8px;overflow:hidden}
+.map-stage.expanded{position:fixed;inset:0;z-index:1000;border-radius:0;padding:10px;background:#070b08;overflow:auto}.map-stage.expanded .command-map{max-height:none;height:auto}
+.map-tools{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 8px}.map-tools small{color:var(--muted)}
+.command-map{display:block;width:100%;height:auto;border-radius:13px;background:#0d1510;touch-action:manipulation}
+.cm-zone{stroke:#4a5b4f;stroke-width:2}.cm-zone-building{fill:#1b261f}.cm-zone-open{fill:#14251b}.cm-zone-spawn{fill:#17202a}.cm-zone-label{fill:#91a399;font-size:18px;font-weight:800;text-anchor:middle;letter-spacing:.08em;pointer-events:none}
+.cm-site{fill:#ffd166;stroke:#fff4c0;stroke-width:4}.cm-site-label{fill:#18160a;font-size:28px;font-weight:950;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+.cm-spawn{fill:#75c7ff;stroke:white;stroke-width:2}.cm-spawn-label{fill:#cdeeff;font-size:14px;font-weight:800;text-anchor:middle}
+.cm-callout{cursor:pointer}.cm-callout circle{fill:#e85d68;stroke:#ffe0e3;stroke-width:3}.cm-callout.mid circle{fill:#8e7dff}.cm-callout text{fill:white;font-size:15px;font-weight:850;text-anchor:middle;paint-order:stroke;stroke:#09100b;stroke-width:4;stroke-linejoin:round}.cm-callout.selected circle{fill:#7cff8d;stroke:white}.cm-callout.selected text{fill:#eaffed}
+.cm-route{fill:none;stroke:#7cff8d;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.86;marker-end:url(#arrowGreen)}.cm-route.alt{stroke:#49c8ff;marker-end:url(#arrowBlue)}
+.cm-los{stroke:#49a4ff;stroke-width:6;stroke-linecap:round;stroke-dasharray:15 10;opacity:.78;marker-end:url(#arrowBlue)}.cm-danger{fill:#ff9f43;opacity:.16;stroke:#ffad5c;stroke-width:3;stroke-dasharray:8 8}
+.map-legend-v1{display:flex;gap:10px;flex-wrap:wrap;margin:9px 2px 2px;color:var(--muted);font-size:12px}.map-legend-v1 span{display:flex;align-items:center;gap:5px}.lg{width:12px;height:12px;border-radius:50%;display:inline-block}.lg.site{background:#ffd166}.lg.hold{background:#e85d68}.lg.mid{background:#8e7dff}.lg.route{width:18px;height:4px;border-radius:2px;background:#7cff8d}.lg.los{width:18px;height:0;border-top:3px dashed #49a4ff}
+.callout-sheet{border-left:4px solid var(--accent)}.callout-sheet h3{color:var(--text);font-size:22px}.callout-sheet .kind{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.leader-call{border:1px solid #476d50;background:#16241a;border-radius:16px;padding:14px;margin:12px 0}.leader-call strong{display:block;color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.09em}.leader-call p{font-size:18px;margin:5px 0 0}
+.squad-roles{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.squad-role{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 6px;text-align:center}.squad-role b{display:flex;width:27px;height:27px;border-radius:50%;background:var(--accent);color:#0b120d;align-items:center;justify-content:center;margin:0 auto 6px}.squad-role strong{display:block;font-size:12px}.squad-role small{display:block;color:var(--muted);font-size:11px;line-height:1.2;margin-top:3px}
+.map-source-note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:16px}
+@media(max-width:520px){.map-library-grid{grid-template-columns:1fr 1fr}.map-library-card{min-height:105px;padding:12px}.map-library-card strong{font-size:16px}.squad-roles{grid-template-columns:repeat(3,1fr)}.cm-zone-label{font-size:15px}.cm-callout text{font-size:13px}}
+
+
+.command-map{background:radial-gradient(circle at 50% 45%,#132019 0,#0c130f 70%)}
+.cm-zone{filter:drop-shadow(0 2px 1px rgba(0,0,0,.35))}.cm-zone-label{opacity:.32;font-size:14px}
+.cm-road{fill:none;stroke:#25352b;stroke-width:48;stroke-linecap:round;stroke-linejoin:round}.cm-road-edge{fill:none;stroke:#506157;stroke-width:2;stroke-dasharray:8 10;opacity:.5}
+.cm-water{fill:#113040;stroke:#2b708b;stroke-width:3}.cm-feature{fill:#28362e;stroke:#65786b;stroke-width:2}.cm-feature-line{stroke:#8aa092;stroke-width:3;fill:none}.cm-feature-text{fill:#b8c7bd;font-size:13px;font-weight:850;text-anchor:middle;paint-order:stroke;stroke:#0a100c;stroke-width:3}
+.cm-label-box{fill:#111a14;stroke:#63736a;stroke-width:1.5;opacity:.96}.cm-label-line{stroke:#c5d3ca;stroke-width:1.5;opacity:.65}.cm-callout text{font-size:14px;stroke-width:3}
+
 </style>
 </head>
 <body>
@@ -221,15 +257,12 @@ main{padding:16px}
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
-<script src="maps.js"></script>
-<script src="map_focus.js"></script>
-<script src="map_action.js"></script>
-<script src="map_atlas.js"></script>
+<script src="visual_maps.js"></script>
 <script>
 const D = window.APP_DATA;
 const APP_OWNER = 'Michael Barnes';
-const APP_VERSION = '0.8';
-const BUILD_ID = 'MB-SNDC-2026-0721-006';
+const APP_VERSION = '1.0';
+const BUILD_ID = 'MB-SNDC-2026-0721-010';
 const COPYRIGHT_NOTICE = 'Copyright © 2026 Michael Barnes. All Rights Reserved.';
 const main = document.getElementById('main');
 const $ = s => document.querySelector(s);
@@ -250,7 +283,7 @@ function showHome(){
  <div class="grid">${D.diagnosis.map(d=>`<button class="bigbtn" onclick='showDiagnosis(${JSON.stringify(d.label)})'><strong>${esc(d.label)}</strong><span>${d.ops.length} relevant operations</span></button>`).join('')}</div>
  <div class="section-title">Quick access</div>
  <div class="grid">
-   <button class="bigbtn" onclick="showMapGuide()"><strong>Visual Map Guide</strong><span>Raid, Tunisia, Coastal</span></button>
+   <button class="bigbtn" onclick="showMapGuide()"><strong>Visual Map Guide</strong><span>14 visual maps</span></button>
    <button class="bigbtn" onclick="showDictionary()"><strong>Field Dictionary</strong><span>Find a term fast</span></button>
    <button class="bigbtn" onclick="showPractice()"><strong>Today's Practice</strong><span>One mission, not twelve</span></button>
    <button class="bigbtn" onclick="showBrowse()"><strong>All Operations</strong><span>Browse the field manual</span></button>
@@ -271,7 +304,7 @@ function showBrowse(){
  ${Object.entries(D.categories).map(([name,ids])=>`<div class="section-title">${esc(name)}</div><div class="list">${ids.map(id=>opRow(opById(id))).join('')}</div>`).join('')}
  <div class="section-title">Reference</div>
  <div class="list">
- <button class="row" onclick="showMapGuide()"><strong>Visual Map Guide</strong><small>Raid, Tunisia, Coastal</small></button>
+ <button class="row" onclick="showMapGuide()"><strong>Visual Map Guide</strong><small>14 visual maps</small></button>
  <button class="row" onclick="showDictionary()"><strong>Field Dictionary</strong><small>${D.dictionary.length} terms</small></button>
  </div>`;
  window.scrollTo(0,0);
@@ -359,127 +392,94 @@ function showNotes(){
 }
 function deleteNote(i){state.notes.splice(i,1);localStorage.setItem('snd-notes',JSON.stringify(state.notes));showNotes()}
 
-const MAPS = window.MAP_GUIDE_DATA;
-const MAP_FOCUS = window.MAP_FOCUS_DATA;
-const MAP_ACTIONS = window.MAP_ACTION_DATA;
-const MAP_ATLAS = window.MAP_ATLAS_DATA;
-let activeMapId = 'raid';
-let activeFocusId = 'a';
-let activeThreatName = null;
 
-function showMapGuide(mapId=activeMapId){
- showMapHub(mapId);
-}
-function showMapHub(mapId=activeMapId){
- activeMapId=mapId;
+const VMAPS = window.VISUAL_MAPS;
+let activeMapId = 'raid';
+let activeMapMode = 'callouts';
+let activeCallout = null;
+
+function mapTierClass(tier){return tier.includes('competitive')?'':' staple'}
+function showMapGuide(mapId=null,mode='callouts'){
+ if(mapId){showVisualMap(mapId,mode);return}
  setTab('browse');
- const m=MAPS[mapId];
- const pack=MAP_ACTIONS[mapId];
- const order=['attack-a','defend-a','attack-b','defend-b','mid'];
- main.innerHTML=`<section class="hero"><span class="field-draft">General tactical reference</span><h2>${esc(m.name)} Map Guide</h2><p>Pick what you are doing. The next screen gives a four-step visual plan instead of asking you to decode a tiny blueprint while the round timer mocks you.</p></section>
- <div class="map-tabs">${Object.entries(MAPS).map(([id,x])=>`<button class="map-tab ${id===mapId?'active':''}" onclick="showMapHub('${id}')">${esc(x.name)}</button>`).join('')}</div>
- <p class="map-hub-note">Fast mode: choose a situation. Angle mode remains available inside every plan when you need the individual threats.</p>
- <button class="atlas-entry" onclick="showMapAtlas('${mapId}','a')"><strong>${esc(m.name)} Common Callout & Sightline Atlas →</strong><p>15 named positions across A, B, and Mid, with common aliases, sightlines, weak sides, and fast clears.</p></button>
- <div class="scenario-grid">${order.map(id=>{const p=pack.plans[id];return `<button class="scenario-btn" onclick="showMapPlan('${mapId}','${id}')"><span class="scenario-icon">${esc(p.icon)}</span><span><strong>${esc(p.title)}</strong><small>${esc(p.subtitle)}</small></span></button>`}).join('')}</div>
- <div class="section-title">Map warnings</div><div class="card"><ul>${m.warnings.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
- <div class="card"><h3>Field correction note</h3><textarea id="mapnote" class="notearea" placeholder="Wrong callout? Missed angle? Spot that keeps killing us?"></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save map note</button></div>`;
+ const comp=Object.values(VMAPS).filter(m=>m.tier.includes('competitive'));
+ const staples=Object.values(VMAPS).filter(m=>!m.tier.includes('competitive'));
+ const card=m=>`<button class="map-library-card" onclick="showVisualMap('${m.id}','callouts')"><span class="rotation-badge${mapTierClass(m.tier)}">${esc(m.tier)}</span><strong>${esc(m.name)}</strong><small>${esc(m.description)}</small></button>`;
+ main.innerHTML=`<section class="hero"><span class="rotation-badge">Squad Command Atlas</span><h2>Choose the map</h2><p>Pull up the selected map, expand it, and direct the squad from the same visual board.</p></section>
+ <div class="card"><h3>Verified 2026 S&amp;D rotation</h3><p>Tunisia, Firing Range, Coastal, Slums, and Meltdown are the official 2026 competitive Search &amp; Destroy pool. Raid is included because you requested it and it remains a core Ranked reference. The extra library covers the common Ranked staples most likely to appear in map voting.</p></div>
+ <div class="section-title">2026 competitive S&amp;D</div><div class="map-library-grid">${comp.map(card).join('')}</div>
+ <div class="section-title">Ranked staples</div><div class="map-library-grid">${staples.map(card).join('')}</div>`;
  window.scrollTo(0,0);
 }
-function showMapPlan(mapId,planId){
- activeMapId=mapId;
- const m=MAPS[mapId];
- const p=MAP_ACTIONS[mapId].plans[planId];
- setTab('browse');
- main.innerHTML=`<button class="action back" onclick="showMapHub('${mapId}')">← ${esc(m.name)} situations</button>
- <section class="plan-banner"><span class="field-draft">Fast visual plan</span><h2>${esc(p.title)}</h2><p>${esc(p.subtitle)}</p></section>
- <div class="plan-goal"><div><strong>Goal</strong>${esc(p.goal)}</div><div><strong>Main danger</strong>${esc(p.danger)}</div></div>
- <div class="action-flow">${p.steps.map((step,i)=>`${i?'<div class="flow-arrow">↓</div>':''}<div class="action-step"><span class="step-number">${i+1}</span><div><h3>${esc(step.title)}</h3><p>${esc(step.text)}</p><small>${esc(step.micro)}</small></div></div>`).join('')}</div>
- <div class="card"><h3>Keep these on screen</h3><div class="watch-strip">${p.watch.map(x=>`<span class="watch-chip">◎ ${esc(x)}</span>`).join('')}</div></div>
- <div class="avoid-box"><strong>Do not:</strong> ${esc(p.avoid)}</div>
- <div class="plan-actions"><button class="action" onclick="showThreatGuide('${mapId}','${p.focus}')">Open angle view</button><button class="action" onclick="showMapHub('${mapId}')">Choose another situation</button></div>
- <div class="card"><h3>Field correction note</h3><textarea id="mapnote" class="notearea" placeholder="What happened when we tried this plan?"></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save map note</button></div>`;
- window.scrollTo(0,0);
-}
-function showThreatGuide(mapId=activeMapId,focusId=activeFocusId){
- activeMapId=mapId;
- activeFocusId=focusId;
- activeThreatName=null;
- setTab('browse');
- const m=MAPS[mapId];
- const f=MAP_FOCUS[mapId][focusId];
- main.innerHTML=`<button class="action back" onclick="showMapHub('${mapId}')">← Fast plans</button>
- <section class="hero"><span class="field-draft">Fast angle reference</span><h2>${esc(m.name)} • ${esc(f.title)}</h2><p>${esc(f.summary)}</p></section>
- <div class="map-tabs">${Object.entries(MAPS).map(([id,x])=>`<button class="map-tab ${id===mapId?'active':''}" onclick="showThreatGuide('${id}','a')">${esc(x.name)}</button>`).join('')}</div>
- <div class="focus-tabs">
-  <button class="focus-tab ${focusId==='a'?'active':''}" onclick="showThreatGuide('${mapId}','a')">A Site</button>
-  <button class="focus-tab ${focusId==='b'?'active':''}" onclick="showThreatGuide('${mapId}','b')">B Site</button>
-  <button class="focus-tab ${focusId==='mid'?'active':''}" onclick="showThreatGuide('${mapId}','mid')">Mid</button>
+function showVisualMap(mapId='raid',mode='callouts'){
+ activeMapId=mapId;activeMapMode=mode;activeCallout=null;setTab('browse');
+ const m=VMAPS[mapId];
+ main.innerHTML=`<button class="action back" onclick="showMapGuide()">← All maps</button>
+ <section class="map-command-head"><div><span class="rotation-badge${mapTierClass(m.tier)}">${esc(m.tier)}</span><h2>${esc(m.name)}</h2><p class="map-meta">${esc(m.description)}</p></div><button class="action" onclick="cycleMap('${mapId}')">Next map →</button></section>
+ <div class="map-mode-tabs">
+ ${[['callouts','Callouts'],['attackA','Attack A'],['attackB','Attack B'],['defense','Defense'],['sightlines','Sightlines']].map(([id,label])=>`<button class="map-mode ${mode===id?'active':''}" onclick="showVisualMap('${mapId}','${id}')">${label}</button>`).join('')}
  </div>
- <p class="map-mode-note">The center is the area you are entering. The four cards are the main directions that can hurt you.</p>
- ${renderThreatBoard(mapId,focusId)}
- <div class="quick-rule"><strong>One rule:</strong> ${esc(f.quick)}</div>
- <div class="card"><h3>Clear order</h3><div class="clear-order">${f.order.map((x,i)=>`<span class="clear-step"><b>${i+1}</b>${esc(x)}</span>`).join('')}</div></div>
- <div id="threat-detail" class="card threat-detail"><h3>Tap a threat card</h3><p>It will show what that position watches and the simplest counter.</p></div>
- <div class="section-title">Quick warnings</div><div class="card"><ul>${m.warnings.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+ <div id="map-stage" class="map-stage"><div class="map-tools"><small>Tap a red or purple position for details.</small><button class="action" onclick="toggleMapExpand()">⛶ Expand</button></div>${renderCommandMap(m,mode)}<div class="map-legend-v1"><span><i class="lg site"></i>Bomb</span><span><i class="lg hold"></i>Site callout</span><span><i class="lg mid"></i>Mid callout</span><span><i class="lg route"></i>Squad route</span><span><i class="lg los"></i>Sightline</span></div></div>
+ ${renderLeaderPlan(m,mode)}
+ <div id="callout-detail" class="card callout-sheet"><div class="kind">Live map detail</div><h3>Tap a position on the map</h3><p>The selected callout will show what it watches and the simplest way to deal with it.</p></div>
+ <div class="card"><h3>Squad note</h3><textarea id="mapnote" class="notearea" placeholder="Your team’s alias, route, timing, or correction"></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save ${esc(m.name)} note</button></div>
+ <p class="map-source-note">Original tactical schematic, not official map artwork and not drawn to exact scale. Callouts are general competitive/community language; squads may use shorter aliases.</p>`;
  window.scrollTo(0,0);
 }
-function renderThreatBoard(mapId,focusId){
- const f=MAP_FOCUS[mapId][focusId];
- const byPos=Object.fromEntries(f.threats.map(t=>[t.pos,t]));
- const arrows={north:'↓',south:'↑',west:'→',east:'←'};
- const threat=(pos)=>{const t=byPos[pos]; return `<button class="threat-card threat-${pos}" onclick="showThreat('${mapId}','${focusId}',${JSON.stringify(t.name)})"><span class="direction">${arrows[pos]}</span><strong>${esc(t.icon+' '+t.name)}</strong><small>${esc(t.kind)}</small></button>`};
- return `<div class="threat-board">${threat('north')}${threat('west')}<div class="site-core"><div class="core-eye">◎</div><div class="core-label">${esc(f.center)}</div><small>You are here</small></div>${threat('east')}${threat('south')}</div>`;
+function cycleMap(id){const ids=Object.keys(VMAPS),i=ids.indexOf(id);showVisualMap(ids[(i+1)%ids.length],'callouts')}
+function toggleMapExpand(){const s=$('#map-stage');s.classList.toggle('expanded');const b=s.querySelector('.map-tools button');b.textContent=s.classList.contains('expanded')?'✕ Close':'⛶ Expand'}
+function polyline(points){return points.map(p=>p.join(',')).join(' ')}
+
+function jaggedPoints(z){
+ const n=Math.max(8,Math.min(26,z.w*.07));
+ return `${z.x+n},${z.y} ${z.x+z.w-n},${z.y} ${z.x+z.w},${z.y+n} ${z.x+z.w},${z.y+z.h*.42} ${z.x+z.w-n*.55},${z.y+z.h*.50} ${z.x+z.w},${z.y+z.h*.58} ${z.x+z.w},${z.y+z.h-n} ${z.x+z.w-n},${z.y+z.h} ${z.x+n},${z.y+z.h} ${z.x},${z.y+z.h-n} ${z.x},${z.y+z.h*.58} ${z.x+n*.55},${z.y+z.h*.50} ${z.x},${z.y+z.h*.42} ${z.x},${z.y+n}`;
 }
-function showThreat(mapId,focusId,name){
- const t=MAP_FOCUS[mapId][focusId].threats.find(x=>x.name===name); if(!t)return;
- activeThreatName=name;
- document.querySelectorAll('.threat-card').forEach(x=>x.classList.toggle('selected',x.textContent.includes(name)));
- const el=$('#threat-detail');
- el.innerHTML=`<h3>${esc(t.name)}</h3><p><span class="pill">${esc(t.kind)}</span></p><p><strong>What it watches:</strong> ${esc(t.watch)}</p><p><strong>Simple counter:</strong> ${esc(t.counter)}</p>`;
+function mapFeatureSvg(id){
+ const f={
+ raid:`<path class="cm-road" d="M95 470 C220 430 300 500 410 470 S650 440 785 370"/><circle class="cm-feature" cx="300" cy="500" r="54"/><circle class="cm-feature-line" cx="300" cy="500" r="35"/><rect class="cm-water" x="680" y="285" width="95" height="115" rx="20"/><path class="cm-feature-line" d="M390 270h150v165H390z M420 270v165 M480 270v165"/><text class="cm-feature-text" x="300" y="505">RING</text><text class="cm-feature-text" x="727" y="345">POOL</text>`,
+ tunisia:`<path class="cm-road" d="M425 95 L425 530"/><path class="cm-road-edge" d="M390 95 L390 530 M460 95 L460 530"/><rect class="cm-feature" x="555" y="300" width="230" height="155" rx="24"/><path class="cm-feature-line" d="M590 340h160 M620 300v155 M705 300v155"/><path class="cm-feature" d="M690 165h85v95h-85z"/><path class="cm-feature-line" d="M700 255l65-80"/><text class="cm-feature-text" x="670" y="385">MAIN SQUARE</text><text class="cm-feature-text" x="732" y="210">SCAFFOLD</text>`,
+ coastal:`<path class="cm-water" d="M40 485 Q180 450 320 490 T600 490 T860 490 V610 H40z"/><path class="cm-feature-line" d="M60 535q40-22 80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0"/><path class="cm-road" d="M440 100 L440 485"/><path class="cm-road" d="M110 330 L790 330"/><path class="cm-feature" d="M360 185h160l25 35-25 35H360l-25-35z"/><text class="cm-feature-text" x="440" y="225">MID ARCH</text><text class="cm-feature-text" x="450" y="565">WATERFRONT</text>`,
+ 'firing-range':`<path class="cm-road" d="M115 470 C250 390 345 360 440 310 S655 250 790 160"/><rect class="cm-feature" x="70" y="175" width="155" height="90" rx="15"/><rect class="cm-feature" x="640" y="150" width="145" height="170" rx="15"/><rect class="cm-feature" x="395" y="140" width="70" height="115" rx="10"/><path class="cm-feature-line" d="M430 140v-55 M410 85h40 M650 210h125 M670 160v160 M725 160v160"/><text class="cm-feature-text" x="148" y="225">TRAILER</text><text class="cm-feature-text" x="712" y="240">WOOD</text><text class="cm-feature-text" x="430" y="125">TOWER</text>`,
+ slums:`<path class="cm-road" d="M75 350 L825 350"/><path class="cm-road" d="M445 90 L445 540"/><circle class="cm-feature" cx="445" cy="295" r="62"/><circle class="cm-feature-line" cx="445" cy="295" r="34"/><circle class="cm-water" cx="435" cy="405" r="42"/><path class="cm-feature-line" d="M410 405h50 M435 380v50"/><text class="cm-feature-text" x="445" y="300">STATUE</text><text class="cm-feature-text" x="435" y="410">FOUNTAIN</text>`,
+ meltdown:`<path class="cm-road" d="M80 365 L820 365"/><path class="cm-road" d="M445 100 L445 520"/><circle class="cm-feature" cx="145" cy="250" r="78"/><circle class="cm-feature-line" cx="145" cy="250" r="48"/><circle class="cm-feature" cx="735" cy="245" r="68"/><rect class="cm-feature" x="360" y="140" width="165" height="105" rx="14"/><path class="cm-feature-line" d="M500 245 L570 390"/><text class="cm-feature-text" x="145" y="255">REACTOR</text><text class="cm-feature-text" x="735" y="250">WAREHOUSE</text><text class="cm-feature-text" x="442" y="198">CONTROL</text>`,
+ standoff:`<path class="cm-road" d="M80 330 L820 330"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="100" y="155" width="165" height="130" rx="16"/><rect class="cm-feature" x="650" y="150" width="145" height="135" rx="16"/><ellipse class="cm-feature" cx="445" cy="325" rx="65" ry="35"/><text class="cm-feature-text" x="180" y="220">GRANNY</text><text class="cm-feature-text" x="722" y="220">GAS</text><text class="cm-feature-text" x="445" y="330">TANK</text>`,
+ terminal:`<path class="cm-road" d="M75 330 L820 330"/><path class="cm-feature" d="M80 210h220l55 55-55 55H80z"/><path class="cm-feature" d="M600 150h180v250H600z"/><path class="cm-feature-line" d="M140 170l150 80 M140 350l150-80 M440 180v260 M410 235h60 M410 385h60"/><text class="cm-feature-text" x="190" y="270">PLANE</text><text class="cm-feature-text" x="690" y="280">TERMINAL</text>`,
+ crash:`<path class="cm-road" d="M70 350 L830 350"/><path class="cm-road" d="M445 100 L445 520"/><path class="cm-feature" d="M390 300l55-45 55 45-20 70h-70z"/><path class="cm-feature-line" d="M445 255v-55 M395 235h100"/><rect class="cm-feature" x="85" y="155" width="170" height="170" rx="15"/><rect class="cm-feature" x="660" y="165" width="145" height="155" rx="15"/><text class="cm-feature-text" x="170" y="240">3 STORY</text><text class="cm-feature-text" x="730" y="245">BLUE</text><text class="cm-feature-text" x="445" y="325">CRASH</text>`,
+ takeoff:`<path class="cm-road" d="M70 365 L830 365"/><rect class="cm-feature" x="75" y="150" width="210" height="210" rx="18"/><rect class="cm-feature" x="620" y="150" width="190" height="210" rx="18"/><path class="cm-feature" d="M420 125h50l25 170-50 80-50-80z"/><path class="cm-feature-line" d="M445 125v-55 M410 95h70"/><text class="cm-feature-text" x="180" y="255">HANGAR</text><text class="cm-feature-text" x="715" y="255">CONTROL</text><text class="cm-feature-text" x="445" y="255">ROCKET</text>`,
+ hacienda:`<path class="cm-road" d="M90 350 L810 350"/><rect class="cm-feature" x="100" y="130" width="170" height="220" rx="20"/><rect class="cm-feature" x="630" y="130" width="170" height="220" rx="20"/><rect class="cm-feature" x="330" y="150" width="240" height="280" rx="28"/><circle class="cm-water" cx="450" cy="315" r="48"/><text class="cm-feature-text" x="185" y="245">WINE</text><text class="cm-feature-text" x="715" y="245">GARAGE</text><text class="cm-feature-text" x="450" y="320">FOUNTAIN</text>`,
+ summit:`<path class="cm-road" d="M80 350 L820 350"/><rect class="cm-feature" x="80" y="145" width="200" height="190" rx="15"/><rect class="cm-feature" x="630" y="145" width="185" height="190" rx="15"/><rect class="cm-feature" x="350" y="155" width="190" height="245" rx="15"/><path class="cm-feature-line" d="M440 155v-75 M390 100h100 M540 205h90"/><text class="cm-feature-text" x="180" y="245">SERVER</text><text class="cm-feature-text" x="720" y="245">GONDOLA</text><text class="cm-feature-text" x="445" y="285">CONTROL</text>`,
+ 'kurohana':`<path class="cm-road" d="M80 350 L820 350"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="90" y="145" width="190" height="190" rx="20"/><rect class="cm-feature" x="620" y="145" width="190" height="190" rx="20"/><rect class="cm-feature" x="345" y="170" width="200" height="200" rx="28"/><path class="cm-feature-line" d="M360 185h170v170H360z M395 185v170 M470 185v170"/><text class="cm-feature-text" x="185" y="240">LAB</text><text class="cm-feature-text" x="715" y="240">STATION</text><text class="cm-feature-text" x="445" y="275">PLAZA</text>`,
+ express:`<path class="cm-feature-line" d="M70 250H830 M70 390H830"/><path class="cm-feature" d="M100 270h700v100H100z"/><path class="cm-feature-line" d="M150 270v100 M250 270v100 M350 270v100 M450 270v100 M550 270v100 M650 270v100 M750 270v100"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="90" y="135" width="190" height="100" rx="14"/><rect class="cm-feature" x="620" y="135" width="190" height="100" rx="14"/><text class="cm-feature-text" x="450" y="325">TRAIN / PLATFORM</text><text class="cm-feature-text" x="185" y="190">CONTROL</text><text class="cm-feature-text" x="715" y="190">TICKET</text>`
+ };
+ return f[id]||'';
+}
+function renderCommandMap(m,mode){
+ const zones=m.zones.map(z=>`<polygon class="cm-zone cm-zone-${z.kind}" points="${jaggedPoints(z)}"></polygon><text class="cm-zone-label" x="${z.x+z.w/2}" y="${z.y+z.h/2}">${esc(z.label)}</text>`).join('');
+ const defs=`<defs><pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#26332b" stroke-width="1" opacity=".3"/></pattern><marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#7cff8d"/></marker><marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#49a4ff"/></marker></defs><rect width="900" height="620" fill="url(#gridPattern)"/>`;
+ const sites=Object.entries(m.sites).map(([k,p])=>`<circle class="cm-site" cx="${p[0]}" cy="${p[1]}" r="28"></circle><text class="cm-site-label" x="${p[0]}" y="${p[1]+1}">${k}</text>`).join('');
+ const sp=Object.entries(m.spawns).map(([k,p])=>`<circle class="cm-spawn" cx="${p[0]}" cy="${p[1]}" r="11"></circle><text class="cm-spawn-label" x="${p[0]}" y="${p[1]+(k==='attack'?25:-18)}">${k==='attack'?'ATTACK':'DEFENSE'}</text>`).join('');
+ let overlays='';
+ if(mode==='attackA'||mode==='attackB'||mode==='defense'){
+   const rs=m.routes[mode]||[]; overlays+=rs.map((r,i)=>`<polyline class="cm-route ${i%2?'alt':''}" points="${polyline(r.points)}"></polyline>`).join('');
+ }
+ if(mode==='sightlines') overlays+=m.sightlines.map(s=>`<line class="cm-los" x1="${s.a[0]}" y1="${s.a[1]}" x2="${s.b[0]}" y2="${s.b[1]}"></line>`).join('');
+ const visible=m.callouts.filter(x=>mode==='callouts'||mode==='sightlines'||mode==='defense'||(mode==='attackA'?(x.side==='A'||x.side==='MID'):(x.side==='B'||x.side==='MID')));
+ const calls=visible.map(x=>{const lx=x.x+x.dx,ly=x.y+x.dy,w=Math.max(50,x.name.length*8.2+16);return `<g class="cm-callout ${x.side==='MID'?'mid':''}" onclick="showMapCallout('${m.id}',${JSON.stringify(x.name)})"><line class="cm-label-line" x1="${x.x}" y1="${x.y}" x2="${lx}" y2="${ly-2}"></line><rect class="cm-label-box" x="${lx-w/2}" y="${ly-18}" width="${w}" height="24" rx="8"></rect><circle cx="${x.x}" cy="${x.y}" r="10"></circle><text x="${lx}" y="${ly-2}">${esc(x.name)}</text></g>`}).join('');
+ return `<svg class="command-map" viewBox="0 0 900 620" role="img" aria-label="${esc(m.name)} tactical command map">${defs}${zones}${mapFeatureSvg(m.id)}${overlays}${sites}${sp}${calls}</svg>`;
+}
+function renderLeaderPlan(m,mode){
+ const key=mode==='attackA'?'attackA':mode==='attackB'?'attackB':'defense';
+ const p=m.plans[key];
+ return `<div class="leader-call"><strong>Team leader call • ${esc(p.title)}</strong><p>${esc(p.call)}</p></div><div class="squad-roles">${p.roles.map((r,i)=>`<div class="squad-role"><b>${i+1}</b><strong>${esc(r[0])}</strong><small>${esc(r[1])}</small></div>`).join('')}</div>`;
+}
+function showMapCallout(mapId,name){
+ const m=VMAPS[mapId],c=m.callouts.find(x=>x.name===name);if(!c)return;activeCallout=name;
+ document.querySelectorAll('.cm-callout').forEach(g=>g.classList.toggle('selected',g.textContent.trim()===name));
+ const el=$('#callout-detail');
+ el.innerHTML=`<div class="kind">${esc(c.side)} • ${esc(c.kind)}</div><h3>${esc(c.name)}</h3><p>${esc(c.summary)}</p><p><strong>Watches:</strong> ${esc(c.watch)}</p><p><strong>Simple counter:</strong> ${esc(c.counter)}</p>`;
  el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function saveMapNote(mapId){const text=$('#mapnote').value.trim();if(!text)return;state.notes.unshift({id:0,text:`[${MAPS[mapId].name} map] ${text}`,date:new Date().toLocaleString()});localStorage.setItem('snd-notes',JSON.stringify(state.notes));$('#mapnote').value='';toast('Map note saved')}
-
-
-function atlasPack(mapId){return MAP_ATLAS[mapId]}
-function atlasGroup(mapId,id){return atlasPack(mapId).groups[id]}
-function atlasSpot(mapId,groupId,spotId){return atlasGroup(mapId,groupId).spots.find(x=>x.id===spotId)}
-function showMapAtlas(mapId='raid',groupId='a'){
- setTab('browse'); activeMapId=mapId;
- const pack=atlasPack(mapId), g=atlasGroup(mapId,groupId);
- main.innerHTML=`<button class="action back" onclick="showMapHub('${mapId}')">← ${esc(pack.map)} map guide</button>
- <section class="hero"><span class="field-draft">Common callout set</span><h2>${esc(pack.map)} Callouts & Sightlines</h2><p>${esc(pack.note)}</p></section>
- <div class="atlas-tabs">${Object.entries(pack.groups).map(([id,x])=>`<button class="atlas-tab ${groupId===id?'active':''}" onclick="showMapAtlas('${mapId}','${id}')">${esc(x.tab)}</button>`).join('')}</div>
- <div class="card"><h3>${esc(g.title)}</h3><p>${esc(g.subtitle)}</p><p class="working-callout"><strong>Research basis:</strong> ${esc(pack.basis)}</p><p class="working-callout">Use the main name first. Aliases are shown because squads apparently enjoy inventing dialects during gunfire.</p></div>
- <div class="section-title">Check order</div><div class="atlas-check">${g.checkOrder.map((x,i)=>`<span><b>${i+1}</b>${esc(x)}</span>`).join('')}</div>
- <div class="section-title">Named positions</div><div class="atlas-list">${g.spots.map(x=>`<button class="atlas-spot" onclick="showMapSpot('${mapId}','${groupId}','${x.id}')"><span class="atlas-spot-icon">${esc(x.icon)}</span><span><strong>${esc(x.name)}</strong><small>${x.aliases.length?`Also: ${esc(x.aliases.join(' / '))} · `:''}${esc(x.kind)}</small></span><span class="risk risk-${esc(x.risk)}">${esc(x.risk)}</span></button>`).join('')}</div>
- <div class="card"><h3>Your squad's alias</h3><textarea id="mapnote" class="notearea" placeholder="Different name your team actually uses? Save it here without replacing the common callout."></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save ${esc(pack.map)} note</button></div>`;
- window.scrollTo(0,0);
-}
-function showMapSpot(mapId,groupId,spotId){
- const pack=atlasPack(mapId), g=atlasGroup(mapId,groupId), s=atlasSpot(mapId,groupId,spotId); if(!s)return;
- setTab('browse'); activeMapId=mapId;
- const targets=s.watches.slice(0,3);
- main.innerHTML=`<button class="action back" onclick="showMapAtlas('${mapId}','${groupId}')">← ${esc(g.title)} positions</button>
- <section class="operation-head"><div class="num">${esc(pack.map)} • ${esc(g.title)} • ${esc(s.basis)}</div><h2>${esc(s.icon+' '+s.name)}</h2><p><span class="pill">${esc(s.kind)}</span> <span class="risk risk-${esc(s.risk)}">${esc(s.risk)} RISK</span></p>${s.aliases.length?`<p class="working-callout"><strong>Also heard as:</strong> ${esc(s.aliases.join(' / '))}</p>`:''}</section>
- <div class="card"><h3>Where it sits</h3><p>${esc(s.position)}</p></div>
- <div class="los-scene" role="img" aria-label="${esc(s.name)} line of sight diagram">
-  <div class="los-origin">${esc(s.name)}</div>
-  <div class="los-line"><span>WATCHES ↓</span></div>
-  <div class="los-targets">${targets.map(x=>`<div class="los-target">${esc(x)}</div>`).join('')}</div>
- </div>
- <div class="intel-grid">
-  <div class="intel-box"><h3>What it watches</h3><ul>${s.watches.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-  <div class="intel-box"><h3>Where it is weak</h3><ul>${s.blind.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-  <div class="intel-box"><h3>Likely escape</h3><ul>${s.escape.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-  <div class="intel-box"><h3>Line of sight</h3><p>${esc(s.line)}</p></div>
- </div>
- <div class="card"><h3>Fast clear</h3><div class="clear-stack">${s.clear.map((x,i)=>`<div><b>${i+1}</b><span>${esc(x)}</span></div>`).join('')}</div></div>
- <div class="avoid-box"><strong>Common mistake:</strong> ${esc(s.mistake)}</div>
- <div class="plan-actions"><button class="action" onclick="showMapAtlas('${mapId}','${groupId}')">Back to positions</button><button class="action" onclick="showMapPlan('${mapId}','${groupId==='a'?'attack-a':groupId==='b'?'attack-b':'mid'}')">Open matching plan</button></div>
- <div class="card"><h3>Squad note</h3><textarea id="mapnote" class="notearea" placeholder="Your team's alias, timing, or adjustment for this position"></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save ${esc(pack.map)} note</button></div>`;
- window.scrollTo(0,0);
-}
+function saveMapNote(mapId){const text=$('#mapnote').value.trim();if(!text)return;state.notes.unshift({id:0,text:`[${VMAPS[mapId].name} map] ${text}`,date:new Date().toLocaleString()});localStorage.setItem('snd-notes',JSON.stringify(state.notes));$('#mapnote').value='';toast('Map note saved')}
 
 function showDictionary(){
  setTab('browse');
@@ -505,9 +505,9 @@ function runSearch(){
  if(!q){$('#results').innerHTML='';return}
  const ops=D.operations.filter(o=>JSON.stringify(o).toLowerCase().includes(q)).slice(0,12);
  const terms=D.dictionary.filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,8);
- const maps=Object.entries(MAPS).filter(([id,x])=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,3);
- const atlasSpots=Object.entries(MAP_ATLAS).flatMap(([mapId,p])=>Object.entries(p.groups).flatMap(([groupId,g])=>g.spots.map(s=>({mapId,mapName:p.map,groupId,...s})))).filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,12);
- $('#results').innerHTML=ops.map(opRow).join('')+atlasSpots.map(x=>`<button class="row" onclick="showMapSpot('${x.mapId}','${x.groupId}','${x.id}')"><strong>${esc(x.mapName)} • ${esc(x.name)}</strong><small>${x.aliases.length?`Also: ${esc(x.aliases.join(' / '))} · `:''}${esc(x.kind)}</small></button>`).join('')+maps.map(([id,x])=>`<button class="row" onclick="showMapGuide('${id}')"><strong>${esc(x.name)} Visual Map</strong><small>Callouts, camp spots, lines of sight, routes</small></button>`).join('')+terms.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('');
+ const maps=Object.values(VMAPS).filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,10);
+ const callouts=Object.values(VMAPS).flatMap(m=>m.callouts.map(c=>({mapId:m.id,mapName:m.name,...c}))).filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,12);
+ $('#results').innerHTML=ops.map(opRow).join('')+callouts.map(x=>`<button class="row" onclick="showVisualMap('${x.mapId}','callouts');setTimeout(()=>showMapCallout('${x.mapId}',${JSON.stringify(x.name)}),50)"><strong>${esc(x.mapName)} • ${esc(x.name)}</strong><small>${esc(x.kind)} · ${esc(x.watch)}</small></button>`).join('')+maps.map(x=>`<button class="row" onclick="showVisualMap('${x.id}','callouts')"><strong>${esc(x.name)} Command Map</strong><small>${esc(x.tier)} · callouts, routes, defense, sightlines</small></button>`).join('')+terms.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('');
 }
 
 function showAbout(){
@@ -517,7 +517,7 @@ function showAbout(){
  <div class="about-logo">S&amp;D</div>
  <div class="card"><h3>Original creator</h3><p>${esc(APP_OWNER)}</p></div>
  <div class="card"><h3>Version</h3><p>${esc(APP_VERSION)} · Build ${esc(BUILD_ID)}</p></div>
- <div class="card"><h3>Map artwork</h3><p class="legal-box">The map-guide action cards and threat views are original simplified tactical diagrams. They do not contain official overhead map artwork, textures, screenshots, or traced game assets. Call of Duty and related names belong to their respective owners. This is an unofficial fan-made reference and is not affiliated with or endorsed by Activision.</p></div>
+ <div class="card"><h3>Map artwork</h3><p class="legal-box">The Squad Command Atlas uses original simplified tactical schematics with visual callouts, routes, site markers, and sightlines. They do not contain official overhead map artwork, textures, screenshots, or traced game assets. Call of Duty and related names belong to their respective owners. This is an unofficial fan-made reference and is not affiliated with or endorsed by Activision.</p></div>
  <div class="card"><h3>Copyright</h3><p>${esc(COPYRIGHT_NOTICE)}</p></div>
  <div class="card"><h3>Usage rights</h3><p class="legal-box">This application, its written field-guide content, interface structure, branding, and included source files are proprietary. No permission is granted to copy, modify, redistribute, publish, rebrand, sublicense, or sell any part of this project without written permission from the copyright holder.</p></div>
  <div class="card"><h3>Authorship fingerprint</h3><p class="legal-box">Project ID: SEARCH-DESTROY-COMPANION-MB\nBuild ID: ${esc(BUILD_ID)}\nOwner: ${esc(APP_OWNER)}</p></div>`;
@@ -527,7 +527,7 @@ function showAbout(){
 window.addEventListener('popstate',e=>{ if(e.state?.view==='op')showOperation(e.state.id); else showHome(); });
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 const previewMode=new URLSearchParams(location.search).get('preview');
-if(previewMode==='atlas-raid')showMapAtlas('raid','a');else if(previewMode==='atlas-tunisia')showMapAtlas('tunisia','a');else if(previewMode==='atlas-coastal')showMapAtlas('coastal','a');else if(previewMode==='spot-zig')showMapSpot('raid','mid','zig');else showHome();
+if(previewMode&&VMAPS[previewMode])showVisualMap(previewMode,'callouts');else showHome();
 </script>
 </body>
 </html>

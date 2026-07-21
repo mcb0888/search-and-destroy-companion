@@ -1,20 +1,14 @@
-CALLOUT RESEARCH BASIS — v0.8
+RESEARCH BASIS
 
-Raid
-- Activision Raid Map Snapshot: official landmarks and three-lane layout.
-- Long-running competitive Raid terminology: Water, Water Steps, Kitchen, Money, Mid, Zig, Pillars, Ring, Laundry, Driveway, Art, Garage, Lambo, White Truck, Tiki, Basketball.
-- CODM community discussions confirm these names remain recognizable, with minor squad variation.
+Official 2026 CODM competitive Search & Destroy pool:
+- Tunisia
+- Firing Range
+- Coastal
+- Slums
+- Meltdown
 
-Tunisia
-- Activision Tunisia Map Snapshot: Main Square, Center Street, south second-story Window, Scaffolding, west Stairs, Ladder and Platform.
-- CODM community usage adds short forms such as Square, Scaffold, Window, Center, West, Alley and Zig.
+Source: Call of Duty: Mobile 2026 Esports Settings, current as of July 2026.
 
-Coastal
-- Coastal is a Search & Destroy-focused CODM map with broad outdoor lanes and indoor routes.
-- Community/strategy discussion repeatedly uses Winery, A Courtyard, Ladder, B Site/Rooms, Mid, Arch, Alley, Back and elevated/upper callouts.
-- Coastal naming is less standardized than Raid, so the app shows aliases and favors obvious landmarks.
+Raid is included by user request and as a core Ranked reference. Additional maps are included as common Ranked staples because Activision does not publish a complete live public Ranked S&D list in current season notes and availability can vary by series/region.
 
-Method
-- Facts and landmarks were summarized in original wording.
-- No official map artwork, screenshots, or copied diagrams are included.
-- The app presents a practical common vocabulary, not a claim that every squad uses identical names.
+All visual maps are original simplified tactical schematics. No official overhead art, screenshots, textures, or traced assets are included.

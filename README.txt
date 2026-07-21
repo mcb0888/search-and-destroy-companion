@@ -1,23 +1,18 @@
-SEARCH & DESTROY COMPANION v0.8 — COMMON CALLOUT ATLAS
+SEARCH & DESTROY COMPANION v1.0 — SQUAD COMMAND ATLAS
 
-This build replaces the Raid-only field-draft atlas with common callout sets for:
-- Raid
-- Tunisia
-- Coastal
+WHAT IS NEW
+- 14 visual tactical map boards
+- Verified 2026 competitive S&D pool: Tunisia, Firing Range, Coastal, Slums, Meltdown
+- Raid rebuilt as a full visual map
+- Ranked staple library: Standoff, Terminal, Crash, Takeoff, Hacienda, Summit, Kurohana Metropolis, Express
+- Callout layer, Attack A, Attack B, Defense, and Sightline layers
+- Expandable full-screen map view
+- Five-player team leader role assignments
+- Tap-to-open callout details
+- Offline PWA support
 
-What changed:
-- 45 named positions across three maps
-- common aliases shown under each position
-- callout basis shown in the app
-- Raid uses established competitive names such as Water, Tiki, Money, Zig, Ring, Art, Lambo, and White Truck
-- Tunisia uses official landmarks plus ranked shorthand such as Square, Scaffold, Window, Center, West Stairs, Platform, Ladder, Alley, and Zig
-- Coastal uses recurring ranked/strategy terms such as Winery, A Courtyard, Ladder, B Rooms, Arch, Balcony, Mid, Alley, and Back
-- search finds primary names and aliases
+GITHUB UPDATE
+Extract this ZIP. Upload every file inside the extracted folder to the existing GitHub repository and commit the replacements. GitHub Pages will rebuild automatically.
 
-Callouts vary by squad. The app chooses a useful common name first and shows alternate names instead of inventing blank generic labels.
-
-To update GitHub Pages:
-1. Extract this ZIP.
-2. In the existing repository, choose Add file > Upload files.
-3. Upload all extracted files and replace existing files.
-4. Commit to main.
+ACCURACY NOTE
+These are original tactical schematics, not official overhead map art and not exact-scale architectural plans. The verified competitive pool is based on the official 2026 CODM esports settings. Public Ranked map availability can vary by series and region; the extra library covers common Ranked staples.

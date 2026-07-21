@@ -1,11 +1,11 @@
 {
-  "name": "Search & Destroy Companion v0.8",
-  "short_name": "SnD Companion",
+  "name": "Search & Destroy Companion \u2014 Squad Command Atlas",
+  "short_name": "SnD Command",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0e1310",
   "theme_color": "#0e1310",
-  "description": "Mid-game S&D reference with common callout and sightline atlases for Raid, Tunisia, and Coastal.",
+  "description": "A visual, offline Search & Destroy squad command and field reference.",
   "icons": [
     {
       "src": "icon.svg",
