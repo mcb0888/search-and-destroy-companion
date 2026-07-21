@@ -11,4 +11,4 @@ You may use an authorized copy of the application for personal reference. Posses
 THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND.
 
 Project fingerprint: SEARCH-DESTROY-COMPANION-MB
-Build ID: MB-SNDC-2026-0720-001
+Build ID: MB-SNDC-2026-0720-002

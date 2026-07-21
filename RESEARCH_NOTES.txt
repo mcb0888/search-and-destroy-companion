@@ -1,0 +1,20 @@
+CALLOUT RESEARCH BASIS — v0.8
+
+Raid
+- Activision Raid Map Snapshot: official landmarks and three-lane layout.
+- Long-running competitive Raid terminology: Water, Water Steps, Kitchen, Money, Mid, Zig, Pillars, Ring, Laundry, Driveway, Art, Garage, Lambo, White Truck, Tiki, Basketball.
+- CODM community discussions confirm these names remain recognizable, with minor squad variation.
+
+Tunisia
+- Activision Tunisia Map Snapshot: Main Square, Center Street, south second-story Window, Scaffolding, west Stairs, Ladder and Platform.
+- CODM community usage adds short forms such as Square, Scaffold, Window, Center, West, Alley and Zig.
+
+Coastal
+- Coastal is a Search & Destroy-focused CODM map with broad outdoor lanes and indoor routes.
+- Community/strategy discussion repeatedly uses Winery, A Courtyard, Ladder, B Site/Rooms, Mid, Arch, Alley, Back and elevated/upper callouts.
+- Coastal naming is less standardized than Raid, so the app shows aliases and favors obvious landmarks.
+
+Method
+- Facts and landmarks were summarized in original wording.
+- No official map artwork, screenshots, or copied diagrams are included.
+- The app presents a practical common vocabulary, not a claim that every squad uses identical names.
