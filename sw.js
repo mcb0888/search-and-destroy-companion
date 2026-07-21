@@ -1,5 +1,21 @@
-const CACHE='snd-command-atlas-v1-0';
-const ASSETS=["./", "./index.html", "./data.js", "./visual_maps.js", "./manifest.webmanifest", "./icon.svg", "./LICENSE.txt", "./COPYRIGHT.txt"];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
-self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
+const CACHE = 'snd-operator-atlas-2.0.0-final';
+const CORE = [
+  './', './index.html', './data.js', './atlas_data.js', './manifest.webmanifest', './icon.svg', './VERSION.txt',
+  './maps/raid.png', './maps/tunisia.png', './maps/coastal.png',
+  './maps/firing-range.png', './maps/slums.png', './maps/meltdown.png'
+];
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+  event.respondWith(caches.match(event.request).then(hit => hit || fetch(event.request).then(response => {
+    if (response && response.ok && new URL(event.request.url).origin === self.location.origin) {
+      const copy=response.clone(); caches.open(CACHE).then(cache=>cache.put(event.request,copy)).catch(()=>{});
+    }
+    return response;
+  }).catch(() => event.request.mode === 'navigate' ? caches.match('./index.html') : Response.error())));
+});

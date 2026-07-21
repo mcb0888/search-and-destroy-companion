@@ -1,11 +1,13 @@
 {
-  "name": "Search & Destroy Companion \u2014 Squad Command Atlas",
-  "short_name": "SnD Command",
+  "name": "Search & Destroy Companion \u2014 Operator Atlas",
+  "short_name": "S&D Atlas",
+  "description": "A visual squad-command companion for Call of Duty: Mobile Search & Destroy.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#0e1310",
-  "theme_color": "#0e1310",
-  "description": "A visual, offline Search & Destroy squad command and field reference.",
+  "orientation": "any",
+  "background_color": "#07100c",
+  "theme_color": "#07100c",
   "icons": [
     {
       "src": "icon.svg",
@@ -13,9 +15,5 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ],
-  "version": "0.7",
-  "author": "Michael Barnes",
-  "copyright": "Copyright \u00a9 2026 Michael Barnes. All Rights Reserved.",
-  "id": "search-destroy-companion-mb"
+  ]
 }

@@ -1,533 +1,159 @@
 <!--
-Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0721-005
-Original software and written content. Unauthorized copying, modification, redistribution, or resale is prohibited except with written permission from the copyright holder.
+Search & Destroy Companion — Operator Atlas 2.0
+Copyright © 2026 Michael Barnes. All Rights Reserved.
+Build: MB-SNDC-2026-0721-020
 -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0e1310">
+<meta name="theme-color" content="#07100c">
 <meta name="author" content="Michael Barnes">
 <meta name="copyright" content="Copyright © 2026 Michael Barnes. All Rights Reserved.">
-<meta name="application-name" content="Search & Destroy Companion">
-<meta name="generator" content="Search & Destroy Companion original build MB-SNDC-2026-0721-005">
+<meta name="application-name" content="Search & Destroy Companion — Operator Atlas">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg">
-<title>Search & Destroy Companion</title>
+<title>Search & Destroy Companion — Operator Atlas</title>
 <style>
 :root{
-  --bg:#0e1310; --card:#161d18; --card2:#1c251f; --text:#f5f7f5;
-  --muted:#aeb8b0; --line:#2b372e; --accent:#7cff8d; --accent2:#d5ffdb;
-  --warn:#ffd166; --bad:#ff7a7a;
+ --bg:#07100c;--panel:#101a14;--panel2:#17231b;--line:#2b3c31;--text:#f4f7f5;
+ --muted:#a9b8ae;--green:#6dff8c;--green2:#b7ffc5;--yellow:#ffd166;--red:#ff6670;
+ --blue:#66b7ff;--purple:#c982ff;--orange:#ff9f43;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
-button,input{font:inherit}
-button{cursor:pointer}
-.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:84px}
-.topbar{position:sticky;top:0;z-index:30;background:rgba(14,19,16,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 14px calc(10px + env(safe-area-inset-top))}
-.brand{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand h1{font-size:18px;margin:0}
-.brand small{display:block;color:var(--muted);font-size:12px}
-.iconbtn{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:9px 11px}
-main{padding:16px}
-.hero{padding:8px 0 12px}
-.hero h2{font-size:30px;line-height:1.08;margin:8px 0 8px}
-.hero p{color:var(--muted);margin:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.bigbtn{min-height:96px;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:16px;padding:15px}
-.bigbtn strong{display:block;font-size:17px;margin-bottom:6px}
-.bigbtn span{color:var(--muted);font-size:13px}
-.section-title{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 10px}
-.list{display:flex;flex-direction:column;gap:9px}
-.row{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:14px}
-.row strong{display:block}
-.row small{color:var(--muted)}
-.pill{display:inline-block;background:#203025;color:var(--accent2);border:1px solid #31523a;padding:4px 8px;border-radius:999px;font-size:12px;margin:2px 4px 2px 0}
-.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--text);outline:none}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0}
-.card h3{margin:0 0 8px;font-size:18px;color:var(--accent)}
-.card p{margin:0;color:var(--text)}
-.card ul{margin:8px 0 0;padding-left:22px}
-.operation-head{margin:6px 0 18px}
-.operation-head h2{font-size:31px;line-height:1.08;margin:8px 0}
-.operation-head .num{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
-.actionbar{display:flex;gap:8px;flex-wrap:wrap}
-.action{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:12px;padding:10px 12px}
-.action.active{border-color:var(--accent);color:var(--accent)}
-.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:rgba(14,19,16,.97);border-top:1px solid var(--line);padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));display:flex;justify-content:center}
-.bottomnav-inner{width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-.navbtn{background:transparent;border:0;color:var(--muted);font-size:11px;padding:7px 3px}
-.navbtn b{display:block;font-size:19px;line-height:1.1}
-.navbtn.active{color:var(--accent)}
-.back{margin-bottom:8px}
-.notearea{width:100%;min-height:120px;background:#101612;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px}
-.empty{color:var(--muted);padding:20px;text-align:center}
-.legal-footer{margin:32px 0 8px;text-align:center;color:var(--muted);font-size:12px}.about-logo{font-size:54px;text-align:center;margin:8px 0}.legal-box{white-space:pre-wrap;font-size:13px;color:var(--muted)}
-.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#27322b;color:white;border:1px solid var(--line);padding:10px 14px;border-radius:12px;display:none;z-index:60}
-
-.map-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.map-tab{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:11px 7px}
-.map-tab.active{border-color:var(--accent);color:var(--accent)}
-.layer-controls{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
-.layer-controls::-webkit-scrollbar{display:none}
-.layer-btn{white-space:nowrap;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:999px;padding:8px 11px}
-.layer-btn.active{color:var(--text);border-color:var(--accent)}
-.map-shell{background:#0b0f0c;border:1px solid var(--line);border-radius:16px;padding:8px;overflow:hidden}
-.tactical-map{display:block;width:100%;height:auto;background:#101612;border-radius:12px}
-.map-zone{fill:#18211b;stroke:#405047;stroke-width:2}
-.map-zone-label{fill:#9ba99f;font-size:17px;font-weight:700;text-anchor:middle;letter-spacing:1px;pointer-events:none}
-.map-site{fill:var(--warn);stroke:#fff4c8;stroke-width:4;cursor:pointer}
-.map-site-text{fill:#15150c;font-size:28px;font-weight:900;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
-.map-hold{fill:#e35d6a;stroke:#ffd7dc;stroke-width:3;cursor:pointer}
-.map-hold-text{fill:white;font-size:18px;font-weight:900;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
-.map-los{stroke:#53a8ff;stroke-width:7;stroke-linecap:round;opacity:.86;stroke-dasharray:16 10}
-.map-route{stroke:#7cff8d;stroke-width:8;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.78}
-.map-danger{fill:#ff9f43;opacity:.22;stroke:#ffad5c;stroke-width:4;stroke-dasharray:10 8}
-.map-legend{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-.legend-item{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px}
-.legend-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
-.map-point-card{border-left:4px solid var(--accent)}
-.map-point-card h3{color:var(--text)}
-.map-meta{color:var(--muted);font-size:13px}
-.field-draft{display:inline-block;background:#362f16;color:#ffe59a;border:1px solid #6a5924;border-radius:999px;padding:4px 8px;font-size:12px}
-.verify-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.verify-status{color:var(--muted);font-size:13px;margin-top:8px}
-.map-note{font-size:13px;color:var(--muted);margin-top:8px}
-
-
-.focus-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.focus-tab{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:11px 6px;font-weight:700}
-.focus-tab.active{border-color:var(--accent);color:var(--accent)}
-.threat-board{display:grid;grid-template-columns:1fr 1.18fr 1fr;grid-template-rows:auto auto auto;gap:8px;align-items:stretch;margin:12px 0}
-.threat-card,.site-core{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card);color:var(--text);min-height:108px;text-align:left}
-.threat-card{display:flex;flex-direction:column;justify-content:center;position:relative}
-.threat-card strong{font-size:15px;line-height:1.15}
-.threat-card small{display:block;color:var(--muted);margin-top:5px}
-.threat-card .direction{font-size:22px;color:var(--accent);line-height:1;margin-bottom:6px}
-.threat-card.selected{border-color:var(--warn);background:#242117}
-.site-core{grid-column:2;grid-row:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--accent-bg-subtle,#1b2b20);border:2px solid var(--accent);min-height:140px}
-.site-core .core-label{white-space:pre-line;font-size:21px;font-weight:900;letter-spacing:.04em}
-.site-core .core-eye{font-size:30px;margin-bottom:5px}
-.threat-north{grid-column:2;grid-row:1}
-.threat-west{grid-column:1;grid-row:2}
-.threat-east{grid-column:3;grid-row:2}
-.threat-south{grid-column:2;grid-row:3}
-.threat-detail{border-left:4px solid var(--warn)}
-.clear-order{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
-.clear-step{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:13px}
-.clear-step b{display:inline-flex;width:21px;height:21px;border-radius:50%;align-items:center;justify-content:center;background:var(--accent);color:#0d140f;font-size:12px}
-.quick-rule{border:1px solid #56682a;background:#222817;border-radius:14px;padding:13px;margin:10px 0;color:#efffc5}
-.map-mode-note{color:var(--muted);font-size:13px;margin:8px 0 14px}
-@media(max-width:480px){
- .threat-board{grid-template-columns:1fr 1.1fr 1fr;gap:6px}
- .threat-card,.site-core{padding:9px;min-height:96px}
- .threat-card strong{font-size:13px}
- .threat-card small{font-size:11px}
- .site-core .core-label{font-size:17px}
- .focus-tab{font-size:13px}
-}
-
-
-.map-hub-note{color:var(--muted);font-size:13px;margin:8px 0 14px}
-.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.scenario-btn{min-height:104px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:16px;padding:14px;display:flex;gap:11px;align-items:flex-start}
-.scenario-btn .scenario-icon{display:flex;align-items:center;justify-content:center;min-width:42px;height:42px;border-radius:12px;background:var(--accent);color:#0d140f;font-weight:900}
-.scenario-btn strong{display:block;font-size:16px;line-height:1.15}
-.scenario-btn small{display:block;color:var(--muted);margin-top:5px}
-.plan-banner{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--card);margin:10px 0}
-.plan-banner h2{margin:4px 0 6px;font-size:27px;line-height:1.08}
-.plan-banner p{margin:0;color:var(--muted)}
-.plan-goal{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
-.plan-goal>div{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--card2)}
-.plan-goal strong{display:block;color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
-.action-flow{display:flex;flex-direction:column;gap:0;margin:14px 0}
-.action-step{display:grid;grid-template-columns:48px 1fr;gap:12px;border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--card)}
-.action-step .step-number{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#0d140f;font-size:18px;font-weight:900}
-.action-step h3{margin:0 0 4px;font-size:18px;color:var(--text)}
-.action-step p{margin:0}
-.action-step small{display:block;color:var(--muted);margin-top:5px}
-.flow-arrow{text-align:center;color:var(--accent);font-size:25px;line-height:1;padding:3px}
-.watch-strip{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
-.watch-chip{border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:7px 10px;font-size:13px}
-.avoid-box{border:1px solid #6d3939;background:#281919;color:#ffdada;border-radius:14px;padding:13px;margin:10px 0}
-.plan-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-@media(max-width:480px){.scenario-grid{grid-template-columns:1fr}.plan-goal{grid-template-columns:1fr}.scenario-btn{min-height:90px}.plan-banner h2{font-size:24px}}
-
-@media(max-width:480px){.grid{grid-template-columns:1fr}.hero h2{font-size:27px}.map-zone-label{font-size:13px}.map-tabs{grid-template-columns:1fr 1fr 1fr}}
-
-
-/* v0.8 Common Callout Atlas: Raid, Tunisia, Coastal */
-.atlas-entry{border:1px solid #496351;background:#17251b;border-radius:16px;padding:15px;margin:12px 0}
-.atlas-entry strong{display:block;font-size:18px;color:var(--accent)}
-.atlas-entry p{margin:5px 0 0;color:var(--muted)}
-.atlas-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.atlas-tab{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:11px 6px;font-weight:700}
-.atlas-tab.active{border-color:var(--accent);color:var(--accent)}
-.atlas-list{display:flex;flex-direction:column;gap:9px}
-.atlas-spot{width:100%;display:grid;grid-template-columns:46px 1fr auto;gap:11px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:15px;padding:13px}
-.atlas-spot-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:var(--card2);font-size:22px;color:var(--accent)}
-.atlas-spot strong{display:block;font-size:16px}
-.atlas-spot small{display:block;color:var(--muted);margin-top:3px}
-.risk{font-size:11px;font-weight:900;letter-spacing:.08em;border-radius:999px;padding:5px 7px;border:1px solid var(--line)}
-.risk-HIGH{color:#ffd4d4;border-color:#824b4b;background:#2c1b1b}
-.risk-MED{color:#ffe7b0;border-color:#735f31;background:#292315}
-.atlas-check{display:flex;gap:7px;overflow-x:auto;padding:2px 0 9px;scrollbar-width:none}
-.atlas-check::-webkit-scrollbar{display:none}
-.atlas-check span{white-space:nowrap;border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:7px 10px;font-size:13px}
-.atlas-check b{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;background:var(--accent);color:#0d140f;margin-right:5px;font-size:11px}
-.los-scene{border:1px solid var(--line);border-radius:16px;background:#0c120e;padding:14px;margin:12px 0}
-.los-origin{border:2px solid var(--bad);background:#2a191b;border-radius:14px;padding:12px;text-align:center;font-weight:900}
-.los-line{height:54px;display:flex;align-items:center;justify-content:center;position:relative;color:#7fc4ff;font-size:30px}
-.los-line:before{content:'';position:absolute;top:5px;bottom:5px;width:4px;border-radius:99px;background:#4da8ff;opacity:.8}
-.los-line span{position:relative;background:#0c120e;padding:0 8px;z-index:1;font-size:15px;font-weight:900}
-.los-targets{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.los-target{border:1px solid #3a5b45;background:#16231a;border-radius:12px;padding:10px 6px;text-align:center;font-size:12px;display:flex;align-items:center;justify-content:center;min-height:52px}
-.intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}
-.intel-box{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--card)}
-.intel-box h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 7px;color:var(--accent)}
-.intel-box ul{margin:0;padding-left:20px}
-.clear-stack{display:flex;flex-direction:column;gap:7px}
-.clear-stack div{display:grid;grid-template-columns:27px 1fr;gap:8px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:9px;background:var(--card2)}
-.clear-stack b{display:flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;background:var(--accent);color:#0d140f;font-size:12px}
-.working-callout{color:var(--muted);font-size:12px}
-@media(max-width:480px){.intel-grid{grid-template-columns:1fr}.los-targets{grid-template-columns:1fr}.atlas-spot{grid-template-columns:42px 1fr auto}.atlas-spot-icon{width:40px;height:40px}.atlas-spot strong{font-size:15px}}
-
-
-/* v1.0 Visual Squad Command Atlas */
-.map-library-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.map-library-card{min-height:118px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:16px;padding:14px;position:relative;overflow:hidden}
-.map-library-card::after{content:"";position:absolute;right:-22px;bottom:-28px;width:105px;height:105px;border:18px solid rgba(124,255,141,.06);border-radius:50%}
-.map-library-card strong{display:block;font-size:18px;margin:5px 0}.map-library-card small{display:block;color:var(--muted)}
-.rotation-badge{display:inline-block;border:1px solid #4f6f57;background:#19301f;color:#caffd1;border-radius:999px;padding:4px 8px;font-size:11px}
-.rotation-badge.staple{border-color:#59636b;background:#20282e;color:#d8e6ef}
-.map-command-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
-.map-command-head h2{margin:4px 0 6px;font-size:29px;line-height:1.05}
-.map-mode-tabs{display:flex;gap:7px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.map-mode-tabs::-webkit-scrollbar{display:none}
-.map-mode{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:9px 12px}.map-mode.active{border-color:var(--accent);color:var(--accent);background:#17251b}
-.map-stage{position:relative;background:#0a0f0c;border:1px solid var(--line);border-radius:18px;padding:8px;overflow:hidden}
-.map-stage.expanded{position:fixed;inset:0;z-index:1000;border-radius:0;padding:10px;background:#070b08;overflow:auto}.map-stage.expanded .command-map{max-height:none;height:auto}
-.map-tools{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 8px}.map-tools small{color:var(--muted)}
-.command-map{display:block;width:100%;height:auto;border-radius:13px;background:#0d1510;touch-action:manipulation}
-.cm-zone{stroke:#4a5b4f;stroke-width:2}.cm-zone-building{fill:#1b261f}.cm-zone-open{fill:#14251b}.cm-zone-spawn{fill:#17202a}.cm-zone-label{fill:#91a399;font-size:18px;font-weight:800;text-anchor:middle;letter-spacing:.08em;pointer-events:none}
-.cm-site{fill:#ffd166;stroke:#fff4c0;stroke-width:4}.cm-site-label{fill:#18160a;font-size:28px;font-weight:950;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
-.cm-spawn{fill:#75c7ff;stroke:white;stroke-width:2}.cm-spawn-label{fill:#cdeeff;font-size:14px;font-weight:800;text-anchor:middle}
-.cm-callout{cursor:pointer}.cm-callout circle{fill:#e85d68;stroke:#ffe0e3;stroke-width:3}.cm-callout.mid circle{fill:#8e7dff}.cm-callout text{fill:white;font-size:15px;font-weight:850;text-anchor:middle;paint-order:stroke;stroke:#09100b;stroke-width:4;stroke-linejoin:round}.cm-callout.selected circle{fill:#7cff8d;stroke:white}.cm-callout.selected text{fill:#eaffed}
-.cm-route{fill:none;stroke:#7cff8d;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.86;marker-end:url(#arrowGreen)}.cm-route.alt{stroke:#49c8ff;marker-end:url(#arrowBlue)}
-.cm-los{stroke:#49a4ff;stroke-width:6;stroke-linecap:round;stroke-dasharray:15 10;opacity:.78;marker-end:url(#arrowBlue)}.cm-danger{fill:#ff9f43;opacity:.16;stroke:#ffad5c;stroke-width:3;stroke-dasharray:8 8}
-.map-legend-v1{display:flex;gap:10px;flex-wrap:wrap;margin:9px 2px 2px;color:var(--muted);font-size:12px}.map-legend-v1 span{display:flex;align-items:center;gap:5px}.lg{width:12px;height:12px;border-radius:50%;display:inline-block}.lg.site{background:#ffd166}.lg.hold{background:#e85d68}.lg.mid{background:#8e7dff}.lg.route{width:18px;height:4px;border-radius:2px;background:#7cff8d}.lg.los{width:18px;height:0;border-top:3px dashed #49a4ff}
-.callout-sheet{border-left:4px solid var(--accent)}.callout-sheet h3{color:var(--text);font-size:22px}.callout-sheet .kind{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
-.leader-call{border:1px solid #476d50;background:#16241a;border-radius:16px;padding:14px;margin:12px 0}.leader-call strong{display:block;color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.09em}.leader-call p{font-size:18px;margin:5px 0 0}
-.squad-roles{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.squad-role{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 6px;text-align:center}.squad-role b{display:flex;width:27px;height:27px;border-radius:50%;background:var(--accent);color:#0b120d;align-items:center;justify-content:center;margin:0 auto 6px}.squad-role strong{display:block;font-size:12px}.squad-role small{display:block;color:var(--muted);font-size:11px;line-height:1.2;margin-top:3px}
-.map-source-note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:16px}
-@media(max-width:520px){.map-library-grid{grid-template-columns:1fr 1fr}.map-library-card{min-height:105px;padding:12px}.map-library-card strong{font-size:16px}.squad-roles{grid-template-columns:repeat(3,1fr)}.cm-zone-label{font-size:15px}.cm-callout text{font-size:13px}}
-
-
-.command-map{background:radial-gradient(circle at 50% 45%,#132019 0,#0c130f 70%)}
-.cm-zone{filter:drop-shadow(0 2px 1px rgba(0,0,0,.35))}.cm-zone-label{opacity:.32;font-size:14px}
-.cm-road{fill:none;stroke:#25352b;stroke-width:48;stroke-linecap:round;stroke-linejoin:round}.cm-road-edge{fill:none;stroke:#506157;stroke-width:2;stroke-dasharray:8 10;opacity:.5}
-.cm-water{fill:#113040;stroke:#2b708b;stroke-width:3}.cm-feature{fill:#28362e;stroke:#65786b;stroke-width:2}.cm-feature-line{stroke:#8aa092;stroke-width:3;fill:none}.cm-feature-text{fill:#b8c7bd;font-size:13px;font-weight:850;text-anchor:middle;paint-order:stroke;stroke:#0a100c;stroke-width:3}
-.cm-label-box{fill:#111a14;stroke:#63736a;stroke-width:1.5;opacity:.96}.cm-label-line{stroke:#c5d3ca;stroke-width:1.5;opacity:.65}.cm-callout text{font-size:14px;stroke-width:3}
-
+body{margin:0;background:radial-gradient(circle at top,#112019 0,#07100c 46%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.45}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.shell{max-width:940px;margin:auto;min-height:100vh;padding-bottom:88px}
+header{position:sticky;top:0;z-index:40;background:rgba(7,16,12,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand strong{font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px}
+.iconbtn,.ghost,.primary,.chip,.modebtn{border:1px solid var(--line);color:var(--text);background:var(--panel);border-radius:12px;padding:10px 12px}
+.primary{background:var(--green);color:#07100c;border-color:var(--green);font-weight:850}.ghost.active,.chip.active,.modebtn.active{border-color:var(--green);color:var(--green)}
+main{padding:16px}.hero{padding:8px 0 16px}.hero h1,.hero h2{margin:5px 0 8px;line-height:1.06}.hero h1{font-size:34px}.hero h2{font-size:28px}.hero p{margin:0;color:var(--muted)}
+.badge{display:inline-flex;border:1px solid #3d6348;background:#183020;color:var(--green2);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:850;letter-spacing:.06em}.badge.bonus{border-color:#715d28;background:#302813;color:#ffe092}
+.scope-note{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;color:var(--muted);font-size:13px;margin:0 0 16px}.scope-note strong{color:var(--text)}
+.picker-tools{display:grid;grid-template-columns:1fr auto;gap:8px;margin:0 0 12px}.search,.notearea{width:100%;border:1px solid var(--line);background:#08110d;color:var(--text);border-radius:12px;padding:12px}.notearea{min-height:95px}
+.section-label{margin:22px 0 9px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.11em;font-weight:850}
+.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.map-card{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:18px;overflow:hidden;color:var(--text);text-align:left;padding:0;min-height:270px}.map-card img{width:100%;height:205px;object-fit:contain;background:#050907;display:block;filter:saturate(.96) contrast(1.06)}.map-card::after{content:"";position:absolute;left:0;right:0;top:145px;height:62px;background:linear-gradient(transparent,rgba(7,16,12,.96))}.map-card-body{position:relative;z-index:2;padding:13px}.map-card h3{margin:5px 0 3px;font-size:20px}.map-card p{margin:0;color:var(--muted);font-size:12px}.map-card .open-cue{display:block;color:var(--green);font-size:12px;margin-top:8px;font-weight:800}
+.map-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}.map-head h1{margin:5px 0 4px;font-size:31px}.map-head p{margin:0;color:var(--muted);font-size:13px}.map-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.mode-row,.layer-row{display:flex;gap:7px;overflow:auto;padding:4px 0 10px;scrollbar-width:none}.mode-row::-webkit-scrollbar,.layer-row::-webkit-scrollbar{display:none}.modebtn,.chip{white-space:nowrap;padding:9px 11px;font-size:13px}
+.map-stage{position:relative;border:1px solid var(--line);border-radius:18px;background:#050907;overflow:hidden}.map-stage.expanded{position:fixed;z-index:100;inset:0;border-radius:0;background:#020403;padding-top:env(safe-area-inset-top);overflow:auto}.map-viewport{overflow:auto;background:#050907;touch-action:pan-x pan-y pinch-zoom}.map-stage.expanded .map-viewport{height:calc(100vh - 62px - env(safe-area-inset-top))}.map-stage-inner{position:relative;background:#050907;transform-origin:top left;min-width:100%}.map-stage-inner img{display:block;width:100%;height:100%;object-fit:contain;background:#050907}.overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.map-point{position:absolute;transform:translate(-50%,-50%);z-index:8;border:1px solid rgba(255,255,255,.75);background:rgba(8,18,13,.9);color:#fff;border-radius:999px;padding:5px 7px;font-size:11px;font-weight:850;box-shadow:0 2px 8px rgba(0,0,0,.6);max-width:104px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-point.side-A{border-color:var(--red)}.map-point.side-B{border-color:var(--yellow)}.map-point.side-MID{border-color:var(--purple)}.map-point.selected{outline:3px solid var(--green);z-index:11}.map-point.hidden,.site-marker.hidden,.spawn-marker.hidden{display:none}
+.site-marker,.spawn-marker{position:absolute;transform:translate(-50%,-50%);z-index:7;display:flex;align-items:center;justify-content:center;font-weight:900}.site-marker{width:42px;height:42px;border-radius:50%;background:#d6232e;border:3px solid #fff;color:#fff;font-size:20px;box-shadow:0 0 0 5px rgba(214,35,46,.25)}.spawn-marker{font-size:11px;color:#07100c;background:var(--green);padding:5px 8px;border-radius:999px;border:2px solid white}
+.map-tools{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px;background:rgba(5,9,7,.95);border-top:1px solid var(--line)}.map-tool-buttons{display:flex;gap:6px;align-items:center}.map-tools small{color:var(--muted)}.zoom-value{color:var(--muted);font-size:12px;min-width:38px;text-align:center}
+.legend{display:flex;gap:10px;flex-wrap:wrap;padding:8px 2px 0;font-size:11px;color:var(--muted)}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:15px;margin:12px 0}.card h3{margin:0 0 8px;color:var(--green);font-size:18px}.card p{margin:0 0 8px}.card p:last-child{margin-bottom:0}.leader-card{border-color:#486b51;background:linear-gradient(135deg,#14231a,#0f1913)}.leader-call{font-size:20px;font-weight:850;line-height:1.25;margin:5px 0 12px}.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.role{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:10px}.role strong{display:block;color:var(--green2);font-size:12px}.role span{font-size:14px}.detail-card{border-left:4px solid var(--yellow)}.detail-card .kind{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.quick-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.callout-strip{display:flex;gap:7px;overflow:auto;padding:3px 0 4px;scrollbar-width:none}.callout-strip::-webkit-scrollbar{display:none}.callout-shortcut{white-space:nowrap;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:999px;padding:7px 10px;font-size:12px}.callout-shortcut.active{border-color:var(--green);color:var(--green)}
+.manual-list{display:flex;flex-direction:column;gap:8px}.row{width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:13px;padding:13px}.row strong{display:block}.row small{color:var(--muted)}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:50;border-top:1px solid var(--line);background:rgba(7,16,12,.97);padding:7px 8px calc(7px + env(safe-area-inset-bottom))}.bottom-inner{max-width:940px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.nav{border:0;background:transparent;color:var(--muted);padding:6px 3px;font-size:10px}.nav b{display:block;font-size:19px;line-height:1.1}.nav.active{color:var(--green)}.about{color:var(--muted);font-size:13px}.toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);background:#1d2b22;color:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 13px;display:none}
+@media(max-width:620px){.map-grid{grid-template-columns:1fr}.map-card{min-height:245px}.map-card img{height:185px}.roles{grid-template-columns:1fr 1fr}.hero h1{font-size:29px}.map-point{font-size:10px;padding:4px 6px;max-width:80px}.picker-tools{grid-template-columns:1fr}.map-head{flex-direction:column}.map-actions{justify-content:flex-start}}
+@media(max-width:390px){.roles{grid-template-columns:1fr}.map-point{max-width:68px}.leader-call{font-size:18px}}
 </style>
 </head>
 <body>
-<div class="app">
-  <header class="topbar">
-    <div class="brand">
-      <div><h1>Search & Destroy Companion</h1><small>Mid-game reference manual</small></div>
-      <button class="iconbtn" onclick="showSearch()">⌕</button>
-    </div>
-  </header>
-  <main id="main"></main>
-  <footer class="legal-footer">© 2026 Michael Barnes · All Rights Reserved · <button class="navbtn" onclick="showAbout()">About</button></footer>
+<div class="shell">
+<header><div class="brand"><div><strong>Search & Destroy Companion</strong><small>Operator Atlas · Visual squad command</small></div><button class="iconbtn" id="installBtn" hidden>Install</button></div></header>
+<main id="main"></main>
 </div>
-
-<div class="bottomnav">
-  <div class="bottomnav-inner">
-    <button class="navbtn active" data-tab="home" onclick="showHome()"><b>⌂</b>Home</button>
-    <button class="navbtn" data-tab="browse" onclick="showBrowse()"><b>☰</b>Browse</button>
-    <button class="navbtn" data-tab="practice" onclick="showPractice()"><b>◎</b>Practice</button>
-    <button class="navbtn" data-tab="favorites" onclick="showFavorites()"><b>★</b>Saved</button>
-    <button class="navbtn" data-tab="notes" onclick="showNotes()"><b>✎</b>Notes</button>
-  </div>
-</div>
+<nav class="bottom"><div class="bottom-inner">
+<button class="nav active" data-nav="maps"><b>⌖</b>Maps</button>
+<button class="nav" data-nav="brief"><b>◎</b>Brief</button>
+<button class="nav" data-nav="manual"><b>☰</b>Manual</button>
+<button class="nav" data-nav="notes"><b>✎</b>Notes</button>
+<button class="nav" data-nav="about"><b>ⓘ</b>About</button>
+</div></nav>
 <div class="toast" id="toast"></div>
-
 <script src="data.js"></script>
-<script src="visual_maps.js"></script>
+<script src="atlas_data.js"></script>
 <script>
-const D = window.APP_DATA;
-const APP_OWNER = 'Michael Barnes';
-const APP_VERSION = '1.0';
-const BUILD_ID = 'MB-SNDC-2026-0721-010';
-const COPYRIGHT_NOTICE = 'Copyright © 2026 Michael Barnes. All Rights Reserved.';
-const main = document.getElementById('main');
-const $ = s => document.querySelector(s);
-const state = {
-  favorites: JSON.parse(localStorage.getItem('snd-favorites')||'[]'),
-  notes: JSON.parse(localStorage.getItem('snd-notes')||'[]'),
-  practice: JSON.parse(localStorage.getItem('snd-practice')||'null')
-};
-function esc(s=''){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function setTab(name){document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))}
-function toast(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1400)}
-function opById(id){return D.operations.find(o=>o.id===Number(id))}
-function opRow(op){return `<button class="row" onclick="showOperation(${op.id})"><strong>${esc(op.title)}</strong><small>Operation ${String(op.id).padStart(2,'0')}</small></button>`}
+const MAPS=window.ATLAS_MAPS, MANUAL=window.APP_DATA;
+const main=document.getElementById('main');
+let currentMap=localStorage.getItem('snd-last-map')||'tunisia';
+let currentMode=localStorage.getItem('snd-last-mode')||'overview';
+const VALID_MODES=['overview','attackA','attackB','defense','retake','sightlines'];
+if(!MAPS[currentMap]) currentMap='tunisia';
+if(!VALID_MODES.includes(currentMode)) currentMode='overview';
+let selectedPoint=null,expanded=false,zoomLevel=1,deferredInstall=null;
+const layerState={labels:true,sites:true,spawns:true,routes:true,sightlines:true};
+const notes=JSON.parse(localStorage.getItem('snd-atlas-notes')||'{}');
 
-function showHome(){
- setTab('home');
- main.innerHTML=`<section class="hero"><h2>What just happened?</h2><p>Tap the closest problem. The app will point you toward the useful page instead of making you remember chapter numbers like some kind of tactical librarian.</p></section>
- <div class="grid">${D.diagnosis.map(d=>`<button class="bigbtn" onclick='showDiagnosis(${JSON.stringify(d.label)})'><strong>${esc(d.label)}</strong><span>${d.ops.length} relevant operations</span></button>`).join('')}</div>
- <div class="section-title">Quick access</div>
- <div class="grid">
-   <button class="bigbtn" onclick="showMapGuide()"><strong>Visual Map Guide</strong><span>14 visual maps</span></button>
-   <button class="bigbtn" onclick="showDictionary()"><strong>Field Dictionary</strong><span>Find a term fast</span></button>
-   <button class="bigbtn" onclick="showPractice()"><strong>Today's Practice</strong><span>One mission, not twelve</span></button>
-   <button class="bigbtn" onclick="showBrowse()"><strong>All Operations</strong><span>Browse the field manual</span></button>
- </div>`;
- window.scrollTo(0,0);
-}
-function showDiagnosis(label){
- const d=D.diagnosis.find(x=>x.label===label);
- setTab('home');
- main.innerHTML=`<button class="action back" onclick="showHome()">← Back</button>
- <section class="operation-head"><div class="num">Quick diagnosis</div><h2>${esc(label)}</h2><p>Start with the first result. The others are nearby causes worth checking.</p></section>
- <div class="list">${d.ops.map(id=>opRow(opById(id))).join('')}</div>`;
- window.scrollTo(0,0);
-}
-function showBrowse(){
- setTab('browse');
- main.innerHTML=`<section class="hero"><h2>Browse by problem</h2><p>Titles first, numbers second. Civilization survives another minor interface improvement.</p></section>
- ${Object.entries(D.categories).map(([name,ids])=>`<div class="section-title">${esc(name)}</div><div class="list">${ids.map(id=>opRow(opById(id))).join('')}</div>`).join('')}
- <div class="section-title">Reference</div>
- <div class="list">
- <button class="row" onclick="showMapGuide()"><strong>Visual Map Guide</strong><small>14 visual maps</small></button>
- <button class="row" onclick="showDictionary()"><strong>Field Dictionary</strong><small>${D.dictionary.length} terms</small></button>
- </div>`;
- window.scrollTo(0,0);
-}
-function showOperation(id){
- const o=opById(id); setTab('browse');
- const fav=state.favorites.includes(id);
- main.innerHTML=`<button class="action back" onclick="history.back()">← Back</button>
- <section class="operation-head"><div class="num">Operation ${String(o.id).padStart(2,'0')}</div><h2>${esc(o.title)}</h2>
- <div class="actionbar">
- <button class="action ${fav?'active':''}" onclick="toggleFavorite(${id})">${fav?'★ Saved':'☆ Save'}</button>
- <button class="action" onclick="startPractice(${id})">◎ Practice this</button>
- </div></section>
- ${card('The Problem',o.problem)}
- ${card('The Truth',o.truth)}
- ${listCard('Common Causes',o.causes)}
- ${card('One Thing to Try',o.try)}
- ${card('Why It Helps',o.why)}
- ${card('Mission',o.mission)}
- ${listCard('Observe',o.observe)}
- ${card('Success Looks Like This',o.success)}
- <div class="card"><h3>Field Note</h3><textarea id="opnote" class="notearea" placeholder="What happened in the match?"></textarea><br><button class="action" onclick="saveOpNote(${id})">Save note</button></div>`;
- history.pushState({view:'op',id},'',`#op-${id}`);
- window.scrollTo(0,0);
-}
-function card(t,b){return `<div class="card"><h3>${esc(t)}</h3><p>${esc(b)}</p></div>`}
-function listCard(t,arr){return `<div class="card"><h3>${esc(t)}</h3><ul>${arr.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`}
-function toggleFavorite(id){
- const i=state.favorites.indexOf(id);
- if(i>=0)state.favorites.splice(i,1);else state.favorites.push(id);
- localStorage.setItem('snd-favorites',JSON.stringify(state.favorites));
- toast(i>=0?'Removed from saved':'Saved');
- showOperation(id);
-}
-function showFavorites(){
- setTab('favorites');
- const ops=state.favorites.map(opById).filter(Boolean);
- main.innerHTML=`<section class="hero"><h2>Saved Operations</h2><p>Your recurring trouble spots, gathered conveniently in one place like a tiny museum of avoidable deaths.</p></section>
- <div class="list">${ops.length?ops.map(opRow).join(''):'<div class="empty">No saved operations yet.</div>'}</div>`;
- window.scrollTo(0,0);
-}
-function startPractice(id){
- const o=opById(id);
- state.practice={id, rounds:0, remembered:0};
- localStorage.setItem('snd-practice',JSON.stringify(state.practice));
- toast('Practice mission started');
- showPractice();
-}
-function showPractice(){
- setTab('practice');
- if(!state.practice){
-   main.innerHTML=`<section class="hero"><h2>Today's Practice</h2><p>Pick one mission. Improving everything simultaneously remains a charming human fantasy.</p></section>
-   <div class="list">${D.operations.slice(0,8).map(o=>`<button class="row" onclick="startPractice(${o.id})"><strong>${esc(o.title)}</strong><small>${esc(o.mission)}</small></button>`).join('')}</div>`;
- } else {
-   const o=opById(state.practice.id);
-   const boxes=[0,1,2,3,4].map(i=>i<state.practice.rounds?'■':'□').join(' ');
-   main.innerHTML=`<section class="operation-head"><div class="num">Today's focus</div><h2>${esc(o.title)}</h2></section>
-   ${card('Mission',o.mission)}
-   <div class="card"><h3>Progress</h3><p style="font-size:28px;letter-spacing:.15em">${boxes}</p><p>${state.practice.remembered} remembered out of ${state.practice.rounds} rounds</p>
-   <div class="actionbar"><button class="action" onclick="recordRound(true)">Yes, remembered</button><button class="action" onclick="recordRound(false)">No, forgot</button></div></div>
-   <button class="action" onclick="clearPractice()">End practice</button>`;
- }
- window.scrollTo(0,0);
-}
-function recordRound(ok){
- state.practice.rounds=Math.min(5,state.practice.rounds+1);
- if(ok)state.practice.remembered++;
- localStorage.setItem('snd-practice',JSON.stringify(state.practice));
- showPractice();
-}
-function clearPractice(){state.practice=null;localStorage.removeItem('snd-practice');showPractice()}
-function saveOpNote(id){
- const text=$('#opnote').value.trim();
- if(!text)return;
- state.notes.unshift({id,text,date:new Date().toLocaleString()});
- localStorage.setItem('snd-notes',JSON.stringify(state.notes));
- toast('Note saved');
- $('#opnote').value='';
-}
-function showNotes(){
- setTab('notes');
- main.innerHTML=`<section class="hero"><h2>Field Notes</h2><p>Your observations live on this device.</p></section>
- <div class="list">${state.notes.length?state.notes.map((n,i)=>{const o=opById(n.id);return `<div class="card"><h3>${esc(o?o.title:'General note')}</h3><p>${esc(n.text)}</p><small style="color:var(--muted)">${esc(n.date)}</small><br><button class="action" onclick="deleteNote(${i})">Delete</button></div>`}).join(''):'<div class="empty">No field notes yet.</div>'}</div>`;
- window.scrollTo(0,0);
-}
-function deleteNote(i){state.notes.splice(i,1);localStorage.setItem('snd-notes',JSON.stringify(state.notes));showNotes()}
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function setNav(name){document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.nav===name))}
+function toast(s){const t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',1500)}
+function imgTag(m,cls=''){return `<img class="${cls}" src="${esc(m.image.local)}" alt="${esc(m.name)} visual tactical map">`}
+function navTo(view){if(view==='maps')showMapPicker();if(view==='brief')showMap(currentMap,currentMode);if(view==='manual')showManual();if(view==='notes')showNotes();if(view==='about')showAbout()}
+document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>navTo(b.dataset.nav)));
 
-
-const VMAPS = window.VISUAL_MAPS;
-let activeMapId = 'raid';
-let activeMapMode = 'callouts';
-let activeCallout = null;
-
-function mapTierClass(tier){return tier.includes('competitive')?'':' staple'}
-function showMapGuide(mapId=null,mode='callouts'){
- if(mapId){showVisualMap(mapId,mode);return}
- setTab('browse');
- const comp=Object.values(VMAPS).filter(m=>m.tier.includes('competitive'));
- const staples=Object.values(VMAPS).filter(m=>!m.tier.includes('competitive'));
- const card=m=>`<button class="map-library-card" onclick="showVisualMap('${m.id}','callouts')"><span class="rotation-badge${mapTierClass(m.tier)}">${esc(m.tier)}</span><strong>${esc(m.name)}</strong><small>${esc(m.description)}</small></button>`;
- main.innerHTML=`<section class="hero"><span class="rotation-badge">Squad Command Atlas</span><h2>Choose the map</h2><p>Pull up the selected map, expand it, and direct the squad from the same visual board.</p></section>
- <div class="card"><h3>Verified 2026 S&amp;D rotation</h3><p>Tunisia, Firing Range, Coastal, Slums, and Meltdown are the official 2026 competitive Search &amp; Destroy pool. Raid is included because you requested it and it remains a core Ranked reference. The extra library covers the common Ranked staples most likely to appear in map voting.</p></div>
- <div class="section-title">2026 competitive S&amp;D</div><div class="map-library-grid">${comp.map(card).join('')}</div>
- <div class="section-title">Ranked staples</div><div class="map-library-grid">${staples.map(card).join('')}</div>`;
+function mapCard(m){return `<button class="map-card" data-map="${m.id}" data-search="${esc((m.name+' '+m.description+' '+m.status).toLowerCase())}">${imgTag(m)}<div class="map-card-body"><span class="badge ${m.id==='raid'?'bonus':''}">${esc(m.status)}</span><h3>${esc(m.name)}</h3><p>${esc(m.description)}</p><span class="open-cue">Open tactical board →</span></div></button>`}
+function bindPickerCards(){document.querySelectorAll('[data-map]').forEach(b=>b.onclick=()=>showMap(b.dataset.map,'overview'))}
+function showMapPicker(){
+ setNav('maps');
+ const comp=Object.values(MAPS).filter(m=>m.status.includes('OFFICIAL'));
+ const bonus=Object.values(MAPS).filter(m=>!m.status.includes('OFFICIAL'));
+ main.innerHTML=`<section class="hero"><span class="badge">OPERATOR ATLAS 2.0</span><h1>Which map got voted?</h1><p>Open the map before Round 1, choose your side, and give every operator one job.</p></section>
+ <div class="scope-note"><strong>Verified scope:</strong> Tunisia, Firing Range, Coastal, Slums, and Meltdown are the official 2026 competitive Search &amp; Destroy pool. Activision's public Season 6 announcement does not list Ranked maps by mode, so Raid is included as the requested Ranked reference rather than mislabeled as an official rotation map.</div>
+ <div class="picker-tools"><input class="search" id="mapSearch" placeholder="Find Tunisia, Coastal, Raid..."><button class="primary" id="openLast">Open last map</button></div>
+ <div class="section-label">Official 2026 competitive S&amp;D</div><div class="map-grid" id="compGrid">${comp.map(mapCard).join('')}</div>
+ <div class="section-label">Requested Ranked reference</div><div class="map-grid" id="bonusGrid">${bonus.map(mapCard).join('')}</div>`;
+ bindPickerCards();
+ document.getElementById('openLast').onclick=()=>showMap(currentMap,currentMode);
+ document.getElementById('mapSearch').oninput=e=>{const q=e.target.value.toLowerCase().trim();document.querySelectorAll('.map-card').forEach(c=>c.hidden=q&&!c.dataset.search.includes(q))};
  window.scrollTo(0,0);
 }
-function showVisualMap(mapId='raid',mode='callouts'){
- activeMapId=mapId;activeMapMode=mode;activeCallout=null;setTab('browse');
- const m=VMAPS[mapId];
- main.innerHTML=`<button class="action back" onclick="showMapGuide()">← All maps</button>
- <section class="map-command-head"><div><span class="rotation-badge${mapTierClass(m.tier)}">${esc(m.tier)}</span><h2>${esc(m.name)}</h2><p class="map-meta">${esc(m.description)}</p></div><button class="action" onclick="cycleMap('${mapId}')">Next map →</button></section>
- <div class="map-mode-tabs">
- ${[['callouts','Callouts'],['attackA','Attack A'],['attackB','Attack B'],['defense','Defense'],['sightlines','Sightlines']].map(([id,label])=>`<button class="map-mode ${mode===id?'active':''}" onclick="showVisualMap('${mapId}','${id}')">${label}</button>`).join('')}
- </div>
- <div id="map-stage" class="map-stage"><div class="map-tools"><small>Tap a red or purple position for details.</small><button class="action" onclick="toggleMapExpand()">⛶ Expand</button></div>${renderCommandMap(m,mode)}<div class="map-legend-v1"><span><i class="lg site"></i>Bomb</span><span><i class="lg hold"></i>Site callout</span><span><i class="lg mid"></i>Mid callout</span><span><i class="lg route"></i>Squad route</span><span><i class="lg los"></i>Sightline</span></div></div>
- ${renderLeaderPlan(m,mode)}
- <div id="callout-detail" class="card callout-sheet"><div class="kind">Live map detail</div><h3>Tap a position on the map</h3><p>The selected callout will show what it watches and the simplest way to deal with it.</p></div>
- <div class="card"><h3>Squad note</h3><textarea id="mapnote" class="notearea" placeholder="Your team’s alias, route, timing, or correction"></textarea><br><button class="action" onclick="saveMapNote('${mapId}')">Save ${esc(m.name)} note</button></div>
- <p class="map-source-note">Original tactical schematic, not official map artwork and not drawn to exact scale. Callouts are general competitive/community language; squads may use shorter aliases.</p>`;
- window.scrollTo(0,0);
+function modePlan(m,mode){return m.plans[mode]||m.plans.overview}
+function relevantCallouts(m,mode){if(mode==='attackA')return m.callouts.filter(c=>c.side==='A'||c.side==='MID');if(mode==='attackB')return m.callouts.filter(c=>c.side==='B'||c.side==='MID');if(mode==='defense'||mode==='retake'||mode==='sightlines')return m.callouts;return m.callouts}
+function modeRoutes(m,mode){if(mode==='retake')return m.retake||[];return m.routes[mode]||[]}
+function renderSvg(m,mode){
+ const routes=modeRoutes(m,mode);const showRoutes=layerState.routes&&(mode==='attackA'||mode==='attackB'||mode==='defense'||mode==='retake');const showSight=layerState.sightlines&&(mode==='overview'||mode==='sightlines'||mode==='defense');
+ const routeSvg=showRoutes?routes.map(r=>`<polyline points="${r.points.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#6dff8c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>${esc(r.label)}</title></polyline>`).join(''):'';
+ const sightSvg=showSight?m.sightlines.map(s=>`<line x1="${s.a[0]}" y1="${s.a[1]}" x2="${s.b[0]}" y2="${s.b[1]}" stroke="#66b7ff" stroke-width="1.3" stroke-dasharray="3 2"><title>${esc(s.label)}</title></line>`).join(''):'';
+ return `<svg class="overlay" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="#6dff8c"/></marker></defs>${routeSvg}${sightSvg}</svg>`;
 }
-function cycleMap(id){const ids=Object.keys(VMAPS),i=ids.indexOf(id);showVisualMap(ids[(i+1)%ids.length],'callouts')}
-function toggleMapExpand(){const s=$('#map-stage');s.classList.toggle('expanded');const b=s.querySelector('.map-tools button');b.textContent=s.classList.contains('expanded')?'✕ Close':'⛶ Expand'}
-function polyline(points){return points.map(p=>p.join(',')).join(' ')}
-
-function jaggedPoints(z){
- const n=Math.max(8,Math.min(26,z.w*.07));
- return `${z.x+n},${z.y} ${z.x+z.w-n},${z.y} ${z.x+z.w},${z.y+n} ${z.x+z.w},${z.y+z.h*.42} ${z.x+z.w-n*.55},${z.y+z.h*.50} ${z.x+z.w},${z.y+z.h*.58} ${z.x+z.w},${z.y+z.h-n} ${z.x+z.w-n},${z.y+z.h} ${z.x+n},${z.y+z.h} ${z.x},${z.y+z.h-n} ${z.x},${z.y+z.h*.58} ${z.x+n*.55},${z.y+z.h*.50} ${z.x},${z.y+z.h*.42} ${z.x},${z.y+n}`;
+function renderMarkers(m,mode){
+ const calls=relevantCallouts(m,mode);
+ const points=calls.map(c=>`<button class="map-point side-${c.side} ${layerState.labels?'':'hidden'} ${selectedPoint===c.name?'selected':''}" data-point="${esc(c.name)}" style="left:${c.x}%;top:${c.y}%">${esc(c.name)}</button>`).join('');
+ const sites=Object.entries(m.sites).map(([k,p])=>`<button class="site-marker ${layerState.sites?'':'hidden'}" data-site="${k}" style="left:${p[0]}%;top:${p[1]}%">${k}</button>`).join('');
+ const spawns=Object.entries(m.spawns).map(([k,p])=>`<span class="spawn-marker ${layerState.spawns?'':'hidden'}" style="left:${p[0]}%;top:${p[1]}%">${k.toUpperCase()}</span>`).join('');
+ return points+sites+spawns;
 }
-function mapFeatureSvg(id){
- const f={
- raid:`<path class="cm-road" d="M95 470 C220 430 300 500 410 470 S650 440 785 370"/><circle class="cm-feature" cx="300" cy="500" r="54"/><circle class="cm-feature-line" cx="300" cy="500" r="35"/><rect class="cm-water" x="680" y="285" width="95" height="115" rx="20"/><path class="cm-feature-line" d="M390 270h150v165H390z M420 270v165 M480 270v165"/><text class="cm-feature-text" x="300" y="505">RING</text><text class="cm-feature-text" x="727" y="345">POOL</text>`,
- tunisia:`<path class="cm-road" d="M425 95 L425 530"/><path class="cm-road-edge" d="M390 95 L390 530 M460 95 L460 530"/><rect class="cm-feature" x="555" y="300" width="230" height="155" rx="24"/><path class="cm-feature-line" d="M590 340h160 M620 300v155 M705 300v155"/><path class="cm-feature" d="M690 165h85v95h-85z"/><path class="cm-feature-line" d="M700 255l65-80"/><text class="cm-feature-text" x="670" y="385">MAIN SQUARE</text><text class="cm-feature-text" x="732" y="210">SCAFFOLD</text>`,
- coastal:`<path class="cm-water" d="M40 485 Q180 450 320 490 T600 490 T860 490 V610 H40z"/><path class="cm-feature-line" d="M60 535q40-22 80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0"/><path class="cm-road" d="M440 100 L440 485"/><path class="cm-road" d="M110 330 L790 330"/><path class="cm-feature" d="M360 185h160l25 35-25 35H360l-25-35z"/><text class="cm-feature-text" x="440" y="225">MID ARCH</text><text class="cm-feature-text" x="450" y="565">WATERFRONT</text>`,
- 'firing-range':`<path class="cm-road" d="M115 470 C250 390 345 360 440 310 S655 250 790 160"/><rect class="cm-feature" x="70" y="175" width="155" height="90" rx="15"/><rect class="cm-feature" x="640" y="150" width="145" height="170" rx="15"/><rect class="cm-feature" x="395" y="140" width="70" height="115" rx="10"/><path class="cm-feature-line" d="M430 140v-55 M410 85h40 M650 210h125 M670 160v160 M725 160v160"/><text class="cm-feature-text" x="148" y="225">TRAILER</text><text class="cm-feature-text" x="712" y="240">WOOD</text><text class="cm-feature-text" x="430" y="125">TOWER</text>`,
- slums:`<path class="cm-road" d="M75 350 L825 350"/><path class="cm-road" d="M445 90 L445 540"/><circle class="cm-feature" cx="445" cy="295" r="62"/><circle class="cm-feature-line" cx="445" cy="295" r="34"/><circle class="cm-water" cx="435" cy="405" r="42"/><path class="cm-feature-line" d="M410 405h50 M435 380v50"/><text class="cm-feature-text" x="445" y="300">STATUE</text><text class="cm-feature-text" x="435" y="410">FOUNTAIN</text>`,
- meltdown:`<path class="cm-road" d="M80 365 L820 365"/><path class="cm-road" d="M445 100 L445 520"/><circle class="cm-feature" cx="145" cy="250" r="78"/><circle class="cm-feature-line" cx="145" cy="250" r="48"/><circle class="cm-feature" cx="735" cy="245" r="68"/><rect class="cm-feature" x="360" y="140" width="165" height="105" rx="14"/><path class="cm-feature-line" d="M500 245 L570 390"/><text class="cm-feature-text" x="145" y="255">REACTOR</text><text class="cm-feature-text" x="735" y="250">WAREHOUSE</text><text class="cm-feature-text" x="442" y="198">CONTROL</text>`,
- standoff:`<path class="cm-road" d="M80 330 L820 330"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="100" y="155" width="165" height="130" rx="16"/><rect class="cm-feature" x="650" y="150" width="145" height="135" rx="16"/><ellipse class="cm-feature" cx="445" cy="325" rx="65" ry="35"/><text class="cm-feature-text" x="180" y="220">GRANNY</text><text class="cm-feature-text" x="722" y="220">GAS</text><text class="cm-feature-text" x="445" y="330">TANK</text>`,
- terminal:`<path class="cm-road" d="M75 330 L820 330"/><path class="cm-feature" d="M80 210h220l55 55-55 55H80z"/><path class="cm-feature" d="M600 150h180v250H600z"/><path class="cm-feature-line" d="M140 170l150 80 M140 350l150-80 M440 180v260 M410 235h60 M410 385h60"/><text class="cm-feature-text" x="190" y="270">PLANE</text><text class="cm-feature-text" x="690" y="280">TERMINAL</text>`,
- crash:`<path class="cm-road" d="M70 350 L830 350"/><path class="cm-road" d="M445 100 L445 520"/><path class="cm-feature" d="M390 300l55-45 55 45-20 70h-70z"/><path class="cm-feature-line" d="M445 255v-55 M395 235h100"/><rect class="cm-feature" x="85" y="155" width="170" height="170" rx="15"/><rect class="cm-feature" x="660" y="165" width="145" height="155" rx="15"/><text class="cm-feature-text" x="170" y="240">3 STORY</text><text class="cm-feature-text" x="730" y="245">BLUE</text><text class="cm-feature-text" x="445" y="325">CRASH</text>`,
- takeoff:`<path class="cm-road" d="M70 365 L830 365"/><rect class="cm-feature" x="75" y="150" width="210" height="210" rx="18"/><rect class="cm-feature" x="620" y="150" width="190" height="210" rx="18"/><path class="cm-feature" d="M420 125h50l25 170-50 80-50-80z"/><path class="cm-feature-line" d="M445 125v-55 M410 95h70"/><text class="cm-feature-text" x="180" y="255">HANGAR</text><text class="cm-feature-text" x="715" y="255">CONTROL</text><text class="cm-feature-text" x="445" y="255">ROCKET</text>`,
- hacienda:`<path class="cm-road" d="M90 350 L810 350"/><rect class="cm-feature" x="100" y="130" width="170" height="220" rx="20"/><rect class="cm-feature" x="630" y="130" width="170" height="220" rx="20"/><rect class="cm-feature" x="330" y="150" width="240" height="280" rx="28"/><circle class="cm-water" cx="450" cy="315" r="48"/><text class="cm-feature-text" x="185" y="245">WINE</text><text class="cm-feature-text" x="715" y="245">GARAGE</text><text class="cm-feature-text" x="450" y="320">FOUNTAIN</text>`,
- summit:`<path class="cm-road" d="M80 350 L820 350"/><rect class="cm-feature" x="80" y="145" width="200" height="190" rx="15"/><rect class="cm-feature" x="630" y="145" width="185" height="190" rx="15"/><rect class="cm-feature" x="350" y="155" width="190" height="245" rx="15"/><path class="cm-feature-line" d="M440 155v-75 M390 100h100 M540 205h90"/><text class="cm-feature-text" x="180" y="245">SERVER</text><text class="cm-feature-text" x="720" y="245">GONDOLA</text><text class="cm-feature-text" x="445" y="285">CONTROL</text>`,
- 'kurohana':`<path class="cm-road" d="M80 350 L820 350"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="90" y="145" width="190" height="190" rx="20"/><rect class="cm-feature" x="620" y="145" width="190" height="190" rx="20"/><rect class="cm-feature" x="345" y="170" width="200" height="200" rx="28"/><path class="cm-feature-line" d="M360 185h170v170H360z M395 185v170 M470 185v170"/><text class="cm-feature-text" x="185" y="240">LAB</text><text class="cm-feature-text" x="715" y="240">STATION</text><text class="cm-feature-text" x="445" y="275">PLAZA</text>`,
- express:`<path class="cm-feature-line" d="M70 250H830 M70 390H830"/><path class="cm-feature" d="M100 270h700v100H100z"/><path class="cm-feature-line" d="M150 270v100 M250 270v100 M350 270v100 M450 270v100 M550 270v100 M650 270v100 M750 270v100"/><path class="cm-road" d="M445 90 L445 530"/><rect class="cm-feature" x="90" y="135" width="190" height="100" rx="14"/><rect class="cm-feature" x="620" y="135" width="190" height="100" rx="14"/><text class="cm-feature-text" x="450" y="325">TRAIN / PLATFORM</text><text class="cm-feature-text" x="185" y="190">CONTROL</text><text class="cm-feature-text" x="715" y="190">TICKET</text>`
- };
- return f[id]||'';
+function showMap(id=currentMap,mode=currentMode){
+ currentMap=id;currentMode=mode;selectedPoint=null;localStorage.setItem('snd-last-map',id);localStorage.setItem('snd-last-mode',mode);setNav('brief');
+ const m=MAPS[id],plan=modePlan(m,mode);const modes=[['overview','Overview'],['attackA','Attack A'],['attackB','Attack B'],['defense','Defense'],['retake','Retake'],['sightlines','Sightlines']];
+ const calls=relevantCallouts(m,mode);
+ main.innerHTML=`<button class="ghost" id="backMaps">← Choose map</button>
+ <section class="map-head"><div><span class="badge ${m.id==='raid'?'bonus':''}">${esc(m.status)}</span><h1>${esc(m.name)}</h1><p>${esc(m.description)}</p></div><div class="map-actions"><button class="ghost" id="previousMap">← Prev</button><button class="ghost" id="nextMap">Next →</button></div></section>
+ <div class="mode-row">${modes.map(([id2,l])=>`<button class="modebtn ${mode===id2?'active':''}" data-mode="${id2}">${l}</button>`).join('')}</div>
+ <div class="layer-row"><button class="chip ${layerState.labels?'active':''}" data-layer="labels">Callouts</button><button class="chip ${layerState.sites?'active':''}" data-layer="sites">Bomb sites</button><button class="chip ${layerState.spawns?'active':''}" data-layer="spawns">Spawns</button><button class="chip ${layerState.routes?'active':''}" data-layer="routes">Routes</button><button class="chip ${layerState.sightlines?'active':''}" data-layer="sightlines">Sightlines</button></div>
+ <div class="callout-strip">${calls.map(c=>`<button class="callout-shortcut" data-shortcut="${esc(c.name)}">${esc(c.name)}</button>`).join('')}</div>
+ <div class="map-stage ${expanded?'expanded':''}" id="mapStage"><div class="map-viewport" id="mapViewport"><div class="map-stage-inner" id="mapInner" style="aspect-ratio:${m.image.aspect};width:${zoomLevel*100}%">${imgTag(m,'map-image')}${renderSvg(m,mode)}${renderMarkers(m,mode)}</div></div>
+ <div class="map-tools"><small>Tap a callout for live position intel.</small><div class="map-tool-buttons"><button class="ghost" id="zoomOut">−</button><span class="zoom-value">${Math.round(zoomLevel*100)}%</span><button class="ghost" id="zoomIn">+</button><button class="ghost" id="resetZoom">Reset</button><button class="ghost" id="expandMap">${expanded?'Close':'Expand'}</button></div></div></div>
+ <div class="legend"><span><i style="background:var(--red)"></i>A-side</span><span><i style="background:var(--yellow)"></i>B-side</span><span><i style="background:var(--purple)"></i>Mid</span><span><i style="background:var(--green)"></i>Squad route</span><span><i style="background:var(--blue)"></i>Sightline</span></div>
+ <div class="card detail-card" id="pointDetail"><div class="kind">Live position intel</div><h3>Tap a callout</h3><p>The visual stays on screen while the selected position shows what it watches and the cleanest way to clear it.</p></div>
+ <div class="card leader-card"><span class="badge">${esc(plan.title)}</span><div class="leader-call">${esc(plan.call)}</div><div class="roles">${plan.roles.map(r=>`<div class="role"><strong>${esc(r[0])}</strong><span>${esc(r[1])}</span></div>`).join('')}</div><div class="quick-buttons"><button class="primary" id="copyCall">Copy leader call</button><button class="ghost" id="saveBrief">Save brief</button></div></div>
+ <div class="card"><h3>Squad note</h3><textarea class="notearea" id="mapNote" placeholder="Team alias, route timing, enemy habit, or correction">${esc(notes[id]||'')}</textarea><div class="quick-buttons"><button class="primary" id="saveNote">Save note</button></div></div>`;
+ bindMapEvents(m,mode,plan);window.scrollTo(0,0);
 }
-function renderCommandMap(m,mode){
- const zones=m.zones.map(z=>`<polygon class="cm-zone cm-zone-${z.kind}" points="${jaggedPoints(z)}"></polygon><text class="cm-zone-label" x="${z.x+z.w/2}" y="${z.y+z.h/2}">${esc(z.label)}</text>`).join('');
- const defs=`<defs><pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#26332b" stroke-width="1" opacity=".3"/></pattern><marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#7cff8d"/></marker><marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#49a4ff"/></marker></defs><rect width="900" height="620" fill="url(#gridPattern)"/>`;
- const sites=Object.entries(m.sites).map(([k,p])=>`<circle class="cm-site" cx="${p[0]}" cy="${p[1]}" r="28"></circle><text class="cm-site-label" x="${p[0]}" y="${p[1]+1}">${k}</text>`).join('');
- const sp=Object.entries(m.spawns).map(([k,p])=>`<circle class="cm-spawn" cx="${p[0]}" cy="${p[1]}" r="11"></circle><text class="cm-spawn-label" x="${p[0]}" y="${p[1]+(k==='attack'?25:-18)}">${k==='attack'?'ATTACK':'DEFENSE'}</text>`).join('');
- let overlays='';
- if(mode==='attackA'||mode==='attackB'||mode==='defense'){
-   const rs=m.routes[mode]||[]; overlays+=rs.map((r,i)=>`<polyline class="cm-route ${i%2?'alt':''}" points="${polyline(r.points)}"></polyline>`).join('');
- }
- if(mode==='sightlines') overlays+=m.sightlines.map(s=>`<line class="cm-los" x1="${s.a[0]}" y1="${s.a[1]}" x2="${s.b[0]}" y2="${s.b[1]}"></line>`).join('');
- const visible=m.callouts.filter(x=>mode==='callouts'||mode==='sightlines'||mode==='defense'||(mode==='attackA'?(x.side==='A'||x.side==='MID'):(x.side==='B'||x.side==='MID')));
- const calls=visible.map(x=>{const lx=x.x+x.dx,ly=x.y+x.dy,w=Math.max(50,x.name.length*8.2+16);return `<g class="cm-callout ${x.side==='MID'?'mid':''}" onclick="showMapCallout('${m.id}',${JSON.stringify(x.name)})"><line class="cm-label-line" x1="${x.x}" y1="${x.y}" x2="${lx}" y2="${ly-2}"></line><rect class="cm-label-box" x="${lx-w/2}" y="${ly-18}" width="${w}" height="24" rx="8"></rect><circle cx="${x.x}" cy="${x.y}" r="10"></circle><text x="${lx}" y="${ly-2}">${esc(x.name)}</text></g>`}).join('');
- return `<svg class="command-map" viewBox="0 0 900 620" role="img" aria-label="${esc(m.name)} tactical command map">${defs}${zones}${mapFeatureSvg(m.id)}${overlays}${sites}${sp}${calls}</svg>`;
+function adjacentMap(id,offset){const ids=Object.keys(MAPS),i=ids.indexOf(id);return ids[(i+offset+ids.length)%ids.length]}
+function updateZoom(m,mode,delta=null){if(delta===0)zoomLevel=1;else zoomLevel=Math.max(1,Math.min(2.5,Math.round((zoomLevel+delta)*10)/10));showMap(m.id,mode)}
+function bindMapEvents(m,mode,plan){
+ document.getElementById('backMaps').onclick=showMapPicker;document.getElementById('previousMap').onclick=()=>showMap(adjacentMap(m.id,-1),'overview');document.getElementById('nextMap').onclick=()=>showMap(adjacentMap(m.id,1),'overview');
+ document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{zoomLevel=1;showMap(m.id,b.dataset.mode)});document.querySelectorAll('[data-layer]').forEach(b=>b.onclick=()=>{layerState[b.dataset.layer]=!layerState[b.dataset.layer];showMap(m.id,mode)});
+ document.querySelectorAll('[data-point]').forEach(b=>b.onclick=()=>showPoint(m,b.dataset.point));document.querySelectorAll('[data-shortcut]').forEach(b=>b.onclick=()=>showPoint(m,b.dataset.shortcut));document.querySelectorAll('[data-site]').forEach(b=>b.onclick=()=>showSite(m,b.dataset.site));
+ document.getElementById('zoomOut').onclick=()=>updateZoom(m,mode,-.25);document.getElementById('zoomIn').onclick=()=>updateZoom(m,mode,.25);document.getElementById('resetZoom').onclick=()=>updateZoom(m,mode,0);document.getElementById('expandMap').onclick=()=>{expanded=!expanded;showMap(m.id,mode)};
+ document.getElementById('copyCall').onclick=async()=>{try{await navigator.clipboard.writeText(plan.call);toast('Leader call copied')}catch(e){toast('Copy blocked by browser')}};document.getElementById('saveBrief').onclick=()=>{localStorage.setItem('snd-saved-brief',JSON.stringify({map:m.id,mode,time:Date.now()}));toast('Brief saved')};document.getElementById('saveNote').onclick=()=>{notes[m.id]=document.getElementById('mapNote').value;localStorage.setItem('snd-atlas-notes',JSON.stringify(notes));toast('Map note saved')};
 }
-function renderLeaderPlan(m,mode){
- const key=mode==='attackA'?'attackA':mode==='attackB'?'attackB':'defense';
- const p=m.plans[key];
- return `<div class="leader-call"><strong>Team leader call • ${esc(p.title)}</strong><p>${esc(p.call)}</p></div><div class="squad-roles">${p.roles.map((r,i)=>`<div class="squad-role"><b>${i+1}</b><strong>${esc(r[0])}</strong><small>${esc(r[1])}</small></div>`).join('')}</div>`;
-}
-function showMapCallout(mapId,name){
- const m=VMAPS[mapId],c=m.callouts.find(x=>x.name===name);if(!c)return;activeCallout=name;
- document.querySelectorAll('.cm-callout').forEach(g=>g.classList.toggle('selected',g.textContent.trim()===name));
- const el=$('#callout-detail');
- el.innerHTML=`<div class="kind">${esc(c.side)} • ${esc(c.kind)}</div><h3>${esc(c.name)}</h3><p>${esc(c.summary)}</p><p><strong>Watches:</strong> ${esc(c.watch)}</p><p><strong>Simple counter:</strong> ${esc(c.counter)}</p>`;
- el.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function saveMapNote(mapId){const text=$('#mapnote').value.trim();if(!text)return;state.notes.unshift({id:0,text:`[${VMAPS[mapId].name} map] ${text}`,date:new Date().toLocaleString()});localStorage.setItem('snd-notes',JSON.stringify(state.notes));$('#mapnote').value='';toast('Map note saved')}
-
-function showDictionary(){
- setTab('browse');
- main.innerHTML=`<section class="hero"><h2>Field Dictionary</h2><p>Search the term you heard before pretending everybody else already knew it.</p></section>
- <input class="search" id="dictq" placeholder="Search terms..." oninput="filterDictionary()">
- <div id="dictlist" class="list" style="margin-top:12px">${dictRows(D.dictionary)}</div>`;
- window.scrollTo(0,0);
-}
-function dictRows(items){return items.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('')}
-function filterDictionary(){
- const q=$('#dictq').value.toLowerCase();
- $('#dictlist').innerHTML=dictRows(D.dictionary.filter(x=>(x.term+' '+x.definition).toLowerCase().includes(q)));
-}
-function showSearch(){
- setTab('');
- main.innerHTML=`<section class="hero"><h2>Search</h2><p>Search titles, problems, missions, and dictionary terms.</p></section>
- <input class="search" id="searchq" placeholder="Type what happened..." autofocus oninput="runSearch()">
- <div id="results" class="list" style="margin-top:12px"></div>`;
- setTimeout(()=>$('#searchq').focus(),50);
-}
-function runSearch(){
- const q=$('#searchq').value.toLowerCase().trim();
- if(!q){$('#results').innerHTML='';return}
- const ops=D.operations.filter(o=>JSON.stringify(o).toLowerCase().includes(q)).slice(0,12);
- const terms=D.dictionary.filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,8);
- const maps=Object.values(VMAPS).filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,10);
- const callouts=Object.values(VMAPS).flatMap(m=>m.callouts.map(c=>({mapId:m.id,mapName:m.name,...c}))).filter(x=>JSON.stringify(x).toLowerCase().includes(q)).slice(0,12);
- $('#results').innerHTML=ops.map(opRow).join('')+callouts.map(x=>`<button class="row" onclick="showVisualMap('${x.mapId}','callouts');setTimeout(()=>showMapCallout('${x.mapId}',${JSON.stringify(x.name)}),50)"><strong>${esc(x.mapName)} • ${esc(x.name)}</strong><small>${esc(x.kind)} · ${esc(x.watch)}</small></button>`).join('')+maps.map(x=>`<button class="row" onclick="showVisualMap('${x.id}','callouts')"><strong>${esc(x.name)} Command Map</strong><small>${esc(x.tier)} · callouts, routes, defense, sightlines</small></button>`).join('')+terms.map(x=>`<div class="card"><h3>${esc(x.term)}</h3><p>${esc(x.definition)}</p></div>`).join('');
-}
-
-function showAbout(){
- setTab('');
- main.innerHTML=`<button class="action back" onclick="history.back()">← Back</button>
- <section class="operation-head"><div class="num">About this app</div><h2>Search & Destroy Companion</h2></section>
- <div class="about-logo">S&amp;D</div>
- <div class="card"><h3>Original creator</h3><p>${esc(APP_OWNER)}</p></div>
- <div class="card"><h3>Version</h3><p>${esc(APP_VERSION)} · Build ${esc(BUILD_ID)}</p></div>
- <div class="card"><h3>Map artwork</h3><p class="legal-box">The Squad Command Atlas uses original simplified tactical schematics with visual callouts, routes, site markers, and sightlines. They do not contain official overhead map artwork, textures, screenshots, or traced game assets. Call of Duty and related names belong to their respective owners. This is an unofficial fan-made reference and is not affiliated with or endorsed by Activision.</p></div>
- <div class="card"><h3>Copyright</h3><p>${esc(COPYRIGHT_NOTICE)}</p></div>
- <div class="card"><h3>Usage rights</h3><p class="legal-box">This application, its written field-guide content, interface structure, branding, and included source files are proprietary. No permission is granted to copy, modify, redistribute, publish, rebrand, sublicense, or sell any part of this project without written permission from the copyright holder.</p></div>
- <div class="card"><h3>Authorship fingerprint</h3><p class="legal-box">Project ID: SEARCH-DESTROY-COMPANION-MB\nBuild ID: ${esc(BUILD_ID)}\nOwner: ${esc(APP_OWNER)}</p></div>`;
- window.scrollTo(0,0);
-}
-
-window.addEventListener('popstate',e=>{ if(e.state?.view==='op')showOperation(e.state.id); else showHome(); });
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
-const previewMode=new URLSearchParams(location.search).get('preview');
-if(previewMode&&VMAPS[previewMode])showVisualMap(previewMode,'callouts');else showHome();
+function showPoint(m,name){selectedPoint=name;document.querySelectorAll('.map-point').forEach(b=>b.classList.toggle('selected',b.dataset.point===name));document.querySelectorAll('.callout-shortcut').forEach(b=>b.classList.toggle('active',b.dataset.shortcut===name));const c=m.callouts.find(x=>x.name===name);if(!c)return;document.getElementById('pointDetail').innerHTML=`<div class="kind">${esc(c.side)} side · ${esc(c.kind)}</div><h3>${esc(c.name)}</h3><p><strong>What it is:</strong> ${esc(c.summary)}</p><p><strong>Watches:</strong> ${esc(c.watch)}</p><p><strong>Clear it:</strong> ${esc(c.counter)}</p>`}
+function showSite(m,s){document.getElementById('pointDetail').innerHTML=`<div class="kind">Bomb site</div><h3>${s} Site</h3><p>Open the ${s} attack, Defense, or Retake tab to display the matching routes and squad assignments.</p>`}
+function manualRow(op){return `<button class="row" data-op="${op.id}"><strong>${esc(op.title)}</strong><small>Operation ${String(op.id).padStart(2,'0')} · ${esc(op.mission)}</small></button>`}
+function bindManualRows(){document.querySelectorAll('[data-op]').forEach(b=>b.onclick=()=>showOperation(Number(b.dataset.op)))}
+function showManual(){setNav('manual');main.innerHTML=`<section class="hero"><span class="badge">FIELD MANUAL</span><h2>Fix the problem between rounds</h2><p>The visual atlas handles geography. The operations handle decisions, habits, gunfights, bomb play, and improvement.</p></section><input class="search" id="manualSearch" placeholder="Search dying first, re-peeking, post-plant..."><div class="manual-list" id="manualList">${MANUAL.operations.map(manualRow).join('')}</div>`;bindManualRows();document.getElementById('manualSearch').oninput=e=>{const q=e.target.value.toLowerCase();document.getElementById('manualList').innerHTML=MANUAL.operations.filter(o=>JSON.stringify(o).toLowerCase().includes(q)).map(manualRow).join('');bindManualRows()};window.scrollTo(0,0)}
+function showOperation(id){const o=MANUAL.operations.find(x=>x.id===id);setNav('manual');const box=(h,v)=>`<div class="card"><h3>${esc(h)}</h3><p>${esc(v)}</p></div>`;main.innerHTML=`<button class="ghost" id="backManual">← Field manual</button><section class="hero"><span class="badge">OPERATION ${String(o.id).padStart(2,'0')}</span><h2>${esc(o.title)}</h2></section>${box('The problem',o.problem)}${box('The truth',o.truth)}${box('One thing to try',o.try)}${box('Mission',o.mission)}${box('Success looks like',o.success)}`;document.getElementById('backManual').onclick=showManual;window.scrollTo(0,0)}
+function showNotes(){setNav('notes');const entries=Object.entries(notes).filter(([,n])=>n.trim());main.innerHTML=`<section class="hero"><span class="badge">SQUAD NOTES</span><h2>Your map-specific calls</h2><p>Stored on this device.</p></section>${entries.length?entries.map(([id,n])=>`<div class="card"><h3>${esc(MAPS[id]?.name||id)}</h3><p>${esc(n)}</p><div class="quick-buttons"><button class="ghost" data-open-note="${id}">Open map</button><button class="ghost" data-delete-note="${id}">Delete</button></div></div>`).join(''):'<div class="card about">No map notes saved yet.</div>'}`;document.querySelectorAll('[data-open-note]').forEach(b=>b.onclick=()=>showMap(b.dataset.openNote,'overview'));document.querySelectorAll('[data-delete-note]').forEach(b=>b.onclick=()=>{delete notes[b.dataset.deleteNote];localStorage.setItem('snd-atlas-notes',JSON.stringify(notes));showNotes()})}
+function showAbout(){setNav('about');main.innerHTML=`<section class="hero"><span class="badge">OPERATOR ATLAS 2.0</span><h2>Visual squad command for Search &amp; Destroy</h2></section><div class="card about"><p><strong>Created by Michael Barnes.</strong></p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p><p>Unofficial fan-made tactical reference. Not affiliated with or endorsed by Activision.</p></div><div class="card"><h3>Verified map scope</h3><p>Tunisia, Firing Range, Coastal, Slums, and Meltdown are the official 2026 competitive Search &amp; Destroy pool. Raid is included as a requested Ranked reference. The app does not claim a complete official Ranked-by-mode list because Activision has not published one in the current public Season 6 material.</p></div><div class="card"><h3>Visual approach</h3><p>Every map uses a locally packaged tactical visual so the atlas works offline. Callouts, sites, spawns, routes, sightlines, leader calls, and operator assignments are separate interactive layers.</p></div><div class="card"><h3>Build</h3><p>Version 2.0.0 · MB-SNDC-2026-0721-020</p></div>`}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;const b=document.getElementById('installBtn');b.hidden=false;b.onclick=async()=>{await deferredInstall.prompt();deferredInstall=null;b.hidden=true}});
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+showMapPicker();
 </script>
 </body>
 </html>

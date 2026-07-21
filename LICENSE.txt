@@ -1,14 +1,7 @@
-SEARCH & DESTROY COMPANION — PROPRIETARY LICENSE
+PROPRIETARY LICENSE — ALL RIGHTS RESERVED
 
-Copyright © 2026 Michael Barnes. All Rights Reserved.
+Copyright © 2026 Michael Barnes.
 
-This software, its written content, visual organization, branding, and accompanying files are proprietary works owned by Michael Barnes.
+No permission is granted to copy, modify, redistribute, sublicense, publish, rebrand, or sell the Search & Destroy Companion software or its original written and visual content without prior written permission from the copyright holder.
 
-No permission is granted to copy, modify, adapt, translate, redistribute, publish, rebrand, sublicense, sell, rent, host for public use, or create derivative works from this project, in whole or in part, without prior written permission from the copyright holder.
-
-You may use an authorized copy of the application for personal reference. Possession of the source files does not transfer ownership or grant reuse rights.
-
-THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND.
-
-Project fingerprint: SEARCH-DESTROY-COMPANION-MB
-Build ID: MB-SNDC-2026-0720-002
+Third-party map images remain subject to their own licenses and rights. Attribution details are provided in CREDITS.txt.

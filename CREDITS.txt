@@ -1,0 +1,16 @@
+VISUAL AND RESEARCH NOTES
+
+All maps displayed by this build are locally packaged tactical visuals created for the Search & Destroy Companion. They are designed for rapid recognition and tactical explanation rather than serving as official map artwork or exact architectural survey drawings.
+
+Map structure, landmark naming, and general tactical orientation were researched using official Activision map overviews, the official 2026 CODM esports settings, competitive references, community callout usage, and gameplay-oriented map references.
+
+Verified official 2026 competitive Search & Destroy pool:
+- Tunisia
+- Firing Range
+- Coastal
+- Slums
+- Meltdown
+
+Raid is included as an additional requested Ranked reference.
+
+Call of Duty, Call of Duty: Mobile, map names, and related trademarks or game assets belong to their respective owners. This is an unofficial fan-made tactical reference and is not affiliated with or endorsed by Activision.

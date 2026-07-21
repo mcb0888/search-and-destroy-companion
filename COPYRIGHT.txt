@@ -1,5 +1,6 @@
-Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0720-002
+Search & Destroy Companion — Operator Atlas
+Copyright © 2026 Michael Barnes. All Rights Reserved.
 
-Created by Michael Barnes.
-Original project fingerprint: SEARCH-DESTROY-COMPANION-MB
-Unauthorized copying, redistribution, rebranding, modification, or resale is prohibited.
+Original app code, written guidance, tactical classifications, interface design, annotations, local fallback illustrations, and companion structure are proprietary to Michael Barnes.
+
+Call of Duty and related names and game assets belong to their respective owners. This is an unofficial fan-made reference and is not affiliated with or endorsed by Activision.
