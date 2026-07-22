@@ -2,6 +2,4 @@ PROPRIETARY LICENSE — ALL RIGHTS RESERVED
 
 Copyright © 2026 Michael Barnes.
 
-No permission is granted to copy, modify, redistribute, sublicense, publish, rebrand, or sell the Search & Destroy Companion software or its original written and visual content without prior written permission from the copyright holder.
-
-Third-party map images remain subject to their own licenses and rights. Attribution details are provided in CREDITS.txt.
+No permission is granted to copy, modify, distribute, sublicense, publish, rebrand, or sell this software or its content without prior written permission from the copyright holder.

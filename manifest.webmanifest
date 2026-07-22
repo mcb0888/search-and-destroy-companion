@@ -1,13 +1,11 @@
 {
-  "name": "Search & Destroy Companion \u2014 Operator Atlas",
-  "short_name": "S&D Atlas",
-  "description": "A visual squad-command companion for Call of Duty: Mobile Search & Destroy.",
+  "name": "Search & Destroy Companion \u2014 Squad Playbook",
+  "short_name": "S&D Squad",
   "start_url": "./index.html",
-  "scope": "./",
   "display": "standalone",
-  "orientation": "any",
   "background_color": "#07100c",
   "theme_color": "#07100c",
+  "description": "A mid-match teamplay, communication, and gunfight companion for Search & Destroy.",
   "icons": [
     {
       "src": "icon.svg",

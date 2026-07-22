@@ -1,6 +1,4 @@
-Search & Destroy Companion — Operator Atlas
+Search & Destroy Companion — Squad Playbook
 Copyright © 2026 Michael Barnes. All Rights Reserved.
 
-Original app code, written guidance, tactical classifications, interface design, annotations, local fallback illustrations, and companion structure are proprietary to Michael Barnes.
-
-Call of Duty and related names and game assets belong to their respective owners. This is an unofficial fan-made reference and is not affiliated with or endorsed by Activision.
+Original software, written content, visual diagrams, interaction design, and organization. Unauthorized copying, modification, redistribution, or resale is prohibited except with written permission from the copyright holder.

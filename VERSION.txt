@@ -1,3 +1,3 @@
-Search & Destroy Companion — Operator Atlas
-Version 2.0.0
-Build MB-SNDC-2026-0721-020
+Search & Destroy Companion — Squad Playbook
+Version 3.0.0
+Build MB-SNDC-2026-0722-030

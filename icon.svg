@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="92" fill="#07100c"/>
-  <path d="M72 96h368v320H72z" fill="#101a14" stroke="#6dff8c" stroke-width="18"/>
-  <path d="M112 345l85-92 73 48 124-142" fill="none" stroke="#6dff8c" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="197" cy="253" r="20" fill="#ff6670" stroke="#fff" stroke-width="8"/>
-  <circle cx="394" cy="159" r="20" fill="#ffd166" stroke="#fff" stroke-width="8"/>
-  <text x="256" y="165" text-anchor="middle" fill="#fff" font-family="Arial" font-size="76" font-weight="700">S&amp;D</text>
-  <text x="256" y="395" text-anchor="middle" fill="#b7ffc5" font-family="Arial" font-size="38" font-weight="700">ATLAS</text>
+<rect width="512" height="512" rx="94" fill="#07100c"/>
+<circle cx="256" cy="224" r="70" fill="#183020" stroke="#6dff8c" stroke-width="18"/>
+<circle cx="166" cy="308" r="42" fill="#17231b" stroke="#b7ffc5" stroke-width="13"/>
+<circle cx="346" cy="308" r="42" fill="#17231b" stroke="#b7ffc5" stroke-width="13"/>
+<path d="M195 279L231 250M317 250l-35 29M208 342h96" stroke="#6dff8c" stroke-width="18" stroke-linecap="round"/>
+<text x="256" y="445" text-anchor="middle" fill="#f4f7f5" font-family="Arial" font-size="54" font-weight="700">SQUAD</text>
 </svg>
