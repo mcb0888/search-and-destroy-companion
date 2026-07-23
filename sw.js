@@ -1,4 +1,4 @@
-const CACHE='snd-beginner-guide-3.2.1';
+const CACHE='snd-beginner-guide-3.2.0-r2';
 const ASSETS=['./','./index.html','./data.js','./learn_data.js','./fights_data.js','./manifest.webmanifest','./icon.svg','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
 
 self.addEventListener('install',event=>{
