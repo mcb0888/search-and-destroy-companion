@@ -1,3 +1,3 @@
-Search & Destroy Companion — Squad Playbook
-Version 3.0.0
-Build MB-SNDC-2026-0722-030
+Search & Destroy Companion — Beginner Guide
+Version 3.2.0
+Build MB-SNDC-2026-0723-032
