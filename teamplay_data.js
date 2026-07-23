@@ -1,230 +1,230 @@
 /*
 Search & Destroy Companion — Squad Playbook module
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0722-030
+Build MB-SNDC-2026-0723-031
 */
 window.TEAMPLAY_DATA = {
   "scenarios": [
     {
       "id": "solo-heroes",
-      "icon": "\u21af",
+      "icon": "↯",
       "trigger": "Everyone is running off alone",
-      "title": "Reconnect the Team",
-      "tag": "TEAM SHAPE",
-      "summary": "Five separate fights create five chances to lose. The team needs pairs, spacing, and a clear bomb path.",
-      "leaderCall": "Pair up. Entry and trade together. Bomb stays third. Nobody takes a solo fight unless it protects the team.",
-      "rule": "No one enters dangerous space without a trade close enough to answer.",
+      "title": "Bring the Team Back Together",
+      "tag": "STAY TOGETHER",
+      "summary": "Five separate fights give the enemy five easy chances to win. The team needs pairs, sensible spacing, and a clear path for the bomb carrier.",
+      "leaderCall": "Pair up. The first player and backup move together. The bomb carrier stays behind them. Nobody takes a fight alone.",
+      "rule": "No one enters a dangerous area without a teammate close enough to help immediately.",
       "steps": [
-        "Name the entry pair",
-        "Put the bomb behind them",
-        "Assign one cut or flank watch",
-        "Regroup after first contact"
+        "Choose who moves first",
+        "Choose who follows and helps",
+        "Keep the bomb carrier behind the pair",
+        "Meet again after the first enemy contact"
       ],
-      "avoid": "Do not yell \u2018group up\u2019 without assigning who goes with whom.",
+      "avoid": "Do not tell everyone to stay together without assigning who moves with whom.",
       "replace": [
         [
-          "Everybody push!",
-          "Entry and trade go first. Bomb follows."
+          "Everybody rush in!",
+          "Two go first together. The bomb carrier follows."
         ],
         [
-          "Stop splitting!",
-          "Two together here. Two hold the other lane."
+          "Stop splitting up!",
+          "Two stay together here. Two guard the other route."
         ]
       ],
       "visual": "pair"
     },
     {
       "id": "too-loud",
-      "icon": "\u25d6",
+      "icon": "◖",
       "trigger": "The team is too loud",
-      "title": "Use Comms That Create Decisions",
-      "tag": "COMMS",
-      "summary": "Constant talking hides footsteps, duplicates information, and prevents the living players from thinking.",
-      "leaderCall": "Short calls only: count, place, direction, damage. Dead players give one useful fact, then silence.",
-      "rule": "Every call must help someone aim, move, wait, or rotate.",
+      "title": "Give Only Useful Information",
+      "tag": "TEAM COMMUNICATION",
+      "summary": "Constant talking hides footsteps, repeats information, and prevents the players who are still alive from thinking.",
+      "leaderCall": "Use short information only: how many, where, which direction, and how badly injured. Players who are out give one useful fact, then stay quiet.",
+      "rule": "Every message must help someone aim, move, wait, or change sites.",
       "steps": [
-        "Say the enemy count",
-        "Say the location",
-        "Add movement or damage",
+        "Say how many enemies you saw",
+        "Say where they are",
+        "Add their direction or health",
         "Stop talking after the useful fact"
       ],
-      "avoid": "Do not narrate the entire death or argue while teammates are still alive.",
+      "avoid": "Do not tell the full story of your death or argue while teammates are still alive.",
       "replace": [
         [
-          "He\u2019s right there!",
-          "One close left, weak."
+          "He is right there!",
+          "One close left, badly injured."
         ],
         [
-          "Bro, how did he\u2026",
-          "One top, watching stairs."
+          "How did that happen?",
+          "One above us, watching the stairs."
         ]
       ],
       "visual": "comms"
     },
     {
-      "id": "ego-chow",
-      "icon": "\u00d7",
-      "trigger": "Someone keeps ego-challing",
-      "title": "Turn Pride Into Pressure",
-      "tag": "DISCIPLINE",
-      "summary": "Repeated solo challenges give the enemy predictable kills and remove the team\u2019s ability to trade.",
-      "leaderCall": "Do not feed that angle. Hold pressure, change timing, and make them fight two guns next time.",
-      "rule": "After losing the same challenge once, the next attempt must change timing, position, utility, or support.",
+      "id": "unnecessary-fights",
+      "icon": "×",
+      "trigger": "Someone keeps taking unnecessary fights alone",
+      "title": "Stop Repeating the Same Losing Fight",
+      "tag": "TEAM DISCIPLINE",
+      "summary": "A player keeps fighting the same enemy or position without support. That gives the enemy predictable eliminations and prevents teammates from helping.",
+      "leaderCall": "Do not fight that alone again. Wait for a teammate, change your timing, or use a grenade before trying again.",
+      "rule": "After losing the same fight once, the next attempt must change the timing, position, equipment, or number of teammates involved.",
       "steps": [
-        "Name the loaded angle",
-        "Break line of sight",
-        "Bring a teammate or utility",
-        "Re-engage from a changed problem"
+        "Identify the position the enemy is already watching",
+        "Move out of that line of sight",
+        "Bring a teammate or use equipment",
+        "Return only after changing the situation"
       ],
-      "avoid": "Do not insult the player. Give them a better job immediately.",
+      "avoid": "Do not insult the player. Give them a safer and more useful job immediately.",
       "replace": [
         [
-          "Quit ego-challing!",
-          "Hold that player. I\u2019ll swing with you."
+          "Fight him again!",
+          "Wait for me. We will attack together."
         ],
         [
-          "You keep selling!",
-          "Stop re-peeking. Watch our flank instead."
+          "Keep going back there!",
+          "Do not return to the same position. Guard our rear route instead."
         ]
       ],
       "visual": "ego"
     },
     {
-      "id": "numbers-up",
+      "id": "player-advantage",
       "icon": "+",
-      "trigger": "We have the numbers advantage",
-      "title": "Make Them Take the Risk",
-      "tag": "NUMBERS UP",
-      "summary": "A player advantage disappears when teammates hunt separate kills and offer isolated fights.",
-      "leaderCall": "We are up. Pair off, hold exits, and make them enter us. No solo hunt.",
-      "rule": "When up players, protect trades and the objective before searching for kills.",
+      "trigger": "We have more players alive",
+      "title": "Protect the Player Advantage",
+      "tag": "PLAYER ADVANTAGE",
+      "summary": "A player advantage disappears when teammates search for separate kills and give the enemy several isolated fights.",
+      "leaderCall": "We have more players alive. Stay in pairs, guard the exits, and make them come to us. Do not hunt alone.",
+      "rule": "When your team has more players alive, protect the objective and stay close enough to help each other before searching for kills.",
       "steps": [
-        "Count the advantage",
-        "Close unnecessary gaps",
-        "Create two-player holds",
+        "Count how many players remain",
+        "Move closer to teammates when safe",
+        "Create two-player defensive positions",
         "Force the enemy to spend time and expose themselves"
       ],
-      "avoid": "Do not turn a 5v3 into three unrelated 1v1s.",
+      "avoid": "Do not turn five players against three into three separate one-on-one fights.",
       "replace": [
         [
           "Go find them!",
-          "Hold exits. Make them come through us."
+          "Guard the exits. Make them come through us."
         ],
         [
-          "He\u2019s alone, chase!",
-          "Cut his route. Keep the trade."
+          "He is alone, chase him!",
+          "Block his route. Stay close enough to help each other."
         ]
       ],
       "visual": "numbers"
     },
     {
-      "id": "post-plant",
-      "icon": "\u25c7",
+      "id": "bomb-planted",
+      "icon": "◇",
       "trigger": "We planted the bomb",
-      "title": "Stop Hunting After the Plant",
-      "tag": "POST-PLANT",
-      "summary": "The planted bomb already pressures the defenders. Chasing removes that pressure and gives them free fights.",
-      "leaderCall": "Bomb is down. Two hold the site crossfire, one watches the route, one plays the trade. Make them touch the bomb.",
-      "rule": "After planting, every position must watch the bomb, a teammate, or an unavoidable route.",
+      "title": "Defend the Bomb, Not Personal Kills",
+      "tag": "BOMB PLANTED",
+      "summary": "The planted bomb already forces the defenders to act. Chasing enemies removes that pressure and gives them easier fights.",
+      "leaderCall": "The bomb is planted. Two watch it from different directions. One watches the fastest route. One stays close enough to help. Make them approach the bomb.",
+      "rule": "After planting, every position must watch the bomb, a teammate, or a route the defenders must use.",
       "steps": [
-        "Confirm the plant location",
-        "Move off the obvious plant spot",
-        "Build a crossfire",
-        "Play sound and time before kills"
+        "Confirm where the bomb was planted",
+        "Move away from the obvious planting position",
+        "Watch the bomb from two different directions",
+        "Use sound and the timer before searching for kills"
       ],
-      "avoid": "Do not leave the bomb area because the last enemy looked weak.",
+      "avoid": "Do not leave the bomb area because the last enemy is badly injured.",
       "replace": [
         [
-          "Push their spawn!",
-          "Set crossfire. Force the defuse."
+          "Go find them!",
+          "Stay near the bomb. Make them come to us."
         ],
         [
           "Chase him!",
-          "Hold his route and play time."
+          "Guard his route and use the timer."
         ]
       ],
       "visual": "crossfire"
     },
     {
-      "id": "retake",
-      "icon": "\u21ba",
-      "trigger": "We need to retake",
-      "title": "Retake as One Wave",
-      "tag": "RETAKE",
-      "summary": "Five-second solo entries become a slow sequence of free defender kills.",
-      "leaderCall": "Wait for the group. Utility first. Entry and trade together. Clear near, clear site, then touch bomb.",
-      "rule": "A late coordinated retake is stronger than an early isolated one.",
+      "id": "recover-site",
+      "icon": "↺",
+      "trigger": "The enemy planted the bomb",
+      "title": "Recover the Site Together",
+      "tag": "RECOVER THE SITE",
+      "summary": "Entering one player at a time gives the defenders a slow series of easy fights.",
+      "leaderCall": "Wait until we are together. Use grenades and tactical equipment first. The first player clears close areas, the backup clears farther areas, then someone starts defusing.",
+      "rule": "Entering together slightly later is stronger than entering alone slightly earlier.",
       "steps": [
-        "Count who is alive",
-        "Choose one entry point or two timed entries",
-        "Use utility before bodies",
-        "Trade through the site before defusing"
+        "Count how many teammates are alive",
+        "Choose one shared entrance or two entrances with the same timing",
+        "Use grenades and tactical equipment before entering",
+        "Clear visible threats before starting the defuse"
       ],
-      "avoid": "Do not start defusing while uncleared guns can still see the bomb.",
+      "avoid": "Do not start defusing while enemies can still see the bomb.",
       "replace": [
         [
-          "Go, go, go!",
-          "Wait two seconds. Hit together."
+          "Go now!",
+          "Wait two seconds. We enter together."
         ],
         [
-          "Someone hop bomb!",
-          "Clear near, then cover the defuse."
+          "Someone start defusing!",
+          "Clear the nearby areas, then cover the person defusing."
         ]
       ],
       "visual": "retake"
     },
     {
-      "id": "tilt",
-      "icon": "\u27f2",
-      "trigger": "The team is arguing or tilted",
-      "title": "Reset the Next Round",
-      "tag": "MENTAL RESET",
-      "summary": "Blame keeps the team mentally inside the previous round while the next round is already starting.",
-      "leaderCall": "Last round is done. One adjustment only: play pairs and slow first contact. Everything else can wait.",
-      "rule": "Correct the next action, not the person\u2019s entire ability.",
+      "id": "frustrated",
+      "icon": "⟳",
+      "trigger": "The team is arguing or frustrated",
+      "title": "Focus on the Next Round",
+      "tag": "RESET",
+      "summary": "Blame keeps the team thinking about the previous round while the next round is already beginning.",
+      "leaderCall": "The last round is over. Make one change only: stay in pairs and slow down before the first fight. Everything else can wait.",
+      "rule": "Correct the next action instead of attacking the person.",
       "steps": [
-        "Stop the post-death argument",
-        "Name one fix",
-        "Assign the opening roles",
+        "Stop the argument after the round",
+        "Name one useful change",
+        "Assign the opening jobs",
         "Judge the new round separately"
       ],
-      "avoid": "Do not conduct a performance review during the buy or spawn countdown.",
+      "avoid": "Do not conduct a performance review during the spawn countdown.",
       "replace": [
         [
           "You always do that!",
-          "Next round, wait for my trade."
+          "Next round, stay close enough to help me."
         ],
         [
-          "This team is trash.",
-          "Reset. One clean round together."
+          "This team is terrible.",
+          "Reset. Play one organized round together."
         ]
       ],
       "visual": "reset"
     },
     {
-      "id": "clutch-noise",
-      "icon": "\u2026",
-      "trigger": "Our last player is trying to clutch",
-      "title": "Protect the Clutch Player\u2019s Attention",
-      "tag": "CLUTCH COMMS",
-      "summary": "Multiple dead teammates giving directions create conflicting decisions and mask audio.",
-      "leaderCall": "One caller only. Give confirmed information once. Then let the player hear and decide.",
-      "rule": "Dead comms are facts, not remote-control instructions.",
+      "id": "last-player",
+      "icon": "…",
+      "trigger": "Only one teammate is still alive",
+      "title": "Let the Last Player Think",
+      "tag": "LAST PLAYER ALIVE",
+      "summary": "Several eliminated teammates giving directions at once creates conflicting decisions and hides important game sounds.",
+      "leaderCall": "Choose one speaker. Give confirmed information once. Then let the last player hear the game and decide.",
+      "rule": "Players who are out give facts, not constant instructions.",
       "steps": [
-        "Choose one caller",
-        "Give count, last known position, and bomb status",
+        "Choose one speaker",
+        "Give the enemy count, last known position, and bomb status",
         "Do not guess",
-        "Go silent until new confirmed information appears"
+        "Stay quiet until new confirmed information appears"
       ],
       "avoid": "Do not shout directions after every camera movement.",
       "replace": [
         [
           "Turn around! No, left!",
-          "Last seen left side, ten seconds ago."
+          "Last seen on the left side ten seconds ago."
         ],
         [
-          "He has to be there!",
-          "Unknown. Bomb is down on site."
+          "He must be there!",
+          "Location unknown. The bomb is on the site."
         ]
       ],
       "visual": "clutch"
@@ -234,256 +234,130 @@ window.TEAMPLAY_DATA = {
     {
       "id": "attack-default",
       "side": "Attack",
-      "name": "Default Team Attack",
-      "icon": "\u25b6",
-      "goal": "Take information without donating the bomb or first death.",
-      "call": "Entry and trade together. Bomb third. One holds the rotate, one watches flank. First contact calls numbers, then we decide.",
+      "name": "Standard Team Attack",
+      "icon": "▶",
+      "goal": "Learn where the defenders are without losing the bomb carrier or the first player unnecessarily.",
+      "call": "The first player and backup move together. The bomb carrier follows. One watches movement between sites. One watches the rear route. After first enemy contact, say how many you saw, then we decide.",
       "roles": [
-        [
-          "Entry",
-          "Clear the first dangerous space"
-        ],
-        [
-          "Trade",
-          "Stay close enough to answer the entry fight"
-        ],
-        [
-          "Bomb",
-          "Follow behind the pair and protect the objective"
-        ],
-        [
-          "Cut",
-          "Hold the defender rotation"
-        ],
-        [
-          "Flank",
-          "Protect the team from the late route"
-        ]
+        ["First player", "Clear the first dangerous area"],
+        ["Backup", "Stay close enough to help immediately"],
+        ["Bomb carrier", "Follow behind the pair and protect the objective"],
+        ["Movement watcher", "Watch defenders moving between sites"],
+        ["Rear guard", "Protect the team from anyone coming from behind"]
       ],
       "rules": [
-        "Do not let bomb lead",
-        "Do not chase first damage",
-        "Regroup before changing sites"
+        "Do not let the bomb carrier go first",
+        "Do not chase an injured enemy into unknown space",
+        "Meet again before changing sites"
       ]
     },
     {
       "id": "attack-fast",
       "side": "Attack",
-      "name": "Fast Site Hit",
-      "icon": "\u00bb",
-      "goal": "Overload one site before defenders can settle or rotate.",
-      "call": "Three hit together. Entry clears near, trade clears deep, bomb plants safe. Two players cut rotation. No one stops in the doorway.",
+      "name": "Quick Site Attack",
+      "icon": "»",
+      "goal": "Overwhelm one site before the defenders can settle or move help there.",
+      "call": "Three enter together. The first player clears the closest area, the backup clears farther areas, and the bomb carrier plants when safe. Two players block defender routes. Nobody stops in the doorway.",
       "roles": [
-        [
-          "Entry",
-          "Break the first hold"
-        ],
-        [
-          "Trade",
-          "Clear the second gun and protect entry"
-        ],
-        [
-          "Bomb",
-          "Plant only after near space is controlled"
-        ],
-        [
-          "Cut 1",
-          "Stop the fastest rotate"
-        ],
-        [
-          "Cut 2",
-          "Watch flank or second rotate"
-        ]
+        ["First player", "Clear the closest defender position"],
+        ["Backup", "Clear the next threat and protect the first player"],
+        ["Bomb carrier", "Plant only after the nearby area is controlled"],
+        ["Route guard 1", "Block the fastest defender route"],
+        ["Route guard 2", "Watch the rear route or second defender route"]
       ],
       "rules": [
-        "Speed ends at contact",
-        "Utility before the doorway",
-        "Post-plant positions immediately"
+        "Slow down when the fight begins",
+        "Use grenades and tactical equipment before the doorway",
+        "Take bomb-defense positions immediately after planting"
       ]
     },
     {
       "id": "attack-slow",
       "side": "Attack",
-      "name": "Slow Information Round",
-      "icon": "\u25f7",
-      "goal": "Make defenders reveal habits before committing the bomb.",
-      "call": "Pairs hold both sides. Bomb stays safe. No solo push. We commit when we hear utility, see a rotation, or earn a pick.",
+      "name": "Slow Observation Round",
+      "icon": "◷",
+      "goal": "Make defenders reveal their habits before moving the bomb toward a site.",
+      "call": "Pairs watch both sides. Keep the bomb safe. Nobody enters alone. We choose a site when defenders use equipment, move away, or lose a player.",
       "roles": [
-        [
-          "Pair A",
-          "Pressure without overcommitting"
-        ],
-        [
-          "Pair B",
-          "Watch the opposite site and rotation"
-        ],
-        [
-          "Bomb",
-          "Stay central and ready to join the stronger side"
-        ],
-        [
-          "Info",
-          "Take one safe information peek"
-        ],
-        [
-          "Flex",
-          "Support the first confirmed advantage"
-        ]
+        ["Pair A", "Apply pressure without entering too far"],
+        ["Pair B", "Watch the other site and defender movement"],
+        ["Bomb carrier", "Stay central and ready to join the stronger side"],
+        ["Observer", "Look for information from a safe position"],
+        ["Roaming support", "Help the side that gains a confirmed advantage"]
       ],
       "rules": [
-        "Pressure is not permission to die",
-        "Call defender utility",
-        "Commit together"
+        "Pressure does not require dying",
+        "Report defender grenades and tactical equipment",
+        "Move to the chosen site together"
       ]
     },
     {
       "id": "defense-default",
       "side": "Defense",
-      "name": "Hold and Rotate on Proof",
-      "icon": "\u25a3",
-      "goal": "Keep both sites protected without panic-rotating on noise.",
-      "call": "Two each site, one flex. Hold first contact and call numbers. Flex moves first. Site players rotate only on proof.",
+      "name": "Hold Both Sites Until There Is Evidence",
+      "icon": "▣",
+      "goal": "Protect both sites without abandoning one because of unconfirmed noise.",
+      "call": "Two protect each site and one teammate moves between them. Report how many attackers you see. The roaming teammate moves first. Site defenders move only after confirmed information.",
       "roles": [
-        [
-          "A Anchor",
-          "Stay alive and identify the hit"
-        ],
-        [
-          "A Support",
-          "Hold the trade or secondary route"
-        ],
-        [
-          "B Anchor",
-          "Stay alive and identify the hit"
-        ],
-        [
-          "B Support",
-          "Hold the trade or secondary route"
-        ],
-        [
-          "Flex",
-          "Move first on confirmed information"
-        ]
+        ["A site defender", "Stay alive and identify the attack"],
+        ["A site backup", "Help the defender or watch the second route"],
+        ["B site defender", "Stay alive and identify the attack"],
+        ["B site backup", "Help the defender or watch the second route"],
+        ["Roaming support", "Move first when information is confirmed"]
       ],
       "rules": [
-        "Information before rotation",
-        "Anchor survival matters",
-        "Do not chase attackers away from your site"
+        "Get information before changing sites",
+        "A living site defender gives the team time",
+        "Do not chase attackers away from the site you protect"
       ]
     },
     {
-      "id": "post-plant-plan",
+      "id": "bomb-defense",
       "side": "Objective",
-      "name": "Post-Plant Crossfire",
-      "icon": "\u25c7",
-      "goal": "Force defenders to expose themselves to stop the timer.",
-      "call": "Two crossfire the bomb. One holds the fastest route. One protects the trade. Last player floats between sound cues. Nobody hunts.",
+      "name": "Defend the Planted Bomb",
+      "icon": "◇",
+      "goal": "Force defenders to expose themselves before they can stop the timer.",
+      "call": "Two watch the bomb from different directions. One guards the fastest route. One stays near the first defender contact. The last player moves only when confirmed information creates a need.",
       "roles": [
-        [
-          "Bomb Watch",
-          "See or hear the defuse"
-        ],
-        [
-          "Crossfire",
-          "Punish the player fighting Bomb Watch"
-        ],
-        [
-          "Route Hold",
-          "Delay the fastest retake lane"
-        ],
-        [
-          "Trade",
-          "Stay near the first contact"
-        ],
-        [
-          "Flex",
-          "Move only when information creates a gap"
-        ]
+        ["Bomb watcher", "See or hear anyone starting the defuse"],
+        ["Second angle", "Attack anyone focused on the bomb watcher"],
+        ["Route guard", "Delay the fastest defender route"],
+        ["Nearby helper", "Stay close enough to help at first contact"],
+        ["Roaming helper", "Move only when confirmed information creates an opening"]
       ],
       "rules": [
-        "Play time",
-        "Keep two guns connected",
-        "Peek on bomb contact, not boredom"
+        "Use the timer",
+        "Keep two teammates close enough to help",
+        "Look out when the enemy touches the bomb, not because you are bored"
       ]
     },
     {
-      "id": "retake-plan",
+      "id": "recover-site-plan",
       "side": "Objective",
-      "name": "Coordinated Retake",
-      "icon": "\u21ba",
-      "goal": "Enter with enough connected guns to trade through the site.",
-      "call": "Group first. Utility opens. Entry clears near, trade clears deep, third covers bomb. Last two cut exits and flank.",
+      "name": "Recover the Bomb Site Together",
+      "icon": "↺",
+      "goal": "Enter with enough teammates close together to clear the site and protect the defuse.",
+      "call": "Group first. Use grenades and tactical equipment. The first player clears nearby threats, the backup clears farther threats, and a third teammate covers the bomb. The last two guard exits and the rear route.",
       "roles": [
-        [
-          "Entry",
-          "Clear the closest threat"
-        ],
-        [
-          "Trade",
-          "Stay attached to entry"
-        ],
-        [
-          "Bomb Cover",
-          "Control the plant and defuse lane"
-        ],
-        [
-          "Exit Cut",
-          "Stop defenders escaping or re-peeking"
-        ],
-        [
-          "Flank Watch",
-          "Protect the retake from the late route"
-        ]
+        ["First player", "Clear the closest threat"],
+        ["Backup", "Stay beside the first player and clear the next threat"],
+        ["Bomb cover", "Control the bomb and defuse area"],
+        ["Exit watcher", "Stop defenders from escaping or returning to the same position"],
+        ["Rear guard", "Protect the group from anyone arriving from behind"]
       ],
       "rules": [
-        "Do not trickle",
-        "Clear before defuse",
-        "Use the same countdown"
+        "Do not enter one at a time",
+        "Clear threats before defusing",
+        "Use one shared countdown"
       ]
     }
   ],
   "comms": [
-    {
-      "id": "first-contact",
-      "title": "First Contact",
-      "formula": "COUNT + PLACE + MOVEMENT",
-      "bad": "They\u2019re all here!",
-      "good": "Three B, two pushing in, one holding back."
-    },
-    {
-      "id": "damage",
-      "title": "Damage Call",
-      "formula": "COUNT + PLACE + DAMAGE + DIRECTION",
-      "bad": "He\u2019s one shot!",
-      "good": "One top mid, weak, backing toward B."
-    },
-    {
-      "id": "bomb",
-      "title": "Bomb Information",
-      "formula": "BOMB STATUS + PLACE + CONTROL",
-      "bad": "Bomb! Bomb!",
-      "good": "Bomb down outside A. We control it."
-    },
-    {
-      "id": "rotation",
-      "title": "Rotation Call",
-      "formula": "WHO + ACTION + REASON",
-      "bad": "Rotate now!",
-      "good": "Flex rotate B. Three confirmed there."
-    },
-    {
-      "id": "death",
-      "title": "Death Call",
-      "formula": "KILLER PLACE + MOVEMENT + THEN SILENCE",
-      "bad": "How did he kill me? He\u2019s camping!",
-      "good": "One close right, moving toward site."
-    },
-    {
-      "id": "clutch",
-      "title": "Clutch Call",
-      "formula": "CONFIRMED FACT ONCE",
-      "bad": "Turn around! He has to be behind you!",
-      "good": "Last seen mid fifteen seconds ago. Bomb is planted A."
-    }
+    {"id":"first-contact","title":"First Enemy Contact","formula":"HOW MANY + WHERE + MOVEMENT","bad":"They are all here!","good":"Three at B. Two moving in and one staying back."},
+    {"id":"damage","title":"Enemy Health Information","formula":"HOW MANY + WHERE + HEALTH + DIRECTION","bad":"He is almost dead!","good":"One in the upper middle area, badly injured, moving toward B."},
+    {"id":"bomb","title":"Bomb Information","formula":"BOMB STATUS + WHERE + WHO CONTROLS IT","bad":"Bomb! Bomb!","good":"The bomb was dropped outside A. We control that area."},
+    {"id":"site-move","title":"Moving to the Other Site","formula":"WHO MOVES + WHERE + WHY","bad":"Everybody move now!","good":"Roaming support, move to B. Three enemies are confirmed there."},
+    {"id":"death","title":"Information After You Die","formula":"ENEMY LOCATION + MOVEMENT + THEN SILENCE","bad":"How did he eliminate me? He was waiting there!","good":"One close right, moving toward the site."},
+    {"id":"last-player","title":"Information for the Last Player Alive","formula":"ONE CONFIRMED FACT","bad":"Turn around! He must be behind you!","good":"Last seen in the middle fifteen seconds ago. The bomb is planted at A."}
   ]
 };
