@@ -1,11 +1,12 @@
 {
-  "name": "Search & Destroy Companion \u2014 Squad Playbook",
-  "short_name": "S&D Squad",
-  "start_url": "./index.html",
+  "name": "Search & Destroy Companion — Beginner Guide",
+  "short_name": "S&D Guide",
+  "start_url": "./index.html#/home",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#07100c",
   "theme_color": "#07100c",
-  "description": "A mid-match teamplay, communication, and gunfight companion for Search & Destroy.",
+  "description": "A beginner-first CODM Search & Destroy guide with quick mid-match help, lessons, fight corrections, and a game-term dictionary.",
   "icons": [
     {
       "src": "icon.svg",
