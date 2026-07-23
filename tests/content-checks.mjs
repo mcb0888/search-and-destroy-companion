@@ -131,7 +131,7 @@ for (const operation of operations) {
   required(operation, ['id', 'title', 'problem', 'truth', 'try', 'mission', 'success'], `Operation ${operation.id}`);
 }
 
-const declaredRoutes = new Set(['home', 'guided', 'quick', 'learn', 'lesson', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'about']);
+const declaredRoutes = new Set(['home', 'guided', 'quick', 'learn', 'lesson', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
 for (const match of app.matchAll(/data-go="([^"]+)"/g)) {
   if (match[1].includes('${')) continue;
   const route = match[1];
