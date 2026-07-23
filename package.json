@@ -1,0 +1,14 @@
+{
+  "name": "search-and-destroy-companion",
+  "private": true,
+  "version": "3.3.1",
+  "type": "module",
+  "scripts": {
+    "check:content": "node tests/content-checks.mjs",
+    "serve:test": "node tests/serve.mjs",
+    "check:browser": "node tests/browser-checks.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0"
+  }
+}

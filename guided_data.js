@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Guided diagnosis and practice data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0723-033
+Build MB-SNDC-2026-0723-034
 */
 window.GUIDED_DATA = {
   questions: {
@@ -131,7 +131,7 @@ window.GUIDED_DATA = {
       likely:'You saw the enemy first, but the crosshair required a large correction or the spray continued after control was lost.',
       action:'Hold the likely head or chest position before contact. Fire a calm opening burst and correct instead of dragging an uncontrolled spray.',
       why:'Seeing first only matters when the first bullets are easy to place.',
-      terms:['crosshair placement','pre-aim'], fight:'saw-first-missed', operation:4, mission:'first-burst-calm'
+      terms:['crosshair-placement','pre-aim'], fight:'saw-first-missed', operation:4, mission:'first-burst-calm'
     },
     'frozen-feet': {
       title:'You became an easy stationary target',
