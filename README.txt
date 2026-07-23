@@ -1,30 +1,47 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.2
+SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.3
 
 PURPOSE
 A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
 
 PRIMARY EXPERIENCE
-- Start Here learning path
-- Quick mid-match situation help
+- Guided round review that turns two or three answers into one likely explanation
+- Immediate next-round correction before longer teaching
+- Beginner lesson progress and continue-learning support
+- Five-round practice missions with remembered/missed tracking
+- Recent practice history and local notes
 - Twelve short lessons covering the main ins and outs of Search & Destroy
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
 - Thirty-operation Field Manual for deeper practice
-- Local field notes
+
+GUIDED REVIEW
+The Guided tab begins with what the player noticed: elimination timing, direct gunfight, post-plant problem, recovery attempt, player advantage, timer mistake, or last-player situation. Results contain:
+- What likely happened
+- One action for the next round
+- Why the correction helps
+- Relevant dictionary terms
+- Related lesson, fight correction, or Field Manual operation
+- A matching five-round practice mission
+
+PROGRESS AND PRACTICE
+Lesson completion, the most recently opened lesson, active practice missions, five-round results, practice history, and notes are stored locally on the device. Nothing is submitted automatically.
 
 LANGUAGE RULE
 Use ordinary language first. Preserve established game terminology because players will hear it in matches, videos, and competitive discussion. Define those terms in the dictionary and point readers toward the definition when they appear. Avoid disposable social-media slang and unexplained jargon.
 
-IMPORTANT DESIGN CHANGES
-- The app is no longer framed as a team-coaching guide.
-- Immediate actions appear before diagrams or long explanations.
-- Mobile pages use larger controls, shorter summaries, and less text per screen.
-- Every meaningful page has a durable hash URL that can be bookmarked or shared.
-- The offline system uses a versioned network-first cache and provides an update button when a new service worker is waiting.
-- Version, build number, manifest, and cache name are synchronized.
+MOBILE DESIGN
+- Five primary tabs: Start, Guided, Learn, Practice, Terms
+- Large question and answer controls
+- Immediate correction shown before detailed explanation
+- One active mission with five visible round markers
+- Short summaries on selection screens
+- Durable hash routes that can be bookmarked or shared
 
 CURRENT ROUTES
 #/home
+#/guided
+#/guided/q/<question>
+#/guided/result/<result>
 #/quick
 #/quick/<situation>
 #/learn
@@ -33,23 +50,18 @@ CURRENT ROUTES
 #/fight/<problem>
 #/manual
 #/operation/<number>
+#/practice
 #/terms
 #/term/<term>
 #/notes
 #/about
 
-SOURCE APPROACH
-The learning structure uses official Call of Duty Search & Destroy fundamentals and current CODM competitive settings where they apply. Exact playlist behavior can vary, so the guide does not copy another Call of Duty title's exact bomb or defuse timing into CODM without verification.
-
-Official Search & Destroy guide:
-https://www.callofduty.com/guides/blackops6/modes/call-of-duty-guides-black-ops-6-multiplayer-mode-guide-search-and-destroy
-
-Official CODM esports settings:
-https://www.callofduty.com/mobile/esports/esports-settings
+OFFLINE UPDATES
+The app uses a versioned network-first service worker. Version 3.3 adds app.css, app.js, and guided_data.js to the offline asset set. A waiting service worker produces an Update button and reloads after taking control.
 
 BUILD
-Version 3.2.0
-MB-SNDC-2026-0723-032
+Version 3.3.0
+MB-SNDC-2026-0723-033
 
 Created by Michael Barnes.
 Copyright © 2026 Michael Barnes. All Rights Reserved.
