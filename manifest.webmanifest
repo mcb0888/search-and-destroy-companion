@@ -1,12 +1,11 @@
 {
   "name": "Search & Destroy Companion — Beginner Guide",
   "short_name": "S&D Guide",
-  "start_url": "./index.html#/home",
-  "scope": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#07100c",
   "theme_color": "#07100c",
-  "description": "A beginner-first CODM Search & Destroy guide with quick mid-match help, lessons, fight corrections, and a game-term dictionary.",
+  "description": "A beginner-first Search & Destroy guide with guided round review, lesson progress, and five-round practice missions.",
   "icons": [
     {
       "src": "icon.svg",
