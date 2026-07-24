@@ -1,4 +1,4 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.3.1
+SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.4.0
 
 PURPOSE
 A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
@@ -12,6 +12,8 @@ PRIMARY EXPERIENCE
 - Twelve short lessons covering the main ins and outs of Search & Destroy
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
+- Global search across lessons, quick help, fight corrections, Guided results, Field Manual operations, and game terms
+- Saved pages and a short recently opened list stored locally
 - Thirty-operation Field Manual for deeper practice
 
 GUIDED REVIEW
@@ -51,17 +53,18 @@ CURRENT ROUTES
 #/manual
 #/operation/<number>
 #/practice
+#/library
 #/terms
 #/term/<term>
 #/notes
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 3.3 adds app.css, app.js, and guided_data.js to the offline asset set. A waiting service worker produces an Update button and reloads after taking control.
+The app uses a versioned network-first service worker. Version 3.4 keeps search, saved pages, and recent pages available in the offline app shell. A waiting service worker produces an Update button and reloads after taking control.
 
 BUILD
-Version 3.3.1
-MB-SNDC-2026-0723-034
+Version 3.4.0
+MB-SNDC-2026-0723-035
 
 QUALITY CHECKS
 Every push to main and every pull request runs automated checks for:
@@ -72,6 +75,7 @@ Every push to main and every pull request runs automated checks for:
 - Version, build, cache, and offline-asset synchronization
 - Guided navigation and result hierarchy
 - Lesson and practice persistence
+- Global search, saved-page persistence, and recent-page history
 - Five-round mission completion
 - 320-pixel mobile layout and minimum 44-pixel tap targets
 - Offline route reload
