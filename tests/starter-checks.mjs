@@ -1,0 +1,45 @@
+import fs from "node:fs";
+import path from "node:path";
+import vm from "node:vm";
+
+const root=path.resolve(import.meta.dirname,"..");
+const dir=path.join(root,"starter");
+const failures=[];
+const check=(ok,msg)=>{if(!ok)failures.push(msg)};
+
+for(const name of ["index.html","starter.css","starter.js","starter_data.js","manifest.webmanifest","sw.js"]){
+  check(fs.existsSync(path.join(dir,name)),`Missing starter/${name}`);
+}
+
+const ctx={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(dir,"starter_data.js"),"utf8"),ctx);
+const d=ctx.window.STARTER_DATA;
+check(d,"starter_data.js must define window.STARTER_DATA");
+check(d?.lessons?.length===8,"Starter should contain exactly eight lessons");
+check(d?.settings?.length>=12,"Starter needs a useful settings baseline");
+check(d?.perkSets?.length>=3,"Starter needs at least three perk sets");
+check(d?.equipment?.length>=5,"Starter needs at least five equipment suggestions");
+check(d?.guns?.length===5,"Starter must contain exactly five guns to try");
+
+for(const lesson of d?.lessons||[]){
+  for(const field of ["id","title","summary","points","terms"])check(lesson[field]?.length,`Lesson ${lesson.id||"unknown"} missing ${field}`);
+  for(const term of lesson.terms||[])check(d.terms[term],`Lesson ${lesson.id} has undefined term: ${term}`);
+}
+for(const setting of d?.settings||[]){
+  for(const field of ["group","name","start","confidence","why"])check(setting[field],`Setting ${setting.name||"unknown"} missing ${field}`);
+}
+
+const js=fs.readFileSync(path.join(dir,"starter.js"),"utf8");
+for(const route of ["learn","settings","gear","hud"])check(js.includes(`"${route}"`),`Starter app does not handle ${route}`);
+for(const removedRoute of ["guided","practice","notes"])check(!js.includes(`go("${removedRoute}`),`Starter app contains removed feature route: ${removedRoute}`);
+
+const sw=fs.readFileSync(path.join(dir,"sw.js"),"utf8");
+for(const asset of ["index.html","starter.css","starter.js","starter_data.js","manifest.webmanifest"])check(sw.includes(asset),`Starter service worker misses ${asset}`);
+
+if(failures.length){
+  console.error(`FAILED: ${failures.length} starter check(s)`);
+  failures.forEach((x,i)=>console.error(`${i+1}. ${x}`));
+  process.exit(1);
+}
+console.log(`PASS: ${d.lessons.length} lessons, ${d.settings.length} settings, ${d.perkSets.length} perk sets, ${d.equipment.length} equipment choices, and ${d.guns.length} guns are valid.`);
+console.log("PASS: removed features have no Starter routes; terms, files, navigation, and offline assets are valid.");

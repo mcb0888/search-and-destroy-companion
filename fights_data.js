@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Winning Fights module
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0723-035
+Build MB-SNDC-2026-0727-036
 */
 window.FIGHT_DATA = [
   {
