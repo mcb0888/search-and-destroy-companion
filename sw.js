@@ -1,5 +1,5 @@
-const CACHE='snd-beginner-guide-3.4.0-r1';
-const ASSETS=['./','./index.html','./app.css','./app.js','./data.js','./learn_data.js','./fights_data.js','./guided_data.js','./manifest.webmanifest','./icon.svg','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
+const CACHE='snd-beginner-guide-3.4.1-r1';
+const ASSETS=['./','./index.html','./app.css','./app.js','./data.js','./learn_data.js','./fights_data.js','./guided_data.js','./manifest.webmanifest','./icon.svg','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt','./starter/index.html','./starter/starter.css','./starter/starter.js','./starter/starter_data.js','./starter/manifest.webmanifest','./starter/sw.js'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
@@ -7,7 +7,7 @@ self.addEventListener('install',event=>{
 
 self.addEventListener('activate',event=>{
   event.waitUntil(Promise.all([
-    caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))),
+    caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('snd-beginner-guide-')&&key!==CACHE).map(key=>caches.delete(key)))),
     self.clients.claim()
   ]));
 });

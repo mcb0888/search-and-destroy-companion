@@ -1,12 +1,13 @@
 {
   "name": "search-and-destroy-companion",
   "private": true,
-  "version": "3.4.0",
+  "version": "3.4.1",
   "type": "module",
   "scripts": {
     "check:content": "node tests/content-checks.mjs",
     "serve:test": "node tests/serve.mjs",
-    "check:browser": "node tests/browser-checks.mjs"
+    "check:browser": "node tests/browser-checks.mjs",
+    "check:starter": "node tests/starter-checks.mjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
