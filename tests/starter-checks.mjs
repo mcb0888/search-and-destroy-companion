@@ -23,8 +23,8 @@ check(d?.lessons?.length===8,"Starter should contain exactly eight lessons");
 check(d?.settings?.length>=12,"Starter needs a useful settings baseline");
 check(d?.perkSets?.length>=3,"Starter needs at least three perk sets");
 check(d?.equipment?.length>=5,"Starter needs at least five equipment suggestions");
-check(d?.guns?.length===5,"Starter must contain exactly five guns to try");
-check(d?.meta?.version==="1.2.0","Starter content version is not synchronized");
+check(!("guns" in d),"Starter should leave weapon choice to the player instead of ranking guns");
+check(d?.meta?.version==="1.2.1","Starter content version is not synchronized");
 
 for(const lesson of d?.lessons||[]){
   for(const field of ["id","title","summary","points","terms"])check(lesson[field]?.length,`Lesson ${lesson.id||"unknown"} missing ${field}`);
@@ -33,7 +33,11 @@ for(const lesson of d?.lessons||[]){
 const information=d?.lessons?.find(x=>x.id==="information");
 check(information?.calloutGuide?.formula?.length===4,"Information lesson needs the four-part callout builder");
 check(information?.calloutGuide?.examples?.length>=3,"Information lesson needs plain-landmark callout examples");
+const defense=d?.lessons?.find(x=>x.id==="defense");
+check(defense?.points?.some(x=>x.includes("camping")&&x.includes("normal Search & Destroy defense")),"Defense lesson must explain useful holding versus camping complaints");
+check(d?.perkSets?.some(x=>x.sniperNote),"Starter gear needs a clearly labeled sniper-specific perk note where relevant");
 for(const term of ["ego challenge","spectate","player advantage","weak"])check(d?.terms?.[term],`Starter needs the ${term} definition`);
+check(d?.terms?.camping,"Starter needs the camping definition");
 for(const setting of d?.settings||[]){
   for(const field of ["group","name","start","confidence","why"])check(setting[field],`Setting ${setting.name||"unknown"} missing ${field}`);
 }
@@ -52,9 +56,9 @@ for(const asset of ["app.css","app.js","starter_data.js"])check(rootIndex.includ
 for(const removedRoute of ["Guided","Practice","Notes"])check(!rootIndex.includes(removedRoute),`Default Starter exposes removed feature: ${removedRoute}`);
 check(rootJs.includes('./full/'),"Default Starter must link quietly to the full companion");
 for(const asset of ["index.html","app.css","app.js","starter_data.js","manifest.webmanifest","icon.svg"])check(rootSw.includes(asset),`Default Starter service worker misses ${asset}`);
-check(rootSw.includes('snd-starter-home-1.2.0-r1'),"Default Starter cache version is not synchronized");
+check(rootSw.includes('snd-starter-home-1.2.1-r1'),"Default Starter cache version is not synchronized");
 check(rootSw.includes('/full/')&&rootSw.includes('/starter/'),"Default Starter service worker must leave nested app scopes alone");
-check(sw.includes('snd-starter-1.2.0-r1'),"Starter alias cache version is not synchronized");
+check(sw.includes('snd-starter-1.2.1-r1'),"Starter alias cache version is not synchronized");
 check(fs.readFileSync(path.join(root,"starter_data.js"),"utf8")===fs.readFileSync(path.join(dir,"starter_data.js"),"utf8"),"Default and alias Starter content must stay identical");
 
 if(failures.length){
@@ -62,5 +66,5 @@ if(failures.length){
   failures.forEach((x,i)=>console.error(`${i+1}. ${x}`));
   process.exit(1);
 }
-console.log(`PASS: ${d.lessons.length} lessons, ${d.settings.length} settings, ${d.perkSets.length} perk sets, ${d.equipment.length} equipment choices, and ${d.guns.length} guns are valid.`);
+console.log(`PASS: ${d.lessons.length} lessons, ${d.settings.length} settings, ${d.perkSets.length} perk sets, and ${d.equipment.length} equipment choices are valid; weapon choice remains open.`);
 console.log("PASS: removed features have no Starter routes; terms, files, navigation, and offline assets are valid.");
