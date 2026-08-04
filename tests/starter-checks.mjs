@@ -11,6 +11,10 @@ for(const name of ["index.html","starter.css","starter.js","starter_data.js","ma
   check(fs.existsSync(path.join(dir,name)),`Missing starter/${name}`);
 }
 
+for(const name of ["index.html","app.css","app.js","starter_data.js","manifest.webmanifest","sw.js","icon.svg"]){
+  check(fs.existsSync(path.join(root,name)),`Missing default Starter file ${name}`);
+}
+
 const ctx={window:{}};
 vm.runInNewContext(fs.readFileSync(path.join(dir,"starter_data.js"),"utf8"),ctx);
 const d=ctx.window.STARTER_DATA;
@@ -35,6 +39,17 @@ for(const removedRoute of ["guided","practice","notes"])check(!js.includes(`go("
 
 const sw=fs.readFileSync(path.join(dir,"sw.js"),"utf8");
 for(const asset of ["index.html","starter.css","starter.js","starter_data.js","manifest.webmanifest"])check(sw.includes(asset),`Starter service worker misses ${asset}`);
+
+const rootIndex=fs.readFileSync(path.join(root,"index.html"),"utf8");
+const rootJs=fs.readFileSync(path.join(root,"app.js"),"utf8");
+const rootSw=fs.readFileSync(path.join(root,"sw.js"),"utf8");
+for(const asset of ["app.css","app.js","starter_data.js"])check(rootIndex.includes(asset),`Default Starter index misses ${asset}`);
+for(const removedRoute of ["Guided","Practice","Notes"])check(!rootIndex.includes(removedRoute),`Default Starter exposes removed feature: ${removedRoute}`);
+check(rootJs.includes('./full/'),"Default Starter must link quietly to the full companion");
+for(const asset of ["index.html","app.css","app.js","starter_data.js","manifest.webmanifest","icon.svg"])check(rootSw.includes(asset),`Default Starter service worker misses ${asset}`);
+check(rootSw.includes('snd-starter-home-1.1.0-r1'),"Default Starter cache version is not synchronized");
+check(rootSw.includes('/full/')&&rootSw.includes('/starter/'),"Default Starter service worker must leave nested app scopes alone");
+check(sw.includes('snd-starter-1.1.0-r1'),"Starter alias cache version is not synchronized");
 
 if(failures.length){
   console.error(`FAILED: ${failures.length} starter check(s)`);

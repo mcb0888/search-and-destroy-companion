@@ -6,7 +6,7 @@ function nav(root){document.querySelectorAll("nav button").forEach(b=>b.classLis
 function terms(ids=[]){return `<details class="term-box"><summary>Game terms in this lesson</summary>${ids.map(id=>`<div class="term"><b>${esc(id)}</b><span>${esc(D.terms[id]||"Definition coming soon.")}</span></div>`).join("")}</details>`}
 function learn(){
   nav("learn");
-  app.innerHTML=`<section class="hero"><span class="eyebrow">START HERE</span><h1>Learn the mode without learning it the hard way.</h1><p>Eight short lessons. No tracking, homework, diagnosis tree, or notes to manage.</p></section><div class="cards">${D.lessons.map((x,i)=>`<button class="lesson" data-go="lesson/${x.id}"><strong>${i+1}. ${esc(x.title)}</strong><small>${esc(x.summary)}</small></button>`).join("")}</div>`;
+  app.innerHTML=`<section class="hero"><span class="eyebrow">START HERE</span><h1>Learn the mode without learning it the hard way.</h1><p>Eight short lessons. No tracking, homework, diagnosis tree, or notes to manage.</p></section><div class="cards">${D.lessons.map((x,i)=>`<button class="lesson" data-go="lesson/${x.id}"><strong>${i+1}. ${esc(x.title)}</strong><small>${esc(x.summary)}</small></button>`).join("")}</div><section class="deeper"><span class="eyebrow">WHEN YOU WANT MORE</span><h2>Need deeper troubleshooting?</h2><p>The complete companion keeps Guided Help, practice tracking, detailed fight corrections, saved pages, and the full Field Manual.</p><a href="../full/">Open the full companion</a></section>`;
   bind();
 }
 function lesson(id){

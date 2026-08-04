@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = path.resolve(import.meta.dirname, '..');
+const appRoot = path.join(root, 'full');
 const failures = [];
 const check = (condition, message) => {
   if (!condition) failures.push(message);
@@ -10,7 +11,7 @@ const check = (condition, message) => {
 
 function loadData(file, globalName) {
   const context = { window: {} };
-  vm.runInNewContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
+  vm.runInNewContext(fs.readFileSync(path.join(appRoot, file), 'utf8'), context, { filename: file });
   check(context.window[globalName], `${file} must define window.${globalName}`);
   return context.window[globalName];
 }
@@ -19,12 +20,12 @@ const manual = loadData('data.js', 'APP_DATA');
 const learn = loadData('learn_data.js', 'LEARN_DATA');
 const fights = loadData('fights_data.js', 'FIGHT_DATA');
 const guided = loadData('guided_data.js', 'GUIDED_DATA');
-const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
-const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-const versionText = fs.readFileSync(path.join(root, 'VERSION.txt'), 'utf8');
-const readme = fs.readFileSync(path.join(root, 'README.txt'), 'utf8');
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.webmanifest'), 'utf8'));
+const app = fs.readFileSync(path.join(appRoot, 'app.js'), 'utf8');
+const index = fs.readFileSync(path.join(appRoot, 'index.html'), 'utf8');
+const sw = fs.readFileSync(path.join(appRoot, 'sw.js'), 'utf8');
+const versionText = fs.readFileSync(path.join(appRoot, 'VERSION.txt'), 'utf8');
+const readme = fs.readFileSync(path.join(appRoot, 'README.txt'), 'utf8');
+const manifest = JSON.parse(fs.readFileSync(path.join(appRoot, 'manifest.webmanifest'), 'utf8'));
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
 const required = (item, fields, label) => {
@@ -145,7 +146,7 @@ check(versionMatch, 'VERSION.txt must contain Version');
 check(buildMatch, 'VERSION.txt must contain Build');
 const version = versionMatch?.[1];
 const build = buildMatch?.[1];
-for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['guided_data.js', fs.readFileSync(path.join(root, 'guided_data.js'), 'utf8')]]) {
+for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')]]) {
   check(text.includes(build), `${name} does not contain build ${build}`);
 }
 check(readme.includes(`Version ${version}`), `README.txt does not contain version ${version}`);
@@ -165,7 +166,7 @@ const referencedAssets = [
 ];
 for (const asset of new Set(referencedAssets)) check(assets.includes(asset), `Service worker does not cover ${asset}`);
 for (const asset of assets.filter(x => x.startsWith('./') && x !== './')) {
-  check(fs.existsSync(path.join(root, asset.slice(2))), `Service worker references missing file ${asset}`);
+  check(fs.existsSync(path.join(appRoot, asset.slice(2))), `Service worker references missing file ${asset}`);
 }
 
 if (failures.length) {

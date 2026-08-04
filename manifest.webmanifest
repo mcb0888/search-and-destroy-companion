@@ -1,17 +1,11 @@
 {
-  "name": "Search & Destroy Companion — Beginner Guide",
-  "short_name": "S&D Guide",
-  "start_url": "./index.html",
+  "name": "Search & Destroy Companion — Starter Edition",
+  "short_name": "S&D Starter",
+  "description": "A simplified beginner learning guide for Call of Duty: Mobile Search & Destroy.",
+  "start_url": "./#/learn",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#07100c",
-  "theme_color": "#07100c",
-  "description": "A beginner-first Search & Destroy guide with guided round review, lesson progress, and five-round practice missions.",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "background_color": "#0d1113",
+  "theme_color": "#0d1113",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
