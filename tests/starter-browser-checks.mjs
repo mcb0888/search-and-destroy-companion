@@ -27,6 +27,12 @@ async function checkStarter(url,label){
   check(colors.accent==='#94aa9d'&&colors.background==='#0d1113',`${label} is not using the muted charcoal and sage palette`);
   await page.locator('.lesson').first().click();
   check(page.url().includes('#/lesson/'),`${label} lesson navigation failed`);
+  await page.goto(`${url}#/lesson/information`,{waitUntil:'domcontentloaded'});
+  check(await page.getByRole('heading',{name:'Communicate without taking over'}).isVisible(),`${label} information lesson did not render`);
+  check(await page.locator('.callout-formula div').count()===4,`${label} callout builder is incomplete`);
+  check(await page.locator('.callout-examples span').count()===3,`${label} callout examples are incomplete`);
+  const informationOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
+  check(!informationOverflow,`${label} information lesson overflows at 320px`);
   await page.goto(`${url}#/hud`,{waitUntil:'domcontentloaded'});
   check(await page.getByText('Build around jobs, not somebody else’s hands.').isVisible(),`${label} HUD screen did not render`);
   await page.evaluate(()=>navigator.serviceWorker.ready);

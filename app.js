@@ -4,6 +4,7 @@ const route=()=>location.hash.replace(/^#\/?/,"")||"learn";
 const go=x=>location.hash="#/"+x;
 function nav(root){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.route===root))}
 function terms(ids=[]){return `<details class="term-box"><summary>Game terms in this lesson</summary>${ids.map(id=>`<div class="term"><b>${esc(id)}</b><span>${esc(D.terms[id]||"Definition coming soon.")}</span></div>`).join("")}</details>`}
+function calloutGuide(g){if(!g)return "";return `<section class="callout-guide"><span class="eyebrow">USE WHAT YOU CAN SEE</span><h3>${esc(g.title)}</h3><div class="callout-formula">${g.formula.map(x=>`<div><small>${esc(x.label)}</small><strong>${esc(x.value)}</strong></div>`).join("")}</div><div class="callout-examples">${g.examples.map(x=>`<span>${esc(x)}</span>`).join("")}</div><p>${esc(g.note)}</p></section>`}
 function learn(){
   nav("learn");
   app.innerHTML=`<section class="hero"><span class="eyebrow">START HERE</span><h1>Learn the mode without learning it the hard way.</h1><p>Eight short lessons. No tracking, homework, diagnosis tree, or notes to manage.</p></section><div class="cards">${D.lessons.map((x,i)=>`<button class="lesson" data-go="lesson/${x.id}"><strong>${i+1}. ${esc(x.title)}</strong><small>${esc(x.summary)}</small></button>`).join("")}</div><section class="deeper"><span class="eyebrow">WHEN YOU WANT MORE</span><h2>Need deeper troubleshooting?</h2><p>The complete companion keeps Guided Help, practice tracking, detailed fight corrections, saved pages, and the full Field Manual.</p><a href="../full/">Open the full companion</a></section>`;
@@ -13,7 +14,7 @@ function learn(){
 }
 function lesson(id){
   const x=D.lessons.find(l=>l.id===id);if(!x)return go("learn");nav("learn");
-  app.innerHTML=`<button class="back" data-go="learn">← All lessons</button><article class="lesson-detail"><span class="eyebrow">BEGINNER LESSON</span><h2>${esc(x.title)}</h2><div class="takeaway">${esc(x.summary)}</div><ul class="points">${x.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>${terms(x.terms)}</article>`;
+  app.innerHTML=`<button class="back" data-go="learn">← All lessons</button><article class="lesson-detail"><span class="eyebrow">BEGINNER LESSON</span><h2>${esc(x.title)}</h2><div class="takeaway">${esc(x.summary)}</div><ul class="points">${x.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>${calloutGuide(x.calloutGuide)}${terms(x.terms)}</article>`;
   bind();scrollTo(0,0);
 }
 function settings(){

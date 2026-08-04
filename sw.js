@@ -1,5 +1,5 @@
-const CACHE="snd-starter-home-1.1.0-r1";
-const ASSETS=["./","./index.html","./app.css?v=1.1.0","./app.js?v=1.1.0","./starter_data.js?v=1.1.0","./manifest.webmanifest","./icon.svg"];
+const CACHE="snd-starter-home-1.2.0-r1";
+const ASSETS=["./","./index.html","./app.css?v=1.2.0","./app.js?v=1.2.0","./starter_data.js?v=1.2.0","./manifest.webmanifest","./icon.svg"];
 
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
