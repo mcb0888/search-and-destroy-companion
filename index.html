@@ -1,39 +1,31 @@
-<!--
-Search & Destroy Companion — Beginner Guide 3.4.1
-Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0727-036
--->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07100c">
-<meta name="author" content="Michael Barnes">
-<meta name="copyright" content="Copyright © 2026 Michael Barnes. All Rights Reserved.">
-<meta name="application-name" content="Search & Destroy Companion">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg">
-<link rel="stylesheet" href="app.css">
-<title>Search & Destroy Companion</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1113">
+  <meta name="author" content="Michael Barnes">
+  <meta name="description" content="A simplified beginner guide to Call of Duty: Mobile Search & Destroy.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="./icon.svg">
+  <link rel="stylesheet" href="app.css">
+  <style>.deeper a{min-height:44px}</style>
+  <title>S&amp;D Companion — Starter Edition</title>
 </head>
 <body>
-<div class="shell">
-<header><div class="brand"><div><strong>Search &amp; Destroy Companion</strong><small>Guided help · Learning progress · Practice missions</small></div><div class="header-actions"><button class="iconbtn" id="searchBtn" aria-label="Search and saved pages">⌕</button><button class="iconbtn" id="updateBtn" hidden>Update</button><button class="iconbtn" id="installBtn" hidden>Install</button><button class="iconbtn" id="aboutBtn" aria-label="About">i</button></div></div></header>
-<main id="main"></main>
-</div>
-<nav class="bottom"><div class="bottom-inner">
-<button class="nav" data-root="home"><b>⌂</b>Start</button>
-<button class="nav" data-root="guided"><b>◎</b>Guided</button>
-<button class="nav" data-root="learn"><b>▤</b>Learn</button>
-<button class="nav" data-root="practice"><b>✓</b>Practice</button>
-<button class="nav" data-root="terms"><b>?</b>Terms</button>
-</div></nav>
-<div class="toast" id="toast"></div>
-<script src="data.js"></script>
-<script src="learn_data.js"></script>
-<script src="fights_data.js"></script>
-<script src="guided_data.js"></script>
-<script src="app.js"></script>
+  <header>
+    <div class="brand">
+      <div><strong>S&amp;D Starter</strong><small>Learn first. Adjust later.</small></div>
+    </div>
+  </header>
+  <main id="app"></main>
+  <nav aria-label="Main navigation">
+    <button data-route="learn"><span>1</span>Learn</button>
+    <button data-route="settings"><span>2</span>Settings</button>
+    <button data-route="gear"><span>3</span>Gear</button>
+    <button data-route="hud"><span>4</span>HUD</button>
+  </nav>
+  <script src="starter_data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

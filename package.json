@@ -7,7 +7,8 @@
     "check:content": "node tests/content-checks.mjs",
     "serve:test": "node tests/serve.mjs",
     "check:browser": "node tests/browser-checks.mjs",
-    "check:starter": "node tests/starter-checks.mjs"
+    "check:starter": "node tests/starter-checks.mjs",
+    "check:starter-browser": "node tests/starter-browser-checks.mjs"
   },
   "devDependencies": {
     "playwright": "1.55.0"
