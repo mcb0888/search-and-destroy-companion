@@ -29,12 +29,39 @@ async function checkStarter(url,label){
   check(page.url().includes('#/lesson/'),`${label} lesson navigation failed`);
   await page.goto(`${url}#/lesson/information`,{waitUntil:'domcontentloaded'});
   check(await page.getByRole('heading',{name:'Communicate without taking over'}).isVisible(),`${label} information lesson did not render`);
+  check(await page.getByRole('heading',{name:'Terms on this page'}).isVisible(),`${label} lesson terms are not visible by default`);
+  check(await page.locator('details.term-box').count()===0,`${label} still hides lesson terms in a dropdown`);
   check(await page.locator('.callout-formula div').count()===4,`${label} callout builder is incomplete`);
   check(await page.locator('.callout-examples span').count()===3,`${label} callout examples are incomplete`);
   const informationOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
   check(!informationOverflow,`${label} information lesson overflows at 320px`);
+  await page.goto(`${url}#/lesson/defense`,{waitUntil:'domcontentloaded'});
+  check(await page.getByText(/When players complain about “camping,”/).isVisible(),`${label} defense lesson does not explain camping complaints`);
+  check(await page.getByText(/holding a useful defensive position can be correct/i).isVisible(),`${label} camping term definition is not visible`);
+  await page.goto(`${url}#/gear`,{waitUntil:'domcontentloaded'});
+  check(await page.getByText('Your gun choice is yours.').isVisible(),`${label} gear page does not leave weapon choice to the player`);
+  check(await page.getByText(/No perk here is sniper-only/).isVisible(),`${label} gear page is missing the sniper perk clarification`);
+  check(await page.getByText(/Sniper note:/).isVisible(),`${label} gear page is missing its relevant sniper note`);
+  check(await page.getByText('Five guns to try').count()===0,`${label} still shows the removed gun ranking`);
   await page.goto(`${url}#/hud`,{waitUntil:'domcontentloaded'});
   check(await page.getByText('Build around jobs, not somebody else’s hands.').isVisible(),`${label} HUD screen did not render`);
+  check(await page.getByText(/Choose your ADS behavior first/).isVisible(),`${label} HUD guide does not account for tap versus hold ADS`);
+  check(await page.getByText(/Separate reload from movement/).isVisible(),`${label} HUD guide does not protect against accidental reloads`);
+  for(const layout of ['Two thumbs','Three fingers']){
+    await page.getByRole('button',{name:layout,exact:true}).click();
+    const overlaps=await page.locator('.phone .control').evaluateAll(nodes=>{
+      const boxes=nodes.map(node=>({name:node.textContent.trim(),box:node.getBoundingClientRect()}));
+      const collisions=[];
+      for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){
+        const a=boxes[i],b=boxes[j];
+        const overlapsX=a.box.left<b.box.right&&a.box.right>b.box.left;
+        const overlapsY=a.box.top<b.box.bottom&&a.box.bottom>b.box.top;
+        if(overlapsX&&overlapsY)collisions.push(`${a.name}/${b.name}`);
+      }
+      return collisions;
+    });
+    check(overlaps.length===0,`${label} ${layout} HUD has overlapping controls: ${overlaps.join(', ')}`);
+  }
   await page.evaluate(()=>navigator.serviceWorker.ready);
   await page.reload({waitUntil:'networkidle'});
   await context.setOffline(true);

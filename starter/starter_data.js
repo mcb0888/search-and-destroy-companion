@@ -1,5 +1,5 @@
 window.STARTER_DATA={
-  meta:{version:"1.2.0",reviewed:"August 2026"},
+  meta:{version:"1.2.1",reviewed:"August 2026"},
   lessons:[
     {id:"round",title:"How a round is won",summary:"One life. One bomb. No respawn until the round ends.",points:[
       "Attackers win by eliminating the defenders or planting the bomb and preventing the defuse.",
@@ -18,9 +18,11 @@ window.STARTER_DATA={
     ],terms:["entry player","trade","post-plant"]},
     {id:"defense",title:"Patience is part of defending",summary:"Holding useful ground is not a failure to play; giving it away for no reason is.",points:[
       "Defenders do not owe attackers a fair fight. Make them spend time, equipment, and attention to reach a site.",
+      "When players complain about “camping,” they often mean a defender stayed in a prepared position instead of running into them. Holding ground that protects a site, the bomb, a teammate, or a useful sightline is normal Search & Destroy defense.",
+      "Holding becomes a problem when the position no longer helps the objective or the team and you refuse to adapt.",
       "If an enemy keeps holding one position, stop feeding the same fight. Use equipment, another route, teammate support, or the objective to make them move.",
       "Rotate on confirmed information, not panic or the loudest voice. A noise is a clue, not always the entire attack."
-    ],terms:["hold","rotate","anchor"]},
+    ],terms:["hold","camping","rotate","anchor"]},
     {id:"information",title:"Communicate without taking over",summary:"Useful information is short, confirmed, and then quiet.",points:[
       "Pause your own movement when you need to hear clearly.",
       "Build a call from what you know: enemy count, plain location, movement, and damage if known.",
@@ -64,6 +66,7 @@ window.STARTER_DATA={
     "trade":"Quickly eliminate the opponent who just eliminated your teammate.",
     "post-plant":"The part of the round after the attackers plant the bomb.",
     "hold":"Watch a useful area instead of advancing.",
+    "camping":"Staying in one position for a long time. In Search & Destroy, holding a useful defensive position can be correct; staying somewhere irrelevant while the objective changes is not.",
     "rotate":"Move from one area or bomb site to another.",
     "anchor":"A defender who holds important ground and delays the attack.",
     "callout":"Short, confirmed information about enemy count, location, movement, damage, or the bomb.",
@@ -100,7 +103,7 @@ window.STARTER_DATA={
     {group:"Audio",name:"Music Volume",start:"0–10",confidence:"Strong S&D preference",why:"Footsteps, reloads, equipment, and bomb sounds carry useful information."}
   ],
   perkSets:[
-    {title:"Quiet learner",items:["Skulker","Ghost","Dead Silence"],why:"Move carefully, reduce common tracking threats, and keep walking or crouched movement quiet."},
+    {title:"Quiet learner",items:["Skulker","Ghost","Dead Silence"],why:"Move carefully, reduce common tracking threats, and keep walking or crouched movement quiet.",sniperNote:"Skulker can help controlled walking and scoped peeks feel less sluggish, but none of these perks is restricted to snipers."},
     {title:"Objective survivor",items:["Flak Jacket","Hard Wired","Dead Silence"],why:"Better protection from explosives and enemy traps while moving around the objective."},
     {title:"Aggressive support",items:["Lightweight","Quick Fix","Dead Silence"],why:"Move quickly, recover after winning a fight, and avoid broadcasting every careful step."}
   ],
@@ -110,12 +113,5 @@ window.STARTER_DATA={
     {name:"Smoke Grenade",use:"Blocks a dangerous sightline for a crossing, plant, or defuse. Place smoke between the enemy and the objective—not blindly on your own team."},
     {name:"Trophy System",use:"Protects a plant, defuse, or held position from incoming throwable equipment."},
     {name:"Concussion Grenade",use:"Disrupts a close position before entering. Move while the effect is useful."}
-  ],
-  guns:[
-    {rank:1,name:"PP19 Bizon",role:"Forgiving close-to-mid-range SMG",why:"Large magazine, manageable recoil, and enough forgiveness to focus on decisions."},
-    {rank:2,name:"LK24",role:"Accurate mid-range assault rifle",why:"Stable feel for learning cover, pre-aiming, and controlled bursts."},
-    {rank:3,name:"AK117",role:"Flexible faster-firing assault rifle",why:"Useful across many ordinary fights without demanding perfect recoil control."},
-    {rank:4,name:"QQ9",role:"Aggressive close-range SMG",why:"Introduces faster entry play and movement once the Bizon feels comfortable."},
-    {rank:5,name:"DL Q33",role:"Beginner sniper trial",why:"A dependable way to learn centering and one-shot timing before choosing a faster, less forgiving sniper."}
   ]
 };
