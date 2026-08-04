@@ -1,5 +1,5 @@
 const CACHE="snd-starter-1.1.0-r1";
-const ASSETS=["./index.html","./starter.css","./starter.js","./starter_data.js","./manifest.webmanifest","../icon.svg"];
+const ASSETS=["./index.html","./starter.css?v=1.1.0","./starter.js?v=1.1.0","./starter_data.js?v=1.1.0","./manifest.webmanifest","../icon.svg"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener("activate",e=>e.waitUntil(Promise.all([
   caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("snd-starter-")&&k!==CACHE).map(k=>caches.delete(k)))),
