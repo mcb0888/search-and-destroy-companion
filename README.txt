@@ -9,7 +9,7 @@ The normal site address opens the simplified Starter Edition. It is deliberately
 - Gear: suggested perks, equipment, and five weapons to try
 - HUD: generic two-thumb and three-finger starting layouts
 
-The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once.
+The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable.
 
 FULL COMPANION
 The existing Beginner Guide 3.4.1 remains available at:
