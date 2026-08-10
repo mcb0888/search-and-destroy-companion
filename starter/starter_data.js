@@ -1,5 +1,5 @@
 window.STARTER_DATA={
-  meta:{version:"1.2.1",reviewed:"August 2026"},
+  meta:{version:"1.3.0",reviewed:"August 2026"},
   lessons:[
     {id:"round",title:"How a round is won",summary:"One life. One bomb. No respawn until the round ends.",points:[
       "Attackers win by eliminating the defenders or planting the bomb and preventing the defuse.",
@@ -102,16 +102,9 @@ window.STARTER_DATA={
     {group:"Performance",name:"Graphics Quality",start:"Low or Medium",confidence:"Device-dependent",why:"Use the best-looking level that never causes heat, stutter, or frame drops."},
     {group:"Audio",name:"Music Volume",start:"0–10",confidence:"Strong S&D preference",why:"Footsteps, reloads, equipment, and bomb sounds carry useful information."}
   ],
-  perkSets:[
-    {title:"Quiet learner",items:["Skulker","Ghost","Dead Silence"],why:"Move carefully, reduce common tracking threats, and keep walking or crouched movement quiet.",sniperNote:"Skulker can help controlled walking and scoped peeks feel less sluggish, but none of these perks is restricted to snipers."},
-    {title:"Objective survivor",items:["Flak Jacket","Hard Wired","Dead Silence"],why:"Better protection from explosives and enemy traps while moving around the objective."},
-    {title:"Aggressive support",items:["Lightweight","Quick Fix","Dead Silence"],why:"Move quickly, recover after winning a fight, and avoid broadcasting every careful step."}
-  ],
-  equipment:[
-    {name:"Frag Grenade",use:"A flexible first lethal. Learn to time it and send it toward cover before entering."},
-    {name:"Trip Mine",use:"Guards a flank or warns that someone entered. Move it between rounds so it is not predictable."},
-    {name:"Smoke Grenade",use:"Blocks a dangerous sightline for a crossing, plant, or defuse. Place smoke between the enemy and the objective—not blindly on your own team."},
-    {name:"Trophy System",use:"Protects a plant, defuse, or held position from incoming throwable equipment."},
-    {name:"Concussion Grenade",use:"Disrupts a close position before entering. Move while the effect is useful."}
+  guides:[
+    {id:"overall",title:"Best Overall S&D Loadouts",file:"best-overall-snd-loadouts-season-6.pdf",pages:10,badge:"START HERE",summary:"Five complete classes selected by S&D job, with attachments, perks, equipment, tradeoffs, verification steps, and sources."},
+    {id:"gunsmith",title:"S&D Gunsmith Decision Guide",file:"snd-gunsmith-guide-season-6.pdf",pages:8,badge:"SIX-WEAPON COMPARISON",summary:"Locus, DL Q33, LK24, AK117, PP19 Bizon, and VMP builds compared for practical Search & Destroy roles."},
+    {id:"snipers",title:"Sniper and Marksman Gunsmith Field Guide",file:"sniper-marksman-gunsmith-guide-season-6.pdf",pages:28,badge:"21 WEAPONS",summary:"Exact five-attachment builds, roles, secondaries, perks, tradeoffs, evidence notes, and verification guidance for every listed sniper and marksman rifle."}
   ]
 };

@@ -1,5 +1,5 @@
 Search & Destroy Companion
-Site release 3.5.2
-Default: Starter Edition 1.2.1
+Site release 3.6.0
+Default: Starter Edition 1.3.0
 Full Companion: Beginner Guide 3.4.1
-Build MB-SNDC-2026-0803-039
+Build MB-SNDC-2026-0809-040
