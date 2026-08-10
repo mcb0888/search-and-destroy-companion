@@ -68,13 +68,13 @@ MB-SNDC-2026-0727-036
 
 SIMPLIFIED STARTER EDITION
 
-The /starter/ folder contains a separate learning-first edition. It removes
-Guided Help, Practice Missions, and Notes while preserving the complete main
-companion at the site root. Starter Edition sections:
+The normal site address contains a separate learning-first edition. It removes
+Guided Help, Practice Missions, and Notes while preserving this complete
+companion under /full/. Starter Edition sections:
 
 - Eight short S&D lessons with game-term definitions
 - Common beginner settings with confidence labels
-- Suggested perks, equipment, and five weapons to try
+- Three downloadable Season 6 loadout and Gunsmith field guides
 - Original visual two-thumb and three-finger HUD starting layouts
 
 QUALITY CHECKS

@@ -6,10 +6,10 @@ DEFAULT STARTER EDITION
 The normal site address opens the simplified Starter Edition. It is deliberately limited to four sections:
 - Learn: eight short Search & Destroy lessons
 - Settings: a practical starting baseline with tradeoffs
-- Gear: suggested perks, equipment, and five weapons to try
+- Guides: three downloadable Season 6 loadout and Gunsmith field guides
 - HUD: generic two-thumb and three-finger starting layouts
 
-The Starter Edition has no Guided Help, practice tracker, field notes, large Field Manual, or weapon ranking. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson.
+The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson. The Guides section replaces the earlier perk/equipment recommendations with three complete PDF references supplied by the project owner. They are clearly labeled as Season 6 documents so older numerical claims are not presented as current without verification.
 
 FULL COMPANION
 The existing Beginner Guide 3.4.1 remains available at:

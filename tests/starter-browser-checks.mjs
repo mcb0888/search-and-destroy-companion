@@ -39,10 +39,23 @@ async function checkStarter(url,label){
   check(await page.getByText(/When players complain about “camping,”/).isVisible(),`${label} defense lesson does not explain camping complaints`);
   check(await page.getByText(/holding a useful defensive position can be correct/i).isVisible(),`${label} camping term definition is not visible`);
   await page.goto(`${url}#/gear`,{waitUntil:'domcontentloaded'});
-  check(await page.getByText('Your gun choice is yours.').isVisible(),`${label} gear page does not leave weapon choice to the player`);
-  check(await page.getByText(/No perk here is sniper-only/).isVisible(),`${label} gear page is missing the sniper perk clarification`);
-  check(await page.getByText(/Sniper note:/).isVisible(),`${label} gear page is missing its relevant sniper note`);
-  check(await page.getByText('Five guns to try').count()===0,`${label} still shows the removed gun ranking`);
+  check(await page.getByRole('heading',{name:'Use the guide that matches the question.'}).isVisible(),`${label} guide library did not render`);
+  check(await page.locator('.guide-card').count()===3,`${label} does not show exactly three PDF guides`);
+  check(await page.getByText(/Season 6 reference/).isVisible(),`${label} guide library is missing its version warning`);
+  check(await page.getByRole('link',{name:'Open PDF'}).count()===3,`${label} needs one Open PDF link per guide`);
+  check(await page.getByRole('link',{name:'Download'}).count()===3,`${label} needs one Download link per guide`);
+  const guideHrefs=await page.getByRole('link',{name:'Open PDF'}).evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href')));
+  check(guideHrefs.every(href=>href?.endsWith('.pdf')),`${label} has a guide link that is not a PDF: ${JSON.stringify(guideHrefs)}`);
+  for(const href of guideHrefs){
+    const guideUrl=new URL(href,page.url()).href;
+    const response=await page.request.get(guideUrl);
+    const body=await response.body();
+    check(response.ok(),`${label} PDF did not load: ${guideUrl}`);
+    check(response.headers()['content-type']?.includes('application/pdf'),`${label} PDF has the wrong content type: ${guideUrl}`);
+    check(body.subarray(0,4).toString()==='%PDF',`${label} guide is not a valid PDF response: ${guideUrl}`);
+  }
+  check(await page.getByText(/Choose by the job, not the headline/).isVisible(),`${label} guide library is missing the test-before-use rule`);
+  check(await page.getByText(/No perk here is sniper-only/).count()===0,`${label} still shows the replaced perk recommendation panel`);
   await page.goto(`${url}#/hud`,{waitUntil:'domcontentloaded'});
   check(await page.getByText('Build around jobs, not somebody else’s hands.').isVisible(),`${label} HUD screen did not render`);
   check(await page.getByText(/Choose your ADS behavior first/).isVisible(),`${label} HUD guide does not account for tap versus hold ADS`);

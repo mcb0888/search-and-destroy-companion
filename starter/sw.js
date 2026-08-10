@@ -1,5 +1,5 @@
-const CACHE="snd-starter-1.2.1-r1";
-const ASSETS=["./index.html","./starter.css?v=1.2.1","./starter.js?v=1.2.1","./starter_data.js?v=1.2.1","./manifest.webmanifest","../icon.svg"];
+const CACHE="snd-starter-1.3.0-r1";
+const ASSETS=["./index.html","./starter.css?v=1.3.0","./starter.js?v=1.3.0","./starter_data.js?v=1.3.0","./manifest.webmanifest","../icon.svg","../guides/best-overall-snd-loadouts-season-6.pdf","../guides/snd-gunsmith-guide-season-6.pdf","../guides/sniper-marksman-gunsmith-guide-season-6.pdf"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener("activate",e=>e.waitUntil(Promise.all([
   caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("snd-starter-")&&k!==CACHE).map(k=>caches.delete(k)))),
