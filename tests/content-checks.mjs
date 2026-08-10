@@ -23,6 +23,7 @@ const guided = loadData('guided_data.js', 'GUIDED_DATA');
 const app = fs.readFileSync(path.join(appRoot, 'app.js'), 'utf8');
 const index = fs.readFileSync(path.join(appRoot, 'index.html'), 'utf8');
 const sw = fs.readFileSync(path.join(appRoot, 'sw.js'), 'utf8');
+const polish = fs.readFileSync(path.join(appRoot, 'polish.js'), 'utf8');
 const versionText = fs.readFileSync(path.join(appRoot, 'VERSION.txt'), 'utf8');
 const readme = fs.readFileSync(path.join(appRoot, 'README.txt'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(appRoot, 'manifest.webmanifest'), 'utf8'));
@@ -153,20 +154,26 @@ check(readme.includes(`Version ${version}`), `README.txt does not contain versio
 check(app.includes(`Version ${version}`), `app.js does not contain version ${version}`);
 check(packageJson.version === version, `package.json version ${packageJson.version} does not match ${version}`);
 check(manifest.description?.length > 20, 'Manifest needs a meaningful description');
+check(index.includes('property="og:title"') && index.includes('rel="canonical"'), 'Full Companion needs social and canonical metadata');
+check(index.includes('role="status"') && index.includes('aria-live="polite"'), 'Toast feedback must be announced');
+check(polish.includes('aria-current'), 'Polish layer must expose active navigation state');
+check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
 
 const cacheMatch = sw.match(/const CACHE='([^']+)'/);
 check(cacheMatch, 'sw.js must declare a cache name');
 check(cacheMatch?.[1].includes(version), `Service-worker cache must include version ${version}`);
+check(sw.includes("event.data?.type==='SKIP_WAITING'"), 'Service worker must handle the visible Update control');
 const assetMatch = sw.match(/const ASSETS=\[(.*?)\];/s);
 check(assetMatch, 'sw.js must declare ASSETS');
 const assets = assetMatch ? [...assetMatch[1].matchAll(/'([^']+)'/g)].map(x => x[1]) : [];
 const referencedAssets = [
-  ...[...index.matchAll(/(?:src|href)="([^"#]+)"/g)].map(x => `./${x[1].replace(/^\.\//, '')}`),
+  ...[...index.matchAll(/(?:src|href)="([^"#]+)"/g)].map(x => x[1]).filter(x => !/^https?:\/\//.test(x)).map(x => `./${x.replace(/^\.\//, '')}`),
   './index.html', './VERSION.txt'
 ];
 for (const asset of new Set(referencedAssets)) check(assets.includes(asset), `Service worker does not cover ${asset}`);
 for (const asset of assets.filter(x => x.startsWith('./') && x !== './')) {
-  check(fs.existsSync(path.join(appRoot, asset.slice(2))), `Service worker references missing file ${asset}`);
+  const filePath = asset.slice(2).split('?')[0];
+  check(fs.existsSync(path.join(appRoot, filePath)), `Service worker references missing file ${asset}`);
 }
 
 if (failures.length) {

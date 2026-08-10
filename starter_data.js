@@ -1,5 +1,5 @@
 window.STARTER_DATA={
-  meta:{version:"1.3.0",reviewed:"August 2026"},
+  meta:{version:"1.4.0",reviewed:"August 9, 2026"},
   lessons:[
     {id:"round",title:"How a round is won",summary:"One life. One bomb. No respawn until the round ends.",points:[
       "Attackers win by eliminating the defenders or planting the bomb and preventing the defuse.",
@@ -82,10 +82,23 @@ window.STARTER_DATA={
     "tap the bomb":"Briefly begin a defuse to force a hidden attacker to react.",
     "player advantage":"Having more living teammates than the other team.",
     "tilt":"Frustration that starts affecting decisions.",
-    "muscle memory":"Movement that becomes familiar through consistent repetition."
+    "muscle memory":"Movement that becomes familiar through consistent repetition.",
+    "ADS":"Aim down sights: raise the weapon's sight or scope before firing.",
+    "tap to ADS":"Tap the ADS button once to aim, then tap again or perform another action to stop aiming.",
+    "tap and hold ADS":"Keep the ADS button held while aiming; releasing it stops aiming.",
+    "FOV":"Field of view: how much of the scene is visible on screen at once.",
+    "aim assist":"A game system that helps with small aiming corrections near an opponent.",
+    "fixed speed":"A rotation mode where the same finger movement produces a repeatable amount of camera movement.",
+    "frame rate":"How many images the game displays each second. Stable higher frame rates usually feel smoother.",
+    "sprint":"Move faster while making more noise and taking longer to become ready to fire.",
+    "Gunsmith":"The weapon-customization screen used to equip attachments and change weapon behavior.",
+    "attachment":"A Gunsmith part that changes a weapon's strengths, weaknesses, or handling.",
+    "recoil":"Weapon movement caused by firing that must be controlled to keep shots on target.",
+    "sight picture":"What the target and surrounding area look like while aiming through a weapon's sight or scope.",
+    "laser visibility":"Whether an equipped laser can reveal your aim or position to an opponent."
   },
   settings:[
-    {group:"Controls",name:"Control mode",start:"Advanced Mode",confidence:"Common starting point",why:"Lets you choose how each weapon aims and fires instead of forcing one automatic behavior."},
+    {group:"Controls",name:"Control mode",start:"Advanced Mode",confidence:"Common starting point",why:"Lets you choose how each weapon aims and fires instead of forcing one automatic behavior.",changeWhen:"You have a specific accessibility or simplicity reason to use automatic fire."},
     {group:"Controls",name:"Aim Assist",start:"On",confidence:"Strong beginner consensus",why:"Helps steady small corrections. Learn with it before experimenting without it."},
     {group:"Controls",name:"Fixed R-Fire Button",start:"On",confidence:"Common starting point",why:"Keeps the fire button in a predictable location."},
     {group:"Controls",name:"R-Fire Button for Rotation",start:"On",confidence:"Common starting point",why:"Allows aiming while pressing and dragging the right fire button."},
@@ -93,18 +106,18 @@ window.STARTER_DATA={
     {group:"Controls",name:"Fixed Virtual Joystick Position",start:"On",confidence:"Common starting point",why:"Builds a repeatable movement start point."},
     {group:"Controls",name:"Always Sprint / Joystick Auto-Sprint",start:"Off",confidence:"Strong S&D starting point",why:"Reduces accidental noisy sprints into prepared enemies. Sprint deliberately instead."},
     {group:"Controls",name:"Quick Weapon Switch",start:"On",confidence:"Common preference",why:"Makes the swap control easier to reach. It does not secretly shorten the weapon's built-in animation."},
-    {group:"Aiming",name:"Tap to ADS vs Tap and Hold",start:"Thumbs: Tap to ADS · 3-finger: try Tap and Hold",confidence:"Personal preference",why:"Tap frees the thumb after aiming. Hold gives direct control over exactly when the scope closes. Test both for several matches before deciding."},
-    {group:"View",name:"Field of View (FOV)",start:"75",confidence:"Common phone baseline",why:"A practical middle point: wider awareness without making distant opponents too small."},
+    {group:"Aiming",name:"Tap to ADS vs Tap and Hold",start:"Try Tap first; test Hold deliberately",confidence:"Personal workflow choice",why:"Tap frees the thumb after aiming. Hold gives direct control and can turn the ADS button into an aiming surface. Finger count alone does not decide which is better.",changeWhen:"You repeatedly lose aim control, struggle to leave ADS, or cannot drag comfortably while holding the button."},
+    {group:"View",name:"Field of View (FOV)",start:"75",confidence:"Common phone baseline",why:"A practical middle point: wider awareness without making distant opponents too small.",changeWhen:"Targets consistently look too small or your useful peripheral view feels too restricted."},
     {group:"View",name:"Useful phone FOV range",start:"70–80",confidence:"Common range, not a rule",why:"Lower makes targets look larger; higher shows more around you. Change in steps of 2 and stop when enemies become hard to identify."},
     {group:"View",name:"Sync ADS FOV to Scope Zoom",start:"Off for a new phone player",confidence:"Situational",why:"Off keeps distant targets visually larger. On gives a wider, smoother view with less apparent recoil but smaller targets."},
-    {group:"Sensitivity",name:"Rotation Mode",start:"Fixed Speed",confidence:"Strong learning baseline",why:"The same finger movement produces a repeatable turn, which is easier for building consistency."},
-    {group:"Performance",name:"Frame Rate",start:"Highest stable option",confidence:"Strong consensus",why:"Smooth, stable frames matter more to gunfights than decorative graphics."},
+    {group:"Sensitivity",name:"Rotation Mode",start:"Fixed Speed",confidence:"Strong learning baseline",why:"The same finger movement produces a repeatable turn, which is easier for building consistency.",changeWhen:"You have tested long enough to identify a specific turning problem that acceleration would solve."},
+    {group:"Performance",name:"Frame Rate",start:"Highest stable option",confidence:"Strong consensus",why:"Smooth, stable frames matter more to gunfights than decorative graphics.",changeWhen:"The phone overheats, stutters, or cannot maintain the chosen frame rate."},
     {group:"Performance",name:"Graphics Quality",start:"Low or Medium",confidence:"Device-dependent",why:"Use the best-looking level that never causes heat, stutter, or frame drops."},
     {group:"Audio",name:"Music Volume",start:"0–10",confidence:"Strong S&D preference",why:"Footsteps, reloads, equipment, and bomb sounds carry useful information."}
   ],
   guides:[
-    {id:"overall",title:"Best Overall S&D Loadouts",file:"best-overall-snd-loadouts-season-6.pdf",pages:10,badge:"START HERE",summary:"Five complete classes selected by S&D job, with attachments, perks, equipment, tradeoffs, verification steps, and sources."},
-    {id:"gunsmith",title:"S&D Gunsmith Decision Guide",file:"snd-gunsmith-guide-season-6.pdf",pages:8,badge:"SIX-WEAPON COMPARISON",summary:"Locus, DL Q33, LK24, AK117, PP19 Bizon, and VMP builds compared for practical Search & Destroy roles."},
-    {id:"snipers",title:"Sniper and Marksman Gunsmith Field Guide",file:"sniper-marksman-gunsmith-guide-season-6.pdf",pages:28,badge:"21 WEAPONS",summary:"Exact five-attachment builds, roles, secondaries, perks, tradeoffs, evidence notes, and verification guidance for every listed sniper and marksman rifle."}
+    {id:"overall",title:"Best Overall S&D Loadouts",file:"best-overall-snd-loadouts-season-6.pdf",pages:10,badge:"ARCHIVED · SEASON 6",summary:"Five complete classes selected by S&D job, with attachments, perks, equipment, tradeoffs, verification steps, and sources."},
+    {id:"gunsmith",title:"S&D Gunsmith Decision Guide",file:"snd-gunsmith-guide-season-6.pdf",pages:8,badge:"ARCHIVED · SEASON 6",summary:"Locus, DL Q33, LK24, AK117, PP19 Bizon, and VMP builds compared for practical Search & Destroy roles."},
+    {id:"snipers",title:"Sniper and Marksman Gunsmith Field Guide",file:"sniper-marksman-gunsmith-guide-season-6.pdf",pages:28,badge:"ARCHIVED · SEASON 6",summary:"Exact five-attachment builds, roles, secondaries, perks, tradeoffs, evidence notes, and verification guidance for every listed sniper and marksman rifle."}
   ]
 };

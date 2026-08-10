@@ -2,30 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0d1113">
-  <meta name="author" content="Michael Barnes">
-  <meta name="description" content="A simplified beginner guide to Call of Duty: Mobile Search & Destroy.">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="../icon.svg">
-  <link rel="stylesheet" href="starter.css?v=1.3.0">
-  <style>.deeper a{min-height:44px}</style>
-  <title>S&amp;D Companion — Starter Edition</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://mcb0888.github.io/search-and-destroy-companion/">
+  <title>Opening S&amp;D Starter…</title>
+  <style>html{color-scheme:dark;background:#090d0f;color:#edf1ef;font:16px system-ui}body{min-height:100vh;margin:0;display:grid;place-items:center;text-align:center;padding:24px}a{color:#c6ded5}</style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div><strong>S&amp;D Starter</strong><small>Learn first. Adjust later.</small></div>
-    </div>
-  </header>
-  <main id="app"></main>
-  <nav aria-label="Main navigation">
-    <button data-route="learn"><span>1</span>Learn</button>
-    <button data-route="settings"><span>2</span>Settings</button>
-    <button data-route="gear"><span>3</span>Guides</button>
-    <button data-route="hud"><span>4</span>HUD</button>
-  </nav>
-  <script src="starter_data.js?v=1.3.0"></script>
-  <script src="starter.js?v=1.3.0"></script>
+  <main><strong>Opening the Starter Edition…</strong><p><a id="continue" href="../">Continue manually</a></p></main>
+  <script>
+    const target=`../${location.hash||"#/learn"}`;
+    document.getElementById("continue").href=target;
+    if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
+    location.replace(target);
+  </script>
 </body>
 </html>

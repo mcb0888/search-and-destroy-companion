@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Beginner learning data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0727-036
+Build MB-SNDC-2026-0809-041
 */
 window.LEARN_DATA = {
   quick: [
