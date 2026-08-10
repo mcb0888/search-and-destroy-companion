@@ -1,14 +1,9 @@
-const CACHE="snd-starter-1.3.0-r1";
-const ASSETS=["./index.html","./starter.css?v=1.3.0","./starter.js?v=1.3.0","./starter_data.js?v=1.3.0","./manifest.webmanifest","../icon.svg","../guides/best-overall-snd-loadouts-season-6.pdf","../guides/snd-gunsmith-guide-season-6.pdf","../guides/sniper-marksman-gunsmith-guide-season-6.pdf"];
-self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
-self.addEventListener("activate",e=>e.waitUntil(Promise.all([
-  caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("snd-starter-")&&k!==CACHE).map(k=>caches.delete(k)))),
-  self.clients.claim()
-])));
-self.addEventListener("fetch",e=>{
-  if(e.request.method!=="GET")return;
-  e.respondWith(fetch(e.request).then(r=>{
-    if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}
-    return r;
-  }).catch(async()=>await caches.match(e.request)||(e.request.mode==="navigate"?caches.match("./index.html"):Response.error())));
-});
+const LEGACY_PREFIX="snd-starter-";
+self.addEventListener("install",event=>event.waitUntil(self.skipWaiting()));
+self.addEventListener("activate",event=>event.waitUntil((async()=>{
+  const keys=await caches.keys();
+  await Promise.all(keys.filter(key=>key.startsWith(LEGACY_PREFIX)&&!key.startsWith("snd-starter-home-")).map(key=>caches.delete(key)));
+  await self.registration.unregister();
+  const clients=await self.clients.matchAll({type:"window"});
+  clients.forEach(client=>{const source=new URL(client.url),target=new URL("../",self.registration.scope);target.hash=source.hash;client.navigate(target.href)});
+})()));

@@ -3,8 +3,8 @@
   "short_name": "S&D Guide",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#07100c",
-  "theme_color": "#07100c",
+  "background_color": "#090d0f",
+  "theme_color": "#090d0f",
   "description": "A beginner-first Search & Destroy guide with guided round review, lesson progress, and five-round practice missions.",
   "icons": [
     {
