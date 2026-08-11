@@ -69,7 +69,7 @@ check(navFontSize>=12,`Bottom navigation text is too small: ${navFontSize}px`);
 
 await page.evaluate(()=>navigator.serviceWorker.ready);
 const fullCaches=await page.evaluate(()=>caches.keys());
-check(fullCaches.includes('snd-full-guide-3.6.0-r1'),`Full Companion cache did not install: ${JSON.stringify(fullCaches)}`);
+check(fullCaches.includes('snd-full-guide-3.6.1-r1'),`Full Companion cache did not install: ${JSON.stringify(fullCaches)}`);
 
 await context.setOffline(true);
 await page.goto(`${base}#/guided`, { waitUntil: 'domcontentloaded' }).catch(() => {});

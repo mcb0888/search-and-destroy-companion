@@ -13,6 +13,10 @@ https://blog.activision.com/fr/call-of-duty/2019-10/Getting-a-Grip-on-the-Call-o
 COMMUNITY PATTERNS REVIEWED
 Player discussions were used only to identify recurring finger assignments and transition problems. They are not official recommendations or proof that one layout is best.
 
+- Players using 1-tap ADS fire commonly keep a separate hip-fire control available, and some place both firing choices together so one finger can select the needed behavior. The layout remains personal; the useful principle is preserving a deliberate choice between ADS fire, hip fire, and ADS without firing.
+  https://www.reddit.com/r/CODMobile/comments/1h2lwd4/
+  https://www.reddit.com/r/CallOfDutyMobile/comments/k2c90p/
+
 - Three fingers commonly move fire to the left index so the right thumb can keep aiming.
   https://www.reddit.com/r/CallOfDutyMobile/comments/1qsyz8e/
   https://www.reddit.com/r/CallOfDutyMobile/comments/10w4ul5/
@@ -25,9 +29,15 @@ Player discussions were used only to identify recurring finger assignments and t
   https://www.reddit.com/r/CallOfDutyMobile/comments/1sstrxz/
 
 DESIGN CONCLUSIONS
-- Two thumbs: Tap to ADS is the least conflicted manual-ADS starting workflow. Per-weapon 1-tap ADS fire is another valid option. Hold ADS exposes the physical limit of one right thumb doing several simultaneous jobs.
-- Three fingers: left-index fire removes the move-and-fire conflict and makes either ADS mode more workable.
-- Four fingers: left-index fire and right-index ADS preserve both thumbs for movement and camera control. Add more index-finger jobs only after the basic split is comfortable.
+- Each finger count needs two distinct workflow examples: manual ADS + hip fire, and the same controls with 1-tap ADS fire added.
+- Manual layouts preserve a deliberate aim-then-fire sequence and use fewer combat controls.
+- 1-tap layouts preserve manual ADS and hip fire while adding a faster combined ADS-fire choice.
+- Two thumbs keep every selected combat control on the right thumb, so simultaneous control remains physically limited.
+- Three fingers move firing to the left index while the right thumb retains manual ADS and camera control. The 1-tap version uses an upper-left 1-tap/hip-fire pair.
+- Four fingers separate firing choice and manual ADS between the index fingers, preserving both thumbs for movement and camera control.
 - Final placement remains device-, grip-, hand-, comfort-, and accessibility-dependent.
+
+SCREEN-SIZE REFERENCE
+- The physical starting reference is a large 6.7–6.9-inch phone held in landscape. Percentage-based zones scale, but smaller 6.1–6.4-inch phones may need upper controls moved inward and important controls enlarged.
 
 This research supports starting logic, not exact coordinates, sensitivity values, or a promise of better performance.

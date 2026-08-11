@@ -1,5 +1,5 @@
-/* Presentation and accessibility layer — Version 3.6.0 */
-const POLISH_BUILD="MB-SNDC-2026-0810-042";
+/* Presentation and accessibility layer — Version 3.6.1 */
+const POLISH_BUILD="MB-SNDC-2026-0810-043";
 
 function upgradeHeading(section){
   const old=section?.querySelector(":scope > h2");
@@ -39,12 +39,12 @@ function polishCurrentView(){
   }
 
   if(current==="about"){
-    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 3.6.0";
+    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 3.6.1";
     const cards=[...document.querySelectorAll("main .card")];
     const changed=cards.find(card=>card.querySelector("h3")?.textContent.startsWith("What changed"));
-    if(changed)changed.innerHTML=`<h3>What changed in 3.6.0</h3><p>Improved route focus, progress accessibility, install assets, sharing previews, security policy, and release checks. The Starter Edition also gained researched two-, three-, and four-finger HUD starting layouts.</p>`;
+    if(changed)changed.innerHTML=`<h3>What changed in 3.6.1</h3><p>Added dictionary support for manual ADS, 1-tap ADS fire, hip fire, and both ADS-button behaviors. The Starter Edition now offers manual and 1-tap firing workflows for each two-, three-, and four-finger HUD, with a short playstyle explanation for all six combinations.</p>`;
     const build=cards.find(card=>card.querySelector("h3")?.textContent==="Build");
-    if(build)build.innerHTML=`<h3>Build</h3><p>Version 3.6.0 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
+    if(build)build.innerHTML=`<h3>Build</h3><p>Version 3.6.1 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
     if(!cards.some(card=>card.querySelector("h3")?.textContent==="Unofficial project")){
       build?.insertAdjacentHTML("beforebegin",`<div class="card"><h3>Unofficial project</h3><p>This is a fan-made learning guide. It is not affiliated with or endorsed by Activision. Call of Duty and related names belong to their respective owners.</p></div>`);
     }

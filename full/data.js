@@ -1,5 +1,5 @@
 /*
-Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0810-042
+Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0810-043
 Original software and written content. Unauthorized copying, modification, redistribution, or resale is prohibited except with the copyright holder's written permission.
 */
 window.APP_DATA = {
@@ -786,6 +786,26 @@ window.APP_DATA = {
     {
       "term": "Pre-Aim",
       "definition": "Aiming at a likely threat location before entering or exposing yourself."
+    },
+    {
+      "term": "ADS",
+      "definition": "Aim down sights: raise the weapon's sight or scope without necessarily firing."
+    },
+    {
+      "term": "1-Tap ADS Fire",
+      "definition": "A fire-button mode that starts aiming down sights and firing from one press. It is separate from the ADS-only button and can be selected by weapon in Advanced Mode."
+    },
+    {
+      "term": "Hip Fire",
+      "definition": "Fire without automatically aiming down sights. A separate hip-fire control preserves a close-range firing option when another fire button uses 1-tap ADS fire."
+    },
+    {
+      "term": "Tap to ADS",
+      "definition": "Tap the ADS-only button once to aim, then tap again or perform another action to stop aiming. This does not describe the separate 1-tap ADS-fire control."
+    },
+    {
+      "term": "Tap and Hold ADS",
+      "definition": "Keep the ADS-only button held while aiming; releasing it stops aiming. This does not remove the separate 1-tap ADS-fire or hip-fire choices."
     },
     {
       "term": "Strafe",

@@ -1,5 +1,5 @@
 window.STARTER_DATA={
-  meta:{version:"1.5.0",reviewed:"August 10, 2026",evidence:"Official behavior means Activision documents the control. Community pattern means experienced players commonly use the arrangement, but it is not an official layout. Device-dependent and personal choice mean your phone, grip, hands, and comfort decide the final answer."},
+  meta:{version:"1.5.1",reviewed:"August 10, 2026",evidence:"Official behavior means Activision documents the control. Community pattern means experienced players commonly use the arrangement, but it is not an official layout. Device-dependent and personal choice mean your phone, grip, hands, and comfort decide the final answer."},
   lessons:[
     {id:"round",title:"How a round is won",summary:"One life. One bomb. No respawn until the round ends.",points:[
       "Attackers win by eliminating the defenders or planting the bomb and preventing the defuse.",
@@ -84,6 +84,8 @@ window.STARTER_DATA={
     "tilt":"Frustration that starts affecting decisions.",
     "muscle memory":"Movement that becomes familiar through consistent repetition.",
     "ADS":"Aim down sights: raise the weapon's sight or scope before firing.",
+    "1-tap ADS fire":"A fire-button mode that starts aiming down sights and firing from one press. It is separate from the ADS-only button and can be selected by weapon in Advanced Mode.",
+    "hip fire":"Fire without automatically aiming down sights. Keeping a separate hip-fire control gives you a close-range option even when a weapon uses 1-tap ADS fire.",
     "tap to ADS":"Tap the ADS button once to aim, then tap again or perform another action to stop aiming.",
     "tap and hold ADS":"Keep the ADS button held while aiming; releasing it stops aiming.",
     "FOV":"Field of view: how much of the scene is visible on screen at once.",
@@ -99,6 +101,7 @@ window.STARTER_DATA={
   },
   settings:[
     {group:"Controls",name:"Control mode",start:"Advanced Mode",confidence:"Common starting point",why:"Lets you choose how each weapon aims and fires instead of forcing one automatic behavior.",changeWhen:"You have a specific accessibility or simplicity reason to use automatic fire."},
+    {group:"Controls",name:"Per-weapon fire mode",start:"Choose 1-tap ADS fire or Hip Fire by weapon",confidence:"Official feature; personal choice",why:"1-tap ADS fire starts aiming and firing from one press. Hip Fire shoots without automatically aiming. Advanced Mode lets the main fire behavior differ by weapon, while a separate fire control can preserve the other choice.",changeWhen:"A weapon repeatedly needs a different first action—for example, immediate hip fire up close or manual pre-aim before firing."},
     {group:"Controls",name:"Aim Assist",start:"On",confidence:"Strong beginner consensus",why:"Helps steady small corrections. Learn with it before experimenting without it."},
     {group:"Controls",name:"Fixed R-Fire Button",start:"On",confidence:"Common starting point",why:"Keeps the fire button in a predictable location."},
     {group:"Controls",name:"R-Fire Button for Rotation",start:"On",confidence:"Common starting point",why:"Allows aiming while pressing and dragging the right fire button."},
@@ -106,7 +109,7 @@ window.STARTER_DATA={
     {group:"Controls",name:"Fixed Virtual Joystick Position",start:"On",confidence:"Common starting point",why:"Builds a repeatable movement start point."},
     {group:"Controls",name:"Always Sprint / Joystick Auto-Sprint",start:"Off",confidence:"Strong S&D starting point",why:"Reduces accidental noisy sprints into prepared enemies. Sprint deliberately instead."},
     {group:"Controls",name:"Quick Weapon Switch",start:"On",confidence:"Common preference",why:"Makes the swap control easier to reach. It does not secretly shorten the weapon's built-in animation."},
-    {group:"Aiming",name:"Tap to ADS vs Tap and Hold",start:"Try Tap first; test Hold deliberately",confidence:"Personal workflow choice",why:"Tap frees the thumb after aiming. Hold gives direct control and can turn the ADS button into an aiming surface. Finger count alone does not decide which is better.",changeWhen:"You repeatedly lose aim control, struggle to leave ADS, or cannot drag comfortably while holding the button."},
+    {group:"Aiming",name:"Tap to ADS vs Tap and Hold",start:"Try Tap first; test Hold deliberately",confidence:"Personal workflow choice",why:"This controls the separate ADS-only button. Tap frees the finger after aiming. Hold gives direct control and can turn the ADS button into an aiming surface. Neither setting removes the separate 1-tap ADS-fire or hip-fire choices.",changeWhen:"You repeatedly lose aim control, struggle to leave ADS, or cannot drag comfortably while holding the button."},
     {group:"Aiming",name:"Gyroscope",start:"Off, or ADS-only if you deliberately want to learn it",confidence:"Device-dependent personal choice",why:"Touch aiming is the simpler baseline. ADS-only gyro can add fine correction while scoped without changing normal camera movement. It is not a required upgrade and should be learned separately from a new HUD.",changeWhen:"Small corrections remain difficult after your touch sensitivity and HUD have stayed stable long enough to judge."},
     {group:"View",name:"Field of View (FOV)",start:"75",confidence:"Common phone baseline",why:"A practical middle point: wider awareness without making distant opponents too small.",changeWhen:"Targets consistently look too small or your useful peripheral view feels too restricted."},
     {group:"View",name:"Useful phone FOV range",start:"70–80",confidence:"Common range, not a rule",why:"Lower makes targets look larger; higher shows more around you. Change in steps of 2 and stop when enemies become hard to identify."},
