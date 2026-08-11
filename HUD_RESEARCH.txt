@@ -1,0 +1,33 @@
+HUD RESEARCH BASIS
+Reviewed August 10, 2026
+
+PURPOSE
+Support generic two-thumb, three-finger, and four-finger phone layouts without presenting one person's exact HUD as a universal answer.
+
+OFFICIAL CONTROL BEHAVIOR
+Activision documents that COD Mobile allows players to move, resize, and change the opacity of HUD controls. Advanced Mode supports per-weapon 1-tap ADS or hip fire choices. The game also provides fixed fire/joystick controls, fire-button rotation, and ADS-only gyroscope behavior.
+
+Source:
+https://blog.activision.com/fr/call-of-duty/2019-10/Getting-a-Grip-on-the-Call-of-Duty-Mobile-Controls
+
+COMMUNITY PATTERNS REVIEWED
+Player discussions were used only to identify recurring finger assignments and transition problems. They are not official recommendations or proof that one layout is best.
+
+- Three fingers commonly move fire to the left index so the right thumb can keep aiming.
+  https://www.reddit.com/r/CallOfDutyMobile/comments/1qsyz8e/
+  https://www.reddit.com/r/CallOfDutyMobile/comments/10w4ul5/
+
+- Four fingers commonly keep both thumbs on movement and camera while index fingers take fire, ADS, or movement actions. Assignments vary, so the app uses the simplest one-job-per-index starting split.
+  https://www.reddit.com/r/CallOfDutyMobile/comments/sjop31/
+  https://www.reddit.com/r/CallOfDutyMobile/comments/1qg1a0l/
+
+- Tap to ADS and tap-and-hold ADS are workflow choices. The important question is whether holding ADS prevents the same finger from aiming, firing, or reaching movement controls.
+  https://www.reddit.com/r/CallOfDutyMobile/comments/1sstrxz/
+
+DESIGN CONCLUSIONS
+- Two thumbs: Tap to ADS is the least conflicted manual-ADS starting workflow. Per-weapon 1-tap ADS fire is another valid option. Hold ADS exposes the physical limit of one right thumb doing several simultaneous jobs.
+- Three fingers: left-index fire removes the move-and-fire conflict and makes either ADS mode more workable.
+- Four fingers: left-index fire and right-index ADS preserve both thumbs for movement and camera control. Add more index-finger jobs only after the basic split is comfortable.
+- Final placement remains device-, grip-, hand-, comfort-, and accessibility-dependent.
+
+This research supports starting logic, not exact coordinates, sensitivity values, or a promise of better performance.

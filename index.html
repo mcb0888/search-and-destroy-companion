@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#0a0e10">
   <meta name="author" content="Michael Barnes">
   <meta name="description" content="A calm, beginner-first guide to Call of Duty: Mobile Search & Destroy.">
@@ -10,14 +12,20 @@
   <meta property="og:title" content="Search & Destroy Companion — Starter Edition">
   <meta property="og:description" content="Learn COD Mobile Search & Destroy without learning it through insults and avoidable mistakes.">
   <meta property="og:url" content="https://mcb0888.github.io/search-and-destroy-companion/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://mcb0888.github.io/search-and-destroy-companion/social-card.png">
+  <meta property="og:image:alt" content="Search & Destroy Companion beginner guide preview">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mcb0888.github.io/search-and-destroy-companion/social-card.png">
   <link rel="canonical" href="https://mcb0888.github.io/search-and-destroy-companion/">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="./icon.svg">
-  <link rel="stylesheet" href="app.css?v=1.4.0">
+  <link rel="stylesheet" href="app.css?v=1.5.0">
   <title>S&amp;D Companion — Starter Edition</title>
 </head>
 <body>
+  <a class="skip-link" href="#app">Skip to main content</a>
   <header>
     <div class="brand">
       <div class="brand-lockup">
@@ -25,12 +33,12 @@
         <div><strong>S&amp;D Starter</strong><small>Understand first. Copy never.</small></div>
       </div>
       <div class="header-actions">
-        <span class="edition-chip">1.4</span>
+        <span class="edition-chip">1.5</span>
         <button class="update-button" id="updateBtn" hidden>Update</button>
       </div>
     </div>
   </header>
-  <main id="app"></main>
+  <main id="app" tabindex="-1"></main>
   <footer>
     <strong>Unofficial, fan-made learning guide.</strong>
     <span>Not affiliated with or endorsed by Activision. Call of Duty and related names belong to their respective owners.</span>
@@ -42,7 +50,7 @@
     <button data-route="hud"><span aria-hidden="true">04</span>HUD</button>
   </nav>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="starter_data.js?v=1.4.0"></script>
-  <script src="app.js?v=1.4.0"></script>
+  <script src="starter_data.js?v=1.5.0"></script>
+  <script src="app.js?v=1.5.0"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-Search & Destroy Companion — Squad Playbook 3.0
+Search & Destroy Companion — Site Release 3.8.0
 Created by Michael Barnes.
 
-Unofficial fan-made tactical reference. Not affiliated with or endorsed by Activision. Call of Duty and related names are trademarks of their respective owners.
+Unofficial fan-made learning guide. Not affiliated with or endorsed by Activision. Call of Duty and related names are trademarks of their respective owners.
 
-This build contains no packaged map images or map schematics.
+The app contains original learning content and interface artwork. It does not include a map atlas or approximate map schematics.

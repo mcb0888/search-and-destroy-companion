@@ -15,7 +15,8 @@ jobs:
           node-version: 22
       - run: npm install
       - run: npx playwright install --with-deps chromium
-      - run: npm run check:content
+      - run: npm run check:static
       - name: Start local app
         run: npm run serve:test > /tmp/snd-server.log 2>&1 &
       - run: npm run check:browser
+      - run: npm run check:starter-browser

@@ -9,12 +9,15 @@ const context = await browser.newContext({ viewport: { width: 320, height: 568 }
 const page = await context.newPage();
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
+page.on('pageerror', error => failures.push(`Full Companion page error: ${error.message}`));
+page.on('console', message => { if (message.type() === 'error') failures.push(`Full Companion console error: ${message.text()}`); });
 
 await page.goto(`${base}#/guided`, { waitUntil: 'networkidle' });
 await page.evaluate(() => localStorage.clear());
 await page.reload({ waitUntil: 'networkidle' });
 check(await page.getByText('What happened that round?').isVisible(), 'Guided start did not render');
 check((await page.locator('.choice').count()) >= 5, 'Guided start choices are missing');
+check(await page.evaluate(()=>['H1','H2'].includes(document.activeElement?.tagName)), 'Guided route did not move focus to its heading');
 
 await page.goto(`${base}#/guided/q/died-when`);
 check(await page.getByText('When were you eliminated?').isVisible(), 'Guided question route did not render');
@@ -34,6 +37,7 @@ check(await page.getByText(/Persistence test/).isVisible(), 'Practice history di
 await page.goto(`${base}#/lesson/mode-basics`);
 const completeButton = page.locator('#lessonComplete');
 check(await completeButton.isVisible(), 'Lesson completion control is missing');
+check(await page.evaluate(()=>document.activeElement?.tagName)==='H1', 'Lesson route did not move focus to its heading');
 if ((await completeButton.textContent()).includes('Mark lesson complete')) await completeButton.click();
 await page.reload();
 check((await page.locator('#lessonComplete').textContent()).includes('Mark incomplete'), 'Lesson completion did not persist after reload');
@@ -56,6 +60,16 @@ const smallTargets = await page.locator('button:visible').evaluateAll(nodes => n
   return box.width < 44 || box.height < 44;
 }).map(node => ({ text: node.textContent.trim(), width: node.getBoundingClientRect().width, height: node.getBoundingClientRect().height })));
 check(smallTargets.length === 0, `Tap targets smaller than 44px: ${JSON.stringify(smallTargets)}`);
+await page.goto(`${base}#/home`);
+const progress=page.locator('[role="progressbar"]');
+check(await progress.count()===1,'Lesson progress is missing progressbar semantics');
+check(await progress.getAttribute('aria-valuenow')!==null,'Lesson progress is missing its current value');
+const navFontSize=await page.locator('.nav').first().evaluate(node=>parseFloat(getComputedStyle(node).fontSize));
+check(navFontSize>=12,`Bottom navigation text is too small: ${navFontSize}px`);
+
+await page.evaluate(()=>navigator.serviceWorker.ready);
+const fullCaches=await page.evaluate(()=>caches.keys());
+check(fullCaches.includes('snd-full-guide-3.6.0-r1'),`Full Companion cache did not install: ${JSON.stringify(fullCaches)}`);
 
 await context.setOffline(true);
 await page.goto(`${base}#/guided`, { waitUntil: 'domcontentloaded' }).catch(() => {});
