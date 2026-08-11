@@ -4,13 +4,23 @@ import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const port = Number(process.env.PORT || 4173);
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml', '.txt': 'text/plain', '.pdf': 'application/pdf' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml', '.png': 'image/png', '.txt': 'text/plain', '.pdf': 'application/pdf' };
 
 http.createServer((request, response) => {
   const pathname = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
   const relative = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
-  const target = path.resolve(root, relative);
-  if (!target.startsWith(root) || !fs.existsSync(target) || fs.statSync(target).isDirectory()) {
+  let target = path.resolve(root, relative);
+  const outsideRoot = candidate => {
+    const relation = path.relative(root, candidate);
+    return relation.startsWith('..') || path.isAbsolute(relation);
+  };
+  if (outsideRoot(target) || !fs.existsSync(target)) {
+    response.writeHead(404);
+    response.end('Not found');
+    return;
+  }
+  if (fs.statSync(target).isDirectory()) target = path.join(target, 'index.html');
+  if (outsideRoot(target) || !fs.existsSync(target)) {
     response.writeHead(404);
     response.end('Not found');
     return;

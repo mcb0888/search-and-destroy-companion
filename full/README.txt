@@ -1,4 +1,4 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.5.0
+SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.6.0
 
 PURPOSE
 A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
@@ -60,11 +60,11 @@ CURRENT ROUTES
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 3.5 keeps search, saved pages, and recent pages available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
+The app uses a versioned network-first service worker. Version 3.6 keeps search, saved pages, and recent pages available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
 
 BUILD
-Version 3.5.0
-MB-SNDC-2026-0809-041
+Version 3.6.0
+MB-SNDC-2026-0810-042
 
 SIMPLIFIED STARTER EDITION
 
@@ -75,7 +75,7 @@ companion under /full/. Starter Edition sections:
 - Eight short S&D lessons with game-term definitions
 - Common beginner settings with confidence labels
 - Three downloadable Season 6 loadout and Gunsmith field guides
-- Original visual two-thumb and three-finger HUD starting layouts
+- Original visual two-thumb, three-finger, and four-finger HUD starting layouts
 
 QUALITY CHECKS
 Every push to main and every pull request runs automated checks for:

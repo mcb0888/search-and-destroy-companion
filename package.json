@@ -1,9 +1,11 @@
 {
   "name": "search-and-destroy-companion",
   "private": true,
-  "version": "3.5.0",
+  "version": "3.6.0",
   "type": "module",
   "scripts": {
+    "check:static": "node tests/starter-checks.mjs && node tests/content-checks.mjs",
+    "check:all": "npm run check:static && npm run check:starter-browser && npm run check:browser",
     "check:content": "node tests/content-checks.mjs",
     "serve:test": "node tests/serve.mjs",
     "check:browser": "node tests/browser-checks.mjs",

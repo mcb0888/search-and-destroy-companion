@@ -8,6 +8,8 @@ const check=(condition,message)=>{if(!condition)failures.push(message)};
 const context=await browser.newContext({viewport:{width:320,height:568},isMobile:true,hasTouch:true});
 const page=await context.newPage();
 const base=`${origin}/index.html`;
+page.on('pageerror',error=>failures.push(`Starter page error: ${error.message}`));
+page.on('console',message=>{if(message.type()==='error')failures.push(`Starter console error: ${message.text()}`)});
 
 await page.goto(`${base}#/learn`,{waitUntil:'networkidle'});
 check(await page.getByRole('heading',{name:'Learn the mode without learning it the hard way.'}).isVisible(),'Starter learning screen did not render');
@@ -23,6 +25,7 @@ check(colors.accent==='#8db1a4'&&colors.background==='#090d0f','Starter is not u
 
 await page.goto(`${base}#/lesson/information`,{waitUntil:'domcontentloaded'});
 check(await page.getByRole('heading',{level:1,name:'Communicate without taking over'}).isVisible(),'Information lesson does not have a page-level heading');
+check((await page.evaluate(()=>document.activeElement?.id))==='app','Starter route change did not move focus to the main region');
 check(await page.getByRole('heading',{name:'Terms on this page'}).isVisible(),'Lesson terms are not visible by default');
 check(await page.locator('.callout-formula div').count()===4,'Callout builder is incomplete');
 check(!(await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)),'Information lesson overflows at 320px');
@@ -32,8 +35,10 @@ check(await page.getByText(/When players complain about “camping,”/).isVisib
 
 await page.goto(`${base}#/settings`,{waitUntil:'domcontentloaded'});
 check(await page.getByRole('heading',{name:'Start stable. Adjust with a reason.'}).isVisible(),'Settings did not render');
+check(await page.getByRole('heading',{name:'How the labels work'}).isVisible(),'Settings evidence labels are not explained');
 check(await page.getByRole('heading',{name:'Terms on this page'}).isVisible(),'Settings terminology is not explained');
 check(await page.getByText(/Finger count alone does not decide/).isVisible(),'ADS advice still overstates finger count');
+check(await page.getByText('Gyroscope',{exact:true}).isVisible(),'Neutral gyroscope guidance is missing');
 
 await page.goto(`${base}#/guides`,{waitUntil:'domcontentloaded'});
 check(await page.getByRole('heading',{name:'Pick the shortest guide that answers your question.'}).isVisible(),'Guide library did not render');
@@ -50,7 +55,16 @@ await page.goto(`${base}#/hud/three`,{waitUntil:'domcontentloaded'});
 check(await page.getByText('Build around jobs, not somebody else’s hands.').isVisible(),'HUD screen did not render');
 check(await page.locator('.phone[role="img"]').count()===1,'HUD diagram lacks image semantics');
 check(await page.getByRole('heading',{name:'Terms on this page'}).isVisible(),'HUD terminology is not explained');
-for(const layout of ['Two thumbs','Three fingers']){await page.getByRole('button',{name:layout,exact:true}).click();const overlaps=await page.locator('.phone .control').evaluateAll(nodes=>{const boxes=nodes.map(node=>({name:node.textContent.trim(),box:node.getBoundingClientRect()})),collisions=[];for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];if(a.box.left<b.box.right&&a.box.right>b.box.left&&a.box.top<b.box.bottom&&a.box.bottom>b.box.top)collisions.push(`${a.name}/${b.name}`)}return collisions});check(overlaps.length===0,`${layout} HUD has overlapping controls: ${overlaps.join(', ')}`)}
+for(const layout of ['Two thumbs','Three fingers','Four fingers']){await page.getByRole('button',{name:layout,exact:true}).click();check(await page.getByRole('heading',{name:new RegExp(layout.replace(' fingers','-finger').replace(' thumbs','-thumb')+' starting logic','i')}).isVisible(),`${layout} workflow explanation is missing`);const overlaps=await page.locator('.phone .control').evaluateAll(nodes=>{const boxes=nodes.map(node=>({name:node.textContent.trim(),box:node.getBoundingClientRect()})),collisions=[];for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];if(a.box.left<b.box.right&&a.box.right>b.box.left&&a.box.top<b.box.bottom&&a.box.bottom>b.box.top)collisions.push(`${a.name}/${b.name}`)}return collisions});check(overlaps.length===0,`${layout} HUD has overlapping controls: ${overlaps.join(', ')}`)}
+
+await page.goto(`${base}#/settings`,{waitUntil:'networkidle'});
+await page.evaluate(()=>navigator.serviceWorker.ready);
+const starterCaches=await page.evaluate(()=>caches.keys());
+check(starterCaches.includes('snd-starter-home-1.5.0-r1'),`Starter cache did not install: ${JSON.stringify(starterCaches)}`);
+await context.setOffline(true);
+await page.reload({waitUntil:'domcontentloaded'}).catch(()=>{});
+check(await page.getByRole('heading',{name:'Start stable. Adjust with a reason.'}).isVisible().catch(()=>false),'Starter settings route did not reopen offline');
+await context.setOffline(false);
 
 await page.goto(`${origin}/starter/index.html#/settings`,{waitUntil:'domcontentloaded'});
 await page.waitForURL(`${origin}/#/settings`);
@@ -68,4 +82,4 @@ await fullContext.close();
 
 await browser.close();
 if(failures.length){console.error(`FAILED: ${failures.length} Starter browser check(s)`);failures.forEach((failure,index)=>console.error(`${index+1}. ${failure}`));process.exit(1)}
-console.log('PASS: canonical Starter, compatibility redirect, polished mobile layout, terminology, archived guides, HUD geometry, and Full Companion handoff are valid.');
+console.log('PASS: canonical Starter, route focus, polished mobile layout, terminology, archived guides, three researched HUD workflows, HUD geometry, and Full Companion handoff are valid.');

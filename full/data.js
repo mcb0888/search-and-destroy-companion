@@ -1,5 +1,5 @@
 /*
-Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0809-041
+Search & Destroy Companion | Copyright © 2026 Michael Barnes. All Rights Reserved. | Build MB-SNDC-2026-0810-042
 Original software and written content. Unauthorized copying, modification, redistribution, or resale is prohibited except with the copyright holder's written permission.
 */
 window.APP_DATA = {

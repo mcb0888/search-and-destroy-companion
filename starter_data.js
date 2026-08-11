@@ -1,5 +1,5 @@
 window.STARTER_DATA={
-  meta:{version:"1.4.0",reviewed:"August 9, 2026"},
+  meta:{version:"1.5.0",reviewed:"August 10, 2026",evidence:"Official behavior means Activision documents the control. Community pattern means experienced players commonly use the arrangement, but it is not an official layout. Device-dependent and personal choice mean your phone, grip, hands, and comfort decide the final answer."},
   lessons:[
     {id:"round",title:"How a round is won",summary:"One life. One bomb. No respawn until the round ends.",points:[
       "Attackers win by eliminating the defenders or planting the bomb and preventing the defuse.",
@@ -77,7 +77,7 @@ window.STARTER_DATA={
     "pre-aim":"Aim toward a likely enemy position before the enemy appears.",
     "crosshair placement":"Keeping the center of the screen where an enemy is likely to appear.",
     "re-peek":"Show yourself again from a position the enemy already saw.",
-    "ego challenge":"Take a poor or unnecessary fight mainly to prove you can win it.",
+    "ego challenge":"A poor or unnecessary fight taken mainly to prove you can win it.",
     "retake":"Regain a planted site and defuse the bomb.",
     "tap the bomb":"Briefly begin a defuse to force a hidden attacker to react.",
     "player advantage":"Having more living teammates than the other team.",
@@ -107,6 +107,7 @@ window.STARTER_DATA={
     {group:"Controls",name:"Always Sprint / Joystick Auto-Sprint",start:"Off",confidence:"Strong S&D starting point",why:"Reduces accidental noisy sprints into prepared enemies. Sprint deliberately instead."},
     {group:"Controls",name:"Quick Weapon Switch",start:"On",confidence:"Common preference",why:"Makes the swap control easier to reach. It does not secretly shorten the weapon's built-in animation."},
     {group:"Aiming",name:"Tap to ADS vs Tap and Hold",start:"Try Tap first; test Hold deliberately",confidence:"Personal workflow choice",why:"Tap frees the thumb after aiming. Hold gives direct control and can turn the ADS button into an aiming surface. Finger count alone does not decide which is better.",changeWhen:"You repeatedly lose aim control, struggle to leave ADS, or cannot drag comfortably while holding the button."},
+    {group:"Aiming",name:"Gyroscope",start:"Off, or ADS-only if you deliberately want to learn it",confidence:"Device-dependent personal choice",why:"Touch aiming is the simpler baseline. ADS-only gyro can add fine correction while scoped without changing normal camera movement. It is not a required upgrade and should be learned separately from a new HUD.",changeWhen:"Small corrections remain difficult after your touch sensitivity and HUD have stayed stable long enough to judge."},
     {group:"View",name:"Field of View (FOV)",start:"75",confidence:"Common phone baseline",why:"A practical middle point: wider awareness without making distant opponents too small.",changeWhen:"Targets consistently look too small or your useful peripheral view feels too restricted."},
     {group:"View",name:"Useful phone FOV range",start:"70–80",confidence:"Common range, not a rule",why:"Lower makes targets look larger; higher shows more around you. Change in steps of 2 and stop when enemies become hard to identify."},
     {group:"View",name:"Sync ADS FOV to Scope Zoom",start:"Off for a new phone player",confidence:"Situational",why:"Off keeps distant targets visually larger. On gives a wider, smoother view with less apparent recoil but smaller targets."},

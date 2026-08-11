@@ -8,6 +8,10 @@ const failures = [];
 const check = (condition, message) => {
   if (!condition) failures.push(message);
 };
+const pngSize = file => {
+  const bytes = fs.readFileSync(file);
+  return bytes.subarray(1, 4).toString() === 'PNG' ? [bytes.readUInt32BE(16), bytes.readUInt32BE(20)] : [0, 0];
+};
 
 function loadData(file, globalName) {
   const context = { window: {} };
@@ -28,6 +32,7 @@ const versionText = fs.readFileSync(path.join(appRoot, 'VERSION.txt'), 'utf8');
 const readme = fs.readFileSync(path.join(appRoot, 'README.txt'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(appRoot, 'manifest.webmanifest'), 'utf8'));
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+check(!fs.existsSync(path.join(appRoot, 'RESEARCH_NOTES.txt')), 'Rejected map-era research notes must not remain publicly deployable');
 
 const required = (item, fields, label) => {
   for (const field of fields) check(item?.[field] !== undefined && item?.[field] !== '', `${label} is missing ${field}`);
@@ -154,10 +159,18 @@ check(readme.includes(`Version ${version}`), `README.txt does not contain versio
 check(app.includes(`Version ${version}`), `app.js does not contain version ${version}`);
 check(packageJson.version === version, `package.json version ${packageJson.version} does not match ${version}`);
 check(manifest.description?.length > 20, 'Manifest needs a meaningful description');
+check(manifest.id === './' && manifest.scope === './', 'Full manifest needs a stable id and explicit scope');
+for (const size of ['192x192', '512x512']) check(manifest.icons?.some(icon => icon.sizes === size && icon.type === 'image/png'), `Full manifest is missing ${size} PNG icon`);
+for (const [name, width, height] of [['icon-192.png', 192, 192], ['icon-512.png', 512, 512]]) check(pngSize(path.join(appRoot, name)).join('x') === `${width}x${height}`, `${name} must be a ${width}x${height} PNG`);
 check(index.includes('property="og:title"') && index.includes('rel="canonical"'), 'Full Companion needs social and canonical metadata');
+check(index.includes('property="og:image"') && index.includes('summary_large_image'), 'Full Companion needs a large social-sharing preview');
+check(index.includes('Content-Security-Policy') && index.includes('strict-origin-when-cross-origin'), 'Full Companion needs static-site security and referrer policies');
+check(index.includes('class="skip-link"') && index.includes('id="main" tabindex="-1"'), 'Full Companion needs a skip link and focusable main region');
 check(index.includes('role="status"') && index.includes('aria-live="polite"'), 'Toast feedback must be announced');
 check(polish.includes('aria-current'), 'Polish layer must expose active navigation state');
 check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
+check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');
+check(app.includes('role="progressbar"') && app.includes('aria-valuenow'), 'Lesson progress needs progressbar semantics');
 
 const cacheMatch = sw.match(/const CACHE='([^']+)'/);
 check(cacheMatch, 'sw.js must declare a cache name');
@@ -171,6 +184,7 @@ const referencedAssets = [
   './index.html', './VERSION.txt'
 ];
 for (const asset of new Set(referencedAssets)) check(assets.includes(asset), `Service worker does not cover ${asset}`);
+for (const asset of ['./icon-192.png', './icon-512.png']) check(assets.includes(asset), `Service worker does not cover ${asset}`);
 for (const asset of assets.filter(x => x.startsWith('./') && x !== './')) {
   const filePath = asset.slice(2).split('?')[0];
   check(fs.existsSync(path.join(appRoot, filePath)), `Service worker references missing file ${asset}`);
