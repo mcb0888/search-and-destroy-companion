@@ -97,6 +97,7 @@ const termIds = new Set();
 const slug = value => String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 for (const term of terms) termIds.add(term.id || slug(term.term));
 for (const entry of dictionary) termIds.add(slug(entry.term));
+for (const term of ['ADS', '1-Tap ADS Fire', 'Hip Fire', 'Tap to ADS', 'Tap and Hold ADS']) check(termIds.has(slug(term)), `Full dictionary is missing ${term}`);
 
 for (const [id, result] of Object.entries(results)) {
   required(result, ['title', 'action', 'likely', 'why', 'mission'], `Result ${id}`);

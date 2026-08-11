@@ -1,5 +1,5 @@
-const CACHE='snd-full-guide-3.6.0-r1';
-const ASSETS=['./','./index.html','./app.css?v=3.6.0','./app.js?v=3.6.0','./polish.js?v=3.6.0','./data.js?v=3.6.0','./learn_data.js?v=3.6.0','./fights_data.js?v=3.6.0','./guided_data.js?v=3.6.0','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
+const CACHE='snd-full-guide-3.6.1-r1';
+const ASSETS=['./','./index.html','./app.css?v=3.6.1','./app.js?v=3.6.1','./polish.js?v=3.6.1','./data.js?v=3.6.1','./learn_data.js?v=3.6.1','./fights_data.js?v=3.6.1','./guided_data.js?v=3.6.1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
