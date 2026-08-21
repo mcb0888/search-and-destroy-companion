@@ -12,10 +12,10 @@ page.on('pageerror',error=>failures.push(`Starter page error: ${error.message}`)
 page.on('console',message=>{if(message.type()==='error')failures.push(`Starter console error: ${message.text()}`)});
 
 await page.goto(`${base}#/learn`,{waitUntil:'networkidle'});
-check(await page.getByRole('heading',{name:'Learn the mode without learning it the hard way.'}).isVisible(),'Starter learning screen did not render');
+check(await page.getByRole('heading',{name:'Do the useful thing. Stop doing the dumb thing.'}).isVisible(),'Starter Field Orders screen did not render');
 check(await page.locator('.lesson').count()===8,'Starter does not show eight lessons');
 check(await page.locator('nav button').count()===4,'Starter should expose exactly four main sections');
-check(await page.getByRole('link',{name:/Open the Full Companion/i}).isVisible(),'Starter is missing the quiet Full Companion link');
+check(await page.getByRole('link',{name:/Open the Full Backroom/i}).isVisible(),'Starter is missing the Backroom link');
 check(await page.locator('[aria-current="page"]').count()===1,'Starter must expose one active navigation item');
 check(!(await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)),'Starter has horizontal overflow at 320px');
 const smallTargets=await page.locator('button:visible,a:visible').evaluateAll(nodes=>nodes.filter(node=>{const box=node.getBoundingClientRect();return box.width<44||box.height<44}).map(node=>({text:node.textContent.trim(),width:node.getBoundingClientRect().width,height:node.getBoundingClientRect().height})));
@@ -89,7 +89,7 @@ await context.close();
 const fullContext=await browser.newContext({viewport:{width:320,height:568},isMobile:true,hasTouch:true});
 const fullPage=await fullContext.newPage();
 await fullPage.goto(`${origin}/full/index.html#/home`,{waitUntil:'networkidle'});
-check(await fullPage.getByText('Understand the round. Change one action. Try again.').isVisible(),'Full Companion polished home did not render');
+check(await fullPage.getByText('Here is why that shit worked. Or why it absolutely did not.').isVisible(),'Full Backroom home did not render');
 check(!(await fullPage.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)),'Full Companion has horizontal overflow at 320px');
 await fullPage.locator('.starter-link').click();await fullPage.waitForLoadState('domcontentloaded');
 check(new URL(fullPage.url()).pathname.endsWith('/index.html')||new URL(fullPage.url()).pathname.endsWith('/'),'Full Companion does not return to the default Starter');

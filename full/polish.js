@@ -26,15 +26,15 @@ function polishCurrentView(){
   if(current==="home"&&hero){
     hero.classList.add("hero-home");
     const badge=hero.querySelector(".badge");
-    if(badge)badge.textContent="FULL COMPANION 3.6";
+    if(badge)badge.textContent="THE BACKROOM";
     const heading=hero.querySelector("h1");
-    if(heading)heading.textContent="Understand the round. Change one action. Try again.";
+    if(heading)heading.textContent="Here is why that shit worked. Or why it absolutely did not.";
     const paragraph=hero.querySelector("p");
-    if(paragraph)paragraph.textContent="Use Guided Help to untangle what happened, learn the mode without the abuse, and practice one replacement action at a time.";
+    if(paragraph)paragraph.textContent="Use this when you want the logic behind a Field Order: the round state, likely information, geometry, timing, trade options, exceptions, and what is still only a hypothesis.";
     if(!hero.querySelector(".hero-proof"))hero.insertAdjacentHTML("beforeend",`<div class="hero-proof"><span>25 guided results</span><span>12 beginner lessons</span><span>Works offline</span></div>`);
     const starter=document.querySelector(".starter-link strong");
-    if(starter)starter.textContent="Prefer the simplified Starter Edition?";
-    const labels=["I need help with a round","I want to learn the mode","I want to practice a correction"];
+    if(starter)starter.textContent="Just tell me what to do.";
+    const labels=["What actually went wrong?","Show me the receipts","Test one correction"];
     document.querySelectorAll(".path-step strong").forEach((el,index)=>{if(labels[index])el.textContent=labels[index]});
   }
 
