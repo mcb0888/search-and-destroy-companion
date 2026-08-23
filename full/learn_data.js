@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Beginner learning data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0810-043
+Build MB-SNDC-2026-0823-046
 */
 window.LEARN_DATA = {
   quick: [
@@ -53,7 +53,7 @@ window.LEARN_DATA = {
     {
       id: 'last-alive',
       title: 'I am the last teammate alive',
-      short: 'Stop, breathe, and solve only the next problem.',
+      short: 'Use the round state to solve only the next problem.',
       action: 'Check the timer, bomb status, player count, and last confirmed enemy positions. Choose one useful action: reach cover, recover the bomb, isolate one enemy, plant, defuse, or listen.',
       why: 'Trying to solve the entire round at once creates panic. A difficult round is still a sequence of small decisions.',
       steps: ['Ignore guesses from eliminated teammates', 'Use confirmed information only', 'Avoid fighting several enemies at once', 'Let the objective and timer force enemies into predictable actions'],
@@ -166,6 +166,21 @@ window.LEARN_DATA = {
       ],
       mistakes: ['Talking over footsteps', 'Repeating guesses until they sound confirmed', 'Holding one angle so long that the entire round changes unnoticed'],
       terms: ['information', 'callout', 'audio cue', 'rotation']
+    },
+    {
+      id: 'orientation',
+      title: 'Find A, B, and the first threats',
+      subtitle: 'Use the objective marker and visible landmarks instead of depending on a remembered map picture.',
+      takeaway: 'Attach each objective marker to one visible landmark, then clear only the next place that can shoot the route.',
+      sections: [
+        ['Name sites from evidence', 'At spawn, read the A and B markers shown by the game. Pick one nearby visible landmark for the site you are using, such as a pool, doorway, stairs, vehicle, sign, or distinct building color. The marker establishes the letter; the landmark helps you find it again.'],
+        ['Build callouts from visible features', 'If the team uses a name you do not know, ask for the visible object, room feature, height, or route next to it. “Upstairs window above B” is useful before a shorter community callout has been learned.'],
+        ['Clear the next threat, not the entire map', 'Before crossing, check the closest corner or opening that can see the crossing. Then check useful cover, an elevated opening, a deeper hold, and finally a connector or flank only when those places can affect the route.'],
+        ['Keep facts separate from memory', 'An objective marker or visible landmark is current evidence. A remembered site letter, old callout, or guess about a common holding position can be wrong. Use the current marker first.'],
+        ['Advanced exception', 'Experienced teams may use compact shared callouts and different clearing orders. That speed works only when everyone attaches the same word to the same visible place.']
+      ],
+      mistakes: ['Guessing A or B from memory without checking the marker', 'Trying to learn every callout before using visible landmarks', 'Scanning every possible position at once instead of clearing the next threat to the route'],
+      terms: ['callout', 'angle', 'sightline', 'information']
     },
     {
       id: 'support-and-trades',

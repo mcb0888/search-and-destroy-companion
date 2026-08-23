@@ -42,9 +42,21 @@ check(await page.getByText('Per-weapon fire mode',{exact:true}).isVisible(),'Per
 check(await page.getByText('Gyroscope',{exact:true}).isVisible(),'Neutral gyroscope guidance is missing');
 
 await page.goto(`${base}#/guides`,{waitUntil:'domcontentloaded'});
-check(await page.getByRole('heading',{name:'Pick the shortest guide that answers your question.'}).isVisible(),'Guide library did not render');
-check(await page.locator('.guide-card').count()===3,'Starter does not show exactly three PDF guides');
-check(await page.getByText(/Archived: Global Multiplayer Season 6/).isVisible(),'Guide library is missing its archived-season warning');
+check(await page.getByRole('heading',{name:'Pick the job first. Use the starter weapon that fits it.'}).isVisible(),'Starter loadout library did not render');
+check(await page.locator('.starter-build-card').count()===5,'Starter does not show exactly five approachable loadouts');
+for(const name of ['M4','RUS-79U','RPD','DL Q33','BY15'])check(await page.getByRole('link',{name:new RegExp(`Open Backroom weapons for .*`)}).count()>=1&&await page.getByText(name,{exact:true}).isVisible(),`Starter loadout is missing ${name}`);
+check(await page.locator('.starter-class-grid').count()===5,'Starter loadouts do not show five complete class summaries');
+check(await page.locator('.gunsmith-details:not([open])').count()===5,'Starter attachment depth is not collapsed by default');
+await page.locator('.gunsmith-details summary').first().click();
+check(await page.locator('.gunsmith-details').first().locator('.attachment-list li').count()===5,'Expanded Starter Gunsmith does not contain five attachments');
+check(await page.getByText(/Weapon access comes before perfect attachments/i).isVisible(),'Starter loadouts are missing the new-account attachment boundary');
+check(await page.getByText(/Starter simplicity rule/i).isVisible(),'Starter loadouts are missing the simplicity budget rule');
+check(await page.locator('a[href*="#/armory/role/"]').count()===10,'Starter role links do not connect all five cards to Backroom groups');
+check(await page.getByRole('link',{name:'Open the Backroom Armory'}).isVisible(),'Starter does not link to the complete Backroom Armory');
+check(await page.locator('.guide-card:visible').count()===0,'Archived PDF cards should stay collapsed on the simplified screen');
+await page.locator('.archive-drawer>summary').click();
+check(await page.locator('.guide-card').count()===3,'Starter does not show exactly three PDF guides after expansion');
+check(await page.getByText(/Archived research/).isVisible(),'Guide library is missing its archived-season warning');
 check(await page.getByText('ARCHIVED · SEASON 6').count()===3,'Every guide needs an archived-season badge');
 check(await page.getByRole('link',{name:/^Open .* PDF$/}).count()===3,'Guide PDF links need unique accessible names');
 const guideHrefs=await page.getByRole('link',{name:/^Open .* PDF$/}).evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href')));
@@ -75,7 +87,7 @@ check(await page.getByRole('heading',{name:'Four-finger · 1-tap ADS fire includ
 await page.goto(`${base}#/settings`,{waitUntil:'networkidle'});
 await page.evaluate(()=>navigator.serviceWorker.ready);
 const starterCaches=await page.evaluate(()=>caches.keys());
-check(starterCaches.includes('snd-starter-home-1.5.1-r1'),`Starter cache did not install: ${JSON.stringify(starterCaches)}`);
+check(starterCaches.includes('snd-starter-home-1.7.0-r1'),`Starter cache did not install: ${JSON.stringify(starterCaches)}`);
 await context.setOffline(true);
 await page.reload({waitUntil:'domcontentloaded'}).catch(()=>{});
 check(await page.getByRole('heading',{name:'Start stable. Adjust with a reason.'}).isVisible().catch(()=>false),'Starter settings route did not reopen offline');
@@ -90,6 +102,9 @@ const fullContext=await browser.newContext({viewport:{width:320,height:568},isMo
 const fullPage=await fullContext.newPage();
 await fullPage.goto(`${origin}/full/index.html#/home`,{waitUntil:'networkidle'});
 check(await fullPage.getByText('Here is why that shit worked. Or why it absolutely did not.').isVisible(),'Full Backroom home did not render');
+check(await fullPage.getByText('Bring a confusing round to the Backroom.').isVisible(),'Backroom is missing its round-read bridge');
+check(await fullPage.getByText('S&D Backroom',{exact:true}).isVisible(),'Full Companion identity was replaced instead of extended');
+check(await fullPage.getByRole('button',{name:/Guided/}).isVisible(),'Full Companion did not preserve the Guided navigation title');
 check(!(await fullPage.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)),'Full Companion has horizontal overflow at 320px');
 await fullPage.locator('.starter-link').click();await fullPage.waitForLoadState('domcontentloaded');
 check(new URL(fullPage.url()).pathname.endsWith('/index.html')||new URL(fullPage.url()).pathname.endsWith('/'),'Full Companion does not return to the default Starter');

@@ -1,5 +1,5 @@
-const CACHE="snd-starter-home-1.5.1-r1";
-const ASSETS=["./","./index.html","./app.css?v=1.5.1","./app.js?v=1.5.1","./starter_data.js?v=1.5.1","./manifest.webmanifest","./icon.svg","./icon-192.png","./icon-512.png","./social-card.png","./guides/best-overall-snd-loadouts-season-6.pdf","./guides/snd-gunsmith-guide-season-6.pdf","./guides/sniper-marksman-gunsmith-guide-season-6.pdf"];
+const CACHE="snd-starter-home-1.7.0-r1";
+const ASSETS=["./","./index.html","./app.css?v=1.7.0-r1","./app.js?v=1.7.0-r1","./starter_data.js?v=1.7.0-r1","./manifest.webmanifest","./icon.svg","./icon-192.png","./icon-512.png","./social-card.png","./guides/best-overall-snd-loadouts-season-6.pdf","./guides/snd-gunsmith-guide-season-6.pdf","./guides/sniper-marksman-gunsmith-guide-season-6.pdf"];
 
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));

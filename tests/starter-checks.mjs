@@ -19,11 +19,15 @@ vm.runInNewContext(fs.readFileSync(path.join(root,"starter_data.js"),"utf8"),ctx
 const d=ctx.window.STARTER_DATA;
 check(d,"starter_data.js must define window.STARTER_DATA");
 check(d?.lessons?.length===8,"Starter should contain exactly eight lessons");
-check(d?.settings?.length>=12,"Starter needs a useful settings baseline");
+check(d?.settings?.length===18,"Starter settings must stay at its eighteen-item simplicity cap");
+check(d?.starterBuilds?.length===5,"Starter needs exactly five approachable loadouts");
 check(d?.guides?.length===3,"Starter needs exactly three loadout and Gunsmith guides");
-check(d?.meta?.version==="1.5.1","Starter content version is not synchronized");
-check(d?.meta?.reviewed==="August 10, 2026"&&d?.meta?.evidence?.includes("Official behavior"),"Starter needs a current evidence-label explanation");
-check(!("guns" in d),"Starter should leave weapon choice to the player instead of ranking guns");
+check(d?.meta?.version==="1.7.0","Starter content version is not synchronized");
+check(d?.meta?.reviewed==="August 23, 2026"&&d?.meta?.evidence?.includes("Official behavior"),"Starter needs a current evidence-label explanation");
+const budget=d?.meta?.contentBudget||{};
+check(budget.primarySections===4&&budget.lessons===8&&budget.settings===18&&budget.guideLoadouts===5&&budget.hudPatterns===6,"Starter content budget is missing or incomplete");
+check(budget.maxPrimaryChoicesPerScreen===8&&budget.maxVisibleWordsPerBuildCard===95,"Starter interaction or build-card caps are missing");
+check(String(budget.rule||"").includes("move the depth to the Backroom"),"Starter budget must say where overflow belongs");
 
 for(const lesson of d?.lessons||[]){
   for(const field of ["id","title","summary","points","terms"])check(lesson[field]?.length,`Lesson ${lesson.id||"unknown"} missing ${field}`);
@@ -39,6 +43,15 @@ for(const guide of d?.guides||[]){
   for(const field of ["id","title","file","pages","badge","summary"])check(guide[field],`Guide ${guide.id||"unknown"} missing ${field}`);
   check(guide.badge.includes("ARCHIVED"),`Guide ${guide.id} must visibly identify its archived season`);
   check(fs.existsSync(path.join(root,"guides",guide.file)),`Guide file does not exist: ${guide.file}`);
+}
+const expectedStarterWeapons=["M4","RUS-79U","RPD","DL Q33","BY15"];
+check(expectedStarterWeapons.every(name=>d.starterBuilds.some(x=>x.name===name)),`Starter loadouts must cover ${expectedStarterWeapons.join(", ")}`);
+for(const build of d?.starterBuilds||[]){
+  for(const field of ["id","roleId","name","category","job","availability","attachments","secondary","perks","lethal","tactical","why","tradeoff","cue","source"])check(build[field]?.length??build[field],`Starter build ${build.name||"unknown"} missing ${field}`);
+  check(build.attachments.length===5,`Starter build ${build.name} must have five attachments`);
+  check(build.secondary==="MW11"&&build.perks.length===3&&build.lethal==="Frag Grenade"&&build.tactical==="Flashbang",`Starter build ${build.name} is not a complete new-account class`);
+  const visibleWords=[build.job,build.availability,build.secondary,build.perks.join(" "),build.lethal,build.tactical,build.cue].join(" ").trim().split(/\s+/).length;
+  check(visibleWords<=budget.maxVisibleWordsPerBuildCard,`Starter build ${build.name} exceeds the visible word budget: ${visibleWords}`);
 }
 for(const setting of d?.settings||[])for(const field of ["group","name","start","confidence","why"])check(setting[field],`Setting ${setting.name||"unknown"} missing ${field}`);
 check(d?.settings?.some(x=>x.name==="Gyroscope"&&x.confidence.includes("Device-dependent")),"Starter needs neutral, device-dependent gyroscope guidance");
@@ -61,15 +74,19 @@ check(app.includes('6.7–6.9 inches')&&app.includes('6.1–6.4-inch'),"HUD guid
 check(!app.includes('320 CSS')&&!app.includes('What 320px means'),"Public HUD guidance should not expose the internal pixel-width test");
 check(app.includes('requestAnimationFrame(()=>app.focus'),"Starter routes must move focus to the new main view");
 check(app.includes('aria-label=\"Open ${esc(x.title)} PDF\"'),"Guide links need unique accessible names");
+check(app.includes('D.starterBuilds.map')&&app.includes('Open the Backroom Armory'),"Starter Guides must show five builds and link to the full Armory");
+check(app.includes('#/armory/role/${esc(x.roleId)}'),"Each Starter weapon must open its Backroom role group");
+check(app.includes('Starter simplicity rule')&&app.includes('Show five-part Gunsmith'),"Starter Guides must keep depth behind a tap and state the simplicity rule");
 check(index.includes('property="og:title"')&&index.includes('rel="canonical"'),"Starter needs social and canonical metadata");
 check(index.includes('property="og:image"')&&index.includes('summary_large_image'),"Starter needs a large social-sharing preview");
 check(index.includes('Content-Security-Policy')&&index.includes('strict-origin-when-cross-origin'),"Starter needs static-site security and referrer policies");
 check(index.includes('class="skip-link"')&&index.includes('id="app" tabindex="-1"'),"Starter needs a skip link and focusable main region");
 check(index.includes('role="status"')&&index.includes('aria-live="polite"'),"Starter update feedback must be announced");
 check(index.includes('Not affiliated with or endorsed by Activision'),"Starter needs an unofficial-project disclaimer");
+check(app.includes('Open the Full Backroom')&&!app.includes('NERV')&&!app.includes('RECON'),'Starter should keep the Backroom bridge subtle and leave helper names inside the Full Companion');
 
-for(const asset of ["index.html","app.css?v=1.5.1","app.js?v=1.5.1","starter_data.js?v=1.5.1","manifest.webmanifest","icon.svg","icon-192.png","icon-512.png","social-card.png",...(d?.guides||[]).map(x=>x.file)])check(sw.includes(asset),`Default Starter service worker misses ${asset}`);
-check(sw.includes('snd-starter-home-1.5.1-r1'),"Default Starter cache version is not synchronized");
+for(const asset of ["index.html","app.css?v=1.7.0-r1","app.js?v=1.7.0-r1","starter_data.js?v=1.7.0-r1","manifest.webmanifest","icon.svg","icon-192.png","icon-512.png","social-card.png",...(d?.guides||[]).map(x=>x.file)])check(sw.includes(asset),`Default Starter service worker misses ${asset}`);
+check(sw.includes('snd-starter-home-1.7.0-r1'),"Default Starter cache version is not synchronized");
 check(sw.includes('SKIP_WAITING'),"Default Starter service worker needs opt-in update activation");
 check(!aliasSw.includes('startsWith("snd-starter-")&&'),"Alias cleanup must not delete the root Starter cache");
 check(aliasSw.includes('!key.startsWith("snd-starter-home-")'),"Alias cleanup must preserve the root Starter cache");
@@ -88,5 +105,5 @@ check(manifest.id==="./"&&manifest.scope==="./","Starter manifest needs stable i
 for(const size of ["192x192","512x512"])check(manifest.icons?.some(icon=>icon.sizes===size&&icon.type==="image/png"),`Starter manifest is missing ${size} PNG icon`);
 
 if(failures.length){console.error(`FAILED: ${failures.length} starter check(s)`);failures.forEach((x,i)=>console.error(`${i+1}. ${x}`));process.exit(1)}
-console.log(`PASS: ${d.lessons.length} lessons, ${d.settings.length} settings, and ${d.guides.length} archived guide references are valid.`);
+console.log(`PASS: ${d.lessons.length} lessons, ${d.settings.length} settings, ${d.starterBuilds.length} Starter loadouts, and ${d.guides.length} archived guide references are valid.`);
 console.log("PASS: canonical Starter, three HUD layouts, accessibility/security metadata, install/share assets, update behavior, and legacy-file retirement are valid.");
