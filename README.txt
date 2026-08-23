@@ -6,16 +6,19 @@ DEFAULT STARTER EDITION
 The normal site address opens the simplified Starter Edition. It is deliberately limited to four sections:
 - Learn: eight short Search & Destroy lessons
 - Settings: a practical starting baseline with tradeoffs
-- Guides: three downloadable Season 6 loadout and Gunsmith field guides
+- Guides: five complete new-account loadouts, each linked to its deeper Backroom weapon-role group, plus three downloadable archived Season 6 references
 - HUD: researched two-thumb, three-finger, and four-finger starting layouts showing manual ADS, 1-tap ADS fire, and hip fire as separate controls
 
-The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson. The Guides section replaces the earlier perk/equipment recommendations with three complete PDF references supplied by the project owner. They are clearly labeled as Season 6 documents so older numerical claims are not presented as current without verification.
+The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson. The Guides section is governed by a fixed content budget: four primary sections, eight lessons, eighteen settings, five loadouts, six HUD patterns, no more than eight primary choices per screen, and compact build-card copy. New depth moves to the Backroom or replaces weaker Starter material rather than accumulating.
 
 FULL COMPANION
-The Full Companion 3.7.0 remains available at:
+The Full Companion 3.9.0 remains available at:
 ./full/
 
-A quiet link appears at the bottom of the Starter learning screen. The Full Companion keeps its Backroom identity and adds a local post-round helper while retaining Guided Help, lesson progress, practice missions, fight corrections, saved pages, notes, the dictionary, and the Field Manual. NERV and RECON appear inside the deeper round-read experience, not as a replacement product name. Typed round accounts are not saved automatically or sent to an outside service. An explicitly saved pattern contains only the generalized decision, next-round check, related guide route, and timestamp.
+A quiet link appears at the bottom of the Starter learning screen. The Full Companion keeps its Backroom identity and adds a local post-round helper while retaining Guided Help, lesson progress, practice missions, fight corrections, saved pages, notes, the dictionary, the Field Manual, and a searchable 125-firearm Armory. NERV and RECON appear inside the deeper round-read experience, not as a replacement product name. Typed round accounts are not saved automatically or sent to an outside service. An explicitly saved pattern contains only the generalized decision, next-round check, related guide route, and timestamp.
+
+ARMORY METHOD
+The Armory is generated from current firearm build/stat pages, then checked as structured data before release. Each normal firearm receives five attachment slots; weapons without a normal Gunsmith, such as the Nail Gun, are identified instead of being given invented parts. Displayed weapon ratings are comparative menu-style values, not physical damage, fire rate, ADS time, or time-to-kill measurements. A before/after rating comparison appears only when the source page's exact attachment list matches the build shown in the Companion. Manual S&D adaptations keep their linked base information but do not inherit unrelated build deltas. Every exact attachment remains subject to confirmation in the live Global Multiplayer Gunsmith because the game can change independently of this static guide.
 
 COMPATIBILITY ALIAS
 The previous Starter URL redirects to the default Starter at:

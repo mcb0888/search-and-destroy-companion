@@ -1,5 +1,5 @@
-const CACHE='snd-full-guide-3.7.0-r1';
-const ASSETS=['./','./index.html','./app.css?v=3.7.0-r1','./app.js?v=3.7.0-r1','./polish.js?v=3.7.0-r1','./data.js?v=3.7.0-r1','./learn_data.js?v=3.7.0-r1','./fights_data.js?v=3.7.0-r1','./guided_data.js?v=3.7.0-r1','./sideline_data.js?v=3.7.0-r1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
+const CACHE='snd-full-guide-3.9.0-r1';
+const ASSETS=['./','./index.html','./app.css?v=3.9.0-r1','./app.js?v=3.9.0-r1','./polish.js?v=3.9.0-r1','./data.js?v=3.9.0-r1','./learn_data.js?v=3.9.0-r1','./fights_data.js?v=3.9.0-r1','./guided_data.js?v=3.9.0-r1','./sideline_data.js?v=3.9.0-r1','./armory_data.js?v=3.9.0-r1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));

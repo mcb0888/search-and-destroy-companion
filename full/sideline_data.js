@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Backroom round-read rules
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0822-044
+Build MB-SNDC-2026-0823-046
 
 This file contains local, deterministic coaching rules. It does not call an AI
 service, inspect the game, or send the player's account anywhere.
@@ -9,7 +9,7 @@ service, inspect the game, or send the player's account anywhere.
 window.SIDELINE_DATA = {
   meta: {
     version: '1.0.0',
-    build: 'MB-SNDC-2026-0822-044',
+    build: 'MB-SNDC-2026-0823-046',
     privacy: 'Typed round accounts stay in this browser. Nothing is sent or saved automatically.'
   },
   examples: [

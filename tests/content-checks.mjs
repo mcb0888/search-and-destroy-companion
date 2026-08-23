@@ -25,6 +25,7 @@ const learn = loadData('learn_data.js', 'LEARN_DATA');
 const fights = loadData('fights_data.js', 'FIGHT_DATA');
 const guided = loadData('guided_data.js', 'GUIDED_DATA');
 const sideline = loadData('sideline_data.js', 'SIDELINE_DATA');
+const armory = loadData('armory_data.js', 'ARMORY_DATA');
 const learnSource = fs.readFileSync(path.join(appRoot, 'learn_data.js'), 'utf8');
 const app = fs.readFileSync(path.join(appRoot, 'app.js'), 'utf8');
 const index = fs.readFileSync(path.join(appRoot, 'index.html'), 'utf8');
@@ -57,6 +58,7 @@ const terms = [...(learn.terms || [])];
 const operations = manual.operations || [];
 const dictionary = manual.dictionary || [];
 const sidelineRules = sideline.rules || [];
+const weapons = armory.weapons || [];
 
 check(questions.start, 'Guided questions must include start');
 for (const [id, question] of Object.entries(questions)) {
@@ -171,7 +173,50 @@ check(!/https?:\/\//.test(sidelineSource) && !/\bfetch\s*\(|WebSocket|EventSourc
 check(app.includes("SIDELINE_KEY='snd-sideline-patterns-v1'"), 'Sideline local storage key is missing');
 check(app.includes("const item={id:`${Date.now()}-${result.ruleId}`,ruleId:result.ruleId,decision:result.decision,check:result.check,route:result.route,savedAt:new Date().toISOString()};"), 'Saved sideline patterns must exclude the raw round account and optional context');
 
-const declaredRoutes = new Set(['home', 'round-read', 'guided', 'quick', 'learn', 'lesson', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
+unique(weapons, 'id', 'Armory firearms');
+unique(weapons, 'name', 'Armory firearm names');
+check(weapons.length === 125, `Armory must cover 125 firearms; found ${weapons.length}`);
+const expectedCategories = new Map([
+  ['Assault Rifle', 37], ['Sniper Rifle', 14], ['Light Machine Gun', 14], ['Submachine Gun', 31],
+  ['Shotgun', 12], ['Marksman Rifle', 7], ['Sidearm', 10]
+]);
+const slotOnly = new Set(['Muzzle', 'Barrel', 'Stock', 'Laser', 'Ammunition', 'Rear Grip', 'Perk', 'Optic', 'Underbarrel', 'Trigger Action']);
+for (const [category, expected] of expectedCategories) check(weapons.filter(x => x.category === category).length === expected, `Armory ${category} count must be ${expected}`);
+for (const weapon of weapons) {
+  required(weapon, ['id', 'name', 'category', 'roleId', 'role', 'cue', 'fingerFit', 'attachments', 'attachmentReasons', 'whyBuild', 'tradeoffs', 'loadout', 'displayStats', 'statDeltas', 'source', 'sourceKind', 'checked', 'status'], `Armory firearm ${weapon.name || 'unknown'}`);
+  check(expectedCategories.has(weapon.category), `Armory firearm ${weapon.name} has unsupported category ${weapon.category}`);
+  check(weapon.status === 'ready', `Armory firearm ${weapon.name} is not ready`);
+  check(Array.isArray(weapon.attachments), `Armory firearm ${weapon.name} attachments must be an array`);
+  if (weapon.special) check(weapon.name === 'Nail Gun' && weapon.attachments.length === 1, 'Only the Nail Gun may use the one-line stock configuration');
+  else check(weapon.attachments.length === 5, `Armory firearm ${weapon.name} must have five attachments`);
+  const normalizedAttachments=weapon.attachments.map(value=>String(value).toLowerCase().replace(/[^a-z0-9]+/g,''));
+  check(new Set(normalizedAttachments).size===normalizedAttachments.length,`Armory firearm ${weapon.name} repeats an attachment`);
+  check(weapon.attachmentReasons.length === weapon.attachments.length, `Armory firearm ${weapon.name} needs one reason per attachment`);
+  check(Array.isArray(weapon.tradeoffs) && weapon.tradeoffs.length > 0, `Armory firearm ${weapon.name} needs tradeoffs`);
+  check(Array.isArray(weapon.loadout?.perks) && weapon.loadout.perks.length === 3, `Armory firearm ${weapon.name} needs a complete perk set`);
+  for(const field of ['secondary','lethal','tactical'])check(Boolean(weapon.loadout?.[field]),`Armory firearm ${weapon.name} loadout is missing ${field}`);
+  check(armory.meta?.roles?.[weapon.roleId], `Armory firearm ${weapon.name} points to missing role ${weapon.roleId}`);
+  check(Array.isArray(weapon.statDeltas), `Armory firearm ${weapon.name} stat deltas must be an array`);
+  for(const stat of weapon.statDeltas){required(stat,['key','label','base','built','delta'],`Armory firearm ${weapon.name} stat row`);check(stat.built-stat.base===stat.delta,`Armory firearm ${weapon.name} has an incorrect ${stat.label} delta`)}
+  check(!weapon.attachments.some(x => slotOnly.has(x)), `Armory firearm ${weapon.name} contains a slot label instead of an attachment`);
+  const external = /^https:\/\//.test(weapon.source), archived = weapon.source.startsWith('../guides/');
+  check(external || archived, `Armory firearm ${weapon.name} has an invalid source ${weapon.source}`);
+  if (archived) check(fs.existsSync(path.join(appRoot, weapon.source)), `Armory firearm ${weapon.name} archived source is missing`);
+}
+const genericReason='Fills a weapon-specific handling or lethality need in the sourced combination; confirm its exact live description before changing the slot.';
+const allAttachmentReasons=weapons.flatMap(weapon=>weapon.attachmentReasons||[]);
+const genericReasonRate=allAttachmentReasons.filter(reason=>reason===genericReason).length/allAttachmentReasons.length;
+check(genericReasonRate<=0.10,`Armory generic attachment reasoning exceeds 10%: ${(genericReasonRate*100).toFixed(1)}%`);
+check(weapons.filter(weapon=>weapon.sourceKind==='Current stat/build page').length>=100,'Armory needs at least 100 current stat/build-page records');
+check(weapons.filter(weapon=>weapon.statDeltas.length===6).length>=35,'Armory needs at least 35 exact six-rating build comparisons');
+for(const name of ['M4','RPD']){const weapon=weapons.find(item=>item.name===name);check(weapon?.sourceKind==='Stat-informed S&D adaptation'&&!weapon.statDeltas.length,`${name} manual adaptation must not inherit another attachment set's built ratings`)}
+for (const name of ['M4', 'AK117', 'Locus', 'Cronen Squall', 'FSS Hurricane', 'SO-14', 'Machine Pistol', 'Nail Gun']) check(weapons.some(x => x.name === name), `Armory is missing ${name}`);
+check(armory.meta?.build === 'MB-SNDC-2026-0823-046', 'Armory build number is not synchronized');
+check(armory.meta?.scope?.includes('current page exposes them')&&armory.meta?.scope?.includes('live Global Multiplayer Gunsmith'), 'Armory must state its current-page and live-game verification boundary');
+check(armory.meta?.ratingBoundary?.includes('not physical damage'), 'Armory must distinguish displayed ratings from physical stats');
+check(Object.keys(armory.meta?.roles||{}).length===7,'Armory must define the complete role system');
+
+const declaredRoutes = new Set(['home', 'round-read', 'guided', 'quick', 'learn', 'lesson', 'armory', 'weapon', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
 for (const match of app.matchAll(/data-go="([^"]+)"/g)) {
   if (match[1].includes('${')) continue;
   const route = match[1];
@@ -185,7 +230,7 @@ check(versionMatch, 'VERSION.txt must contain Version');
 check(buildMatch, 'VERSION.txt must contain Build');
 const version = versionMatch?.[1];
 const build = buildMatch?.[1];
-for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['data.js', fs.readFileSync(path.join(appRoot, 'data.js'), 'utf8')], ['learn_data.js', learnSource], ['fights_data.js', fs.readFileSync(path.join(appRoot, 'fights_data.js'), 'utf8')], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')], ['sideline_data.js', sidelineSource], ['polish.js', polish]]) {
+for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['data.js', fs.readFileSync(path.join(appRoot, 'data.js'), 'utf8')], ['learn_data.js', learnSource], ['fights_data.js', fs.readFileSync(path.join(appRoot, 'fights_data.js'), 'utf8')], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')], ['sideline_data.js', sidelineSource], ['armory_data.js', fs.readFileSync(path.join(appRoot, 'armory_data.js'), 'utf8')], ['polish.js', polish]]) {
   check(text.includes(build), `${name} does not contain build ${build}`);
 }
 check(readme.includes(`Version ${version}`), `README.txt does not contain version ${version}`);
@@ -205,6 +250,8 @@ check(polish.includes('aria-current'), 'Polish layer must expose active navigati
 check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
 check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');
 check(app.includes('role="progressbar"') && app.includes('aria-valuenow'), 'Lesson progress needs progressbar semantics');
+check(app.includes("root==='armory'&&a==='role'")&&app.includes('renderArmoryDeep(b)'), 'Router must support durable Armory role routes');
+for(const section of ['Five-part Gunsmith','Complete class around the firearm','How it fits fingers on a phone','Tradeoffs to accept','What “recommended” means here'])check(app.includes(section),`Backroom weapon dossier is missing ${section}`);
 
 const cacheMatch = sw.match(/const CACHE='([^']+)'/);
 check(cacheMatch, 'sw.js must declare a cache name');
@@ -232,4 +279,5 @@ if (failures.length) {
 
 console.log(`PASS: ${Object.keys(questions).length} Guided questions and ${Object.keys(results).length} results are reachable.`);
 console.log(`PASS: ${missions.length} missions, ${lessons.length} lessons, ${fights.length} fights, ${quick.length} quick-help cards, and ${operations.length} operations are internally valid.`);
+console.log(`PASS: ${weapons.length} firearm records, category counts, five-part builds, sources, and special configurations are valid.`);
 console.log(`PASS: ${sidelineRules.length} NERV/RECON rules, privacy boundaries, dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);

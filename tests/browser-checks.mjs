@@ -110,6 +110,45 @@ check((await page.getByText('How Search & Destroy works').count()) >= 2, 'Saved 
 await page.reload();
 check((await page.getByText('How Search & Destroy works').count()) >= 2, 'Saved page did not persist after reload');
 
+await page.goto(`${base}#/armory`, { waitUntil: 'domcontentloaded' });
+check(await page.getByRole('heading', { name: 'A full S&D dossier for every firearm.' }).isVisible(), 'Backroom Armory did not render');
+check(await page.locator('.armory-row').count() === 125, 'Backroom Armory does not render all 125 firearms');
+const armoryCoverage = await page.locator('.armory-count').innerText();
+check(armoryCoverage.includes('125') && armoryCoverage.includes('firearms covered'), 'Backroom Armory coverage count is missing');
+await page.locator('#armorySearch').fill('Locus');
+check(await page.locator('.armory-row').count() === 1, 'Armory search did not narrow to Locus');
+await page.locator('.armory-row').click();
+await page.waitForURL(/#\/weapon\/locus$/);
+await page.getByRole('heading', { name: 'Locus', exact: true }).waitFor();
+check(await page.getByRole('heading', { name: 'Locus', exact: true }).isVisible(), 'Locus detail route did not render');
+check(await page.locator('.armory-attachments li').count() === 5, 'Locus detail does not contain five attachments');
+check(await page.locator('.reasoned-attachments li span').count() === 5, 'Locus detail does not explain every attachment');
+check(await page.getByRole('heading', { name: 'Complete class around the firearm' }).isVisible(), 'Locus detail is missing its complete class');
+check(await page.getByRole('heading', { name: 'How it fits fingers on a phone' }).isVisible(), 'Locus detail is missing finger-layout guidance');
+check(await page.getByRole('heading', { name: 'Tradeoffs to accept' }).isVisible(), 'Locus detail is missing tradeoffs');
+check(await page.getByRole('heading', { name: 'What “recommended” means here' }).isVisible(), 'Locus detail is missing its recommendation boundary');
+check(await page.getByRole('heading', { name: 'Visible laser check' }).isVisible(), 'Laser-bearing build is missing the visible-laser warning');
+check(await page.getByRole('link', { name: /Open .*build source/i }).isVisible(), 'Weapon detail is missing its evidence source');
+await page.reload();
+check(await page.getByRole('heading', { name: 'Locus', exact: true }).isVisible(), 'Direct weapon route did not survive refresh');
+await page.goto(`${base}#/armory`);
+await page.getByRole('button', { name: 'Shotgun', exact: true }).click();
+check(await page.locator('.armory-row').count() === 12, 'Shotgun filter does not show the expected 12 firearms');
+await page.goto(`${base}#/armory/role/precision-pick`);
+check(await page.getByRole('heading', { name: 'Precision pick weapons' }).isVisible(), 'Armory role route did not render');
+check(await page.locator('.armory-row').count() > 10, 'Precision role group did not include the expected weapon family');
+await page.reload();
+check(await page.getByRole('heading', { name: 'Precision pick weapons' }).isVisible(), 'Armory role route did not survive refresh');
+check(!(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)), 'Armory overflows at 320px');
+const armorySmallTargets = await page.locator('button:visible,a:visible').evaluateAll(nodes => nodes.filter(node => {
+  const box = node.getBoundingClientRect();
+  return box.width < 44 || box.height < 44;
+}).map(node => ({ text: node.textContent.trim(), width: node.getBoundingClientRect().width, height: node.getBoundingClientRect().height })));
+check(armorySmallTargets.length === 0, `Armory tap targets smaller than 44px: ${JSON.stringify(armorySmallTargets)}`);
+await page.goto(`${base}#/library`);
+await page.locator('#globalSearch').fill('AK117');
+check(await page.getByText('AK117', { exact: true }).isVisible(), 'Global search does not include Armory firearms');
+
 const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
 check(!overflow, 'Narrow mobile viewport has horizontal overflow');
 const smallTargets = await page.locator('button:visible').evaluateAll(nodes => nodes.filter(node => {
@@ -126,7 +165,7 @@ check(navFontSize>=12,`Bottom navigation text is too small: ${navFontSize}px`);
 
 await page.evaluate(()=>navigator.serviceWorker.ready);
 const fullCaches=await page.evaluate(()=>caches.keys());
-check(fullCaches.includes('snd-full-guide-3.7.0-r1'),`Full Companion cache did not install: ${JSON.stringify(fullCaches)}`);
+check(fullCaches.includes('snd-full-guide-3.9.0-r1'),`Full Companion cache did not install: ${JSON.stringify(fullCaches)}`);
 
 await context.setOffline(true);
 await page.goto(`${base}#/round-read`, { waitUntil: 'domcontentloaded' }).catch(() => {});

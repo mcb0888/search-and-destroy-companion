@@ -1,4 +1,4 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.7.0
+SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.9.0
 
 PURPOSE
 A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
@@ -17,7 +17,8 @@ PRIMARY EXPERIENCE
 - Thirteen short lessons covering the main ins and outs of Search & Destroy, including landmark-based A/B orientation
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
-- Global search across lessons, quick help, fight corrections, Guided results, Field Manual operations, and game terms
+- Searchable Backroom Armory with 125 current firearm dossiers and one five-part S&D build for every firearm that supports a normal Gunsmith
+- Global search across lessons, quick help, fight corrections, Guided results, Field Manual operations, game terms, and firearms
 - Saved pages and a short recently opened list stored locally
 - Thirty-operation Field Manual for deeper practice
 
@@ -38,6 +39,19 @@ possible inference. RECON identifies one decision point and gives exactly one
 observable next-round check. The typed account is not saved automatically.
 When the player chooses Save, only the generalized pattern, decision, check,
 guide route, and timestamp are stored locally.
+
+BACKROOM ARMORY
+The Armory is generated from current firearm build/stat pages, then checked as
+structured data before release. Normal Gunsmith weapons receive five attachment
+slots; special weapons without a normal Gunsmith are identified instead of
+being given invented parts. Displayed ratings are comparative menu-style values,
+not physical damage, fire rate, ADS time, or time-to-kill measurements. A
+before/after rating comparison appears only when the source page's exact
+attachment list matches the build shown here. Manual S&D adaptations may retain
+linked base information, but they do not inherit build deltas from a different
+attachment set. Every exact attachment remains subject to confirmation in the
+live Global Multiplayer Gunsmith because the game can change independently of
+this static guide.
 
 PROGRESS AND PRACTICE
 Lesson completion, the most recently opened lesson, active practice missions, five-round results, practice history, and notes are stored locally on the device. Nothing is submitted automatically.
@@ -63,6 +77,8 @@ CURRENT ROUTES
 #/quick/<situation>
 #/learn
 #/lesson/<lesson>
+#/armory
+#/weapon/<firearm>
 #/fights
 #/fight/<problem>
 #/manual
@@ -75,11 +91,11 @@ CURRENT ROUTES
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 3.7 keeps the Backroom round-read rules, search, saved pages, recent pages, and guide available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
+The app uses a versioned network-first service worker. Version 3.9 keeps the Backroom round-read rules, complete Armory dossiers, search, saved pages, recent pages, and guide available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
 
 BUILD
-Version 3.7.0
-MB-SNDC-2026-0822-044
+Version 3.9.0
+MB-SNDC-2026-0823-046
 
 SIMPLIFIED STARTER EDITION
 
@@ -89,7 +105,7 @@ companion under /full/. Starter Edition sections:
 
 - Eight short S&D lessons with game-term definitions
 - Common beginner settings with confidence labels
-- Three downloadable Season 6 loadout and Gunsmith field guides
+- Five approachable early-account loadouts plus three downloadable archived Season 6 Gunsmith references
 - Six visual HUD starting combinations: two, three, or four fingers using manual ADS + hip fire, with an alternate 1-tap ADS-fire workflow and a short playstyle explanation for each
 
 QUALITY CHECKS
@@ -105,6 +121,7 @@ Every push to main and every pull request runs automated checks for:
 - Five-round mission completion
 - 320-pixel mobile layout and minimum 44-pixel tap targets
 - Offline route reload
+- All firearm records, five-part builds, source fields, category counts, Armory routes, filtering, and offline asset coverage
 
 Created by Michael Barnes.
 Copyright © 2026 Michael Barnes. All Rights Reserved.
