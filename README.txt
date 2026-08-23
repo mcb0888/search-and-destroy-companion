@@ -12,10 +12,10 @@ The normal site address opens the simplified Starter Edition. It is deliberately
 The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson. The Guides section replaces the earlier perk/equipment recommendations with three complete PDF references supplied by the project owner. They are clearly labeled as Season 6 documents so older numerical claims are not presented as current without verification.
 
 FULL COMPANION
-The Full Companion 3.6.1 remains available at:
+The Full Companion 3.7.0 remains available at:
 ./full/
 
-A quiet link appears at the bottom of the Starter learning screen. The full companion retains Guided Help, lesson progress, practice missions, fight corrections, saved pages, notes, the dictionary, and the Field Manual.
+A quiet link appears at the bottom of the Starter learning screen. The Full Companion keeps its Backroom identity and adds a local post-round helper while retaining Guided Help, lesson progress, practice missions, fight corrections, saved pages, notes, the dictionary, and the Field Manual. NERV and RECON appear inside the deeper round-read experience, not as a replacement product name. Typed round accounts are not saved automatically or sent to an outside service. An explicitly saved pattern contains only the generalized decision, next-round check, related guide route, and timestamp.
 
 COMPATIBILITY ALIAS
 The previous Starter URL redirects to the default Starter at:

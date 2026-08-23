@@ -1,5 +1,5 @@
-/* Presentation and accessibility layer — Version 3.6.1 */
-const POLISH_BUILD="MB-SNDC-2026-0810-043";
+/* Presentation and accessibility layer — Version 3.7.0 */
+const POLISH_BUILD="MB-SNDC-2026-0822-044";
 
 function upgradeHeading(section){
   const old=section?.querySelector(":scope > h2");
@@ -25,26 +25,15 @@ function polishCurrentView(){
 
   if(current==="home"&&hero){
     hero.classList.add("hero-home");
-    const badge=hero.querySelector(".badge");
-    if(badge)badge.textContent="THE BACKROOM";
-    const heading=hero.querySelector("h1");
-    if(heading)heading.textContent="Here is why that shit worked. Or why it absolutely did not.";
-    const paragraph=hero.querySelector("p");
-    if(paragraph)paragraph.textContent="Use this when you want the logic behind a Field Order: the round state, likely information, geometry, timing, trade options, exceptions, and what is still only a hypothesis.";
-    if(!hero.querySelector(".hero-proof"))hero.insertAdjacentHTML("beforeend",`<div class="hero-proof"><span>25 guided results</span><span>12 beginner lessons</span><span>Works offline</span></div>`);
-    const starter=document.querySelector(".starter-link strong");
-    if(starter)starter.textContent="Just tell me what to do.";
-    const labels=["What actually went wrong?","Show me the receipts","Test one correction"];
-    document.querySelectorAll(".path-step strong").forEach((el,index)=>{if(labels[index])el.textContent=labels[index]});
   }
 
   if(current==="about"){
-    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 3.6.1";
+    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 3.7.0";
     const cards=[...document.querySelectorAll("main .card")];
     const changed=cards.find(card=>card.querySelector("h3")?.textContent.startsWith("What changed"));
-    if(changed)changed.innerHTML=`<h3>What changed in 3.6.1</h3><p>Added dictionary support for manual ADS, 1-tap ADS fire, hip fire, and both ADS-button behaviors. The Starter Edition now offers manual and 1-tap firing workflows for each two-, three-, and four-finger HUD, with a short playstyle explanation for all six combinations.</p>`;
+    if(changed)changed.innerHTML=`<h3>What changed in 3.7.0</h3><p>Added a local Backroom round read: one typed account becomes a grounded fact-and-uncertainty split, one decision point, and one next-round check. Added landmark-based A/B and approach orientation without inaccurate map artwork.</p>`;
     const build=cards.find(card=>card.querySelector("h3")?.textContent==="Build");
-    if(build)build.innerHTML=`<h3>Build</h3><p>Version 3.6.1 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
+    if(build)build.innerHTML=`<h3>Build</h3><p>Version 3.7.0 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
     if(!cards.some(card=>card.querySelector("h3")?.textContent==="Unofficial project")){
       build?.insertAdjacentHTML("beforebegin",`<div class="card"><h3>Unofficial project</h3><p>This is a fan-made learning guide. It is not affiliated with or endorsed by Activision. Call of Duty and related names belong to their respective owners.</p></div>`);
     }

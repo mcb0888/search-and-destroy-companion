@@ -67,9 +67,10 @@ check(index.includes('Content-Security-Policy')&&index.includes('strict-origin-w
 check(index.includes('class="skip-link"')&&index.includes('id="app" tabindex="-1"'),"Starter needs a skip link and focusable main region");
 check(index.includes('role="status"')&&index.includes('aria-live="polite"'),"Starter update feedback must be announced");
 check(index.includes('Not affiliated with or endorsed by Activision'),"Starter needs an unofficial-project disclaimer");
+check(app.includes('Open the Full Backroom')&&!app.includes('NERV')&&!app.includes('RECON'),'Starter should keep the Backroom bridge subtle and leave helper names inside the Full Companion');
 
-for(const asset of ["index.html","app.css?v=1.5.1","app.js?v=1.5.1","starter_data.js?v=1.5.1","manifest.webmanifest","icon.svg","icon-192.png","icon-512.png","social-card.png",...(d?.guides||[]).map(x=>x.file)])check(sw.includes(asset),`Default Starter service worker misses ${asset}`);
-check(sw.includes('snd-starter-home-1.5.1-r1'),"Default Starter cache version is not synchronized");
+for(const asset of ["index.html","app.css?v=1.5.1","app.js?v=1.5.1-r2","starter_data.js?v=1.5.1","manifest.webmanifest","icon.svg","icon-192.png","icon-512.png","social-card.png",...(d?.guides||[]).map(x=>x.file)])check(sw.includes(asset),`Default Starter service worker misses ${asset}`);
+check(sw.includes('snd-starter-home-1.5.1-r2'),"Default Starter cache version is not synchronized");
 check(sw.includes('SKIP_WAITING'),"Default Starter service worker needs opt-in update activation");
 check(!aliasSw.includes('startsWith("snd-starter-")&&'),"Alias cleanup must not delete the root Starter cache");
 check(aliasSw.includes('!key.startsWith("snd-starter-home-")'),"Alias cleanup must preserve the root Starter cache");

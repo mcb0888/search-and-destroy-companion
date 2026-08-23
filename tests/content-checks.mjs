@@ -24,6 +24,8 @@ const manual = loadData('data.js', 'APP_DATA');
 const learn = loadData('learn_data.js', 'LEARN_DATA');
 const fights = loadData('fights_data.js', 'FIGHT_DATA');
 const guided = loadData('guided_data.js', 'GUIDED_DATA');
+const sideline = loadData('sideline_data.js', 'SIDELINE_DATA');
+const learnSource = fs.readFileSync(path.join(appRoot, 'learn_data.js'), 'utf8');
 const app = fs.readFileSync(path.join(appRoot, 'app.js'), 'utf8');
 const index = fs.readFileSync(path.join(appRoot, 'index.html'), 'utf8');
 const sw = fs.readFileSync(path.join(appRoot, 'sw.js'), 'utf8');
@@ -54,6 +56,7 @@ const quick = learn.quick || [];
 const terms = [...(learn.terms || [])];
 const operations = manual.operations || [];
 const dictionary = manual.dictionary || [];
+const sidelineRules = sideline.rules || [];
 
 check(questions.start, 'Guided questions must include start');
 for (const [id, question] of Object.entries(questions)) {
@@ -139,7 +142,36 @@ for (const operation of operations) {
   required(operation, ['id', 'title', 'problem', 'truth', 'try', 'mission', 'success'], `Operation ${operation.id}`);
 }
 
-const declaredRoutes = new Set(['home', 'guided', 'quick', 'learn', 'lesson', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
+unique(sidelineRules, 'id', 'Sideline rules');
+check(sidelineRules.length >= 10, 'Sideline needs broad first-version coverage');
+check(Array.isArray(sideline.examples) && sideline.examples.length === 4, 'Sideline needs the four low-demand example fragments');
+required(sideline.fallback, ['id', 'missing', 'inference', 'decision', 'check', 'route', 'routeLabel', 'terms'], 'Sideline fallback');
+const validContentRoute = route => {
+  const [rootName, target] = String(route).split('/');
+  return (
+    (rootName === 'lesson' && lessonIds.has(target)) ||
+    (rootName === 'fight' && fightIds.has(target)) ||
+    (rootName === 'operation' && operationIds.has(Number(target))) ||
+    (rootName === 'quick' && quickIds.has(target)) ||
+    (rootName === 'term' && termIds.has(target))
+  );
+};
+for (const rule of [...sidelineRules, sideline.fallback]) {
+  required(rule, ['id', 'missing', 'inference', 'decision', 'check', 'route', 'routeLabel', 'terms'], `Sideline rule ${rule.id}`);
+  if (rule !== sideline.fallback) check(Array.isArray(rule.keywords) && rule.keywords.length > 0, `Sideline rule ${rule.id} needs keywords`);
+  check(validContentRoute(rule.route), `Sideline rule ${rule.id} has invalid route ${rule.route}`);
+  for (const term of rule.terms || []) check(termIds.has(term), `Sideline rule ${rule.id} points to missing term ${term}`);
+}
+check(sidelineRules.some(rule => rule.id === 'site-orientation' && rule.route === 'lesson/orientation'), 'Sideline needs an A/B orientation path');
+check(lessonIds.has('orientation'), 'Full guide needs the landmark orientation lesson');
+const sidelineSource = fs.readFileSync(path.join(appRoot, 'sideline_data.js'), 'utf8');
+const bannedInteractionLanguage = ['drink water', 'take a breath', 'stop, breathe', 'visualize', 'picture yourself', 'imagine the scene', 'mentally rehearse', 'future you'];
+for (const phrase of bannedInteractionLanguage) check(!`${sidelineSource}\n${learnSource}`.toLowerCase().includes(phrase), `Sideline or learning content uses banned interaction language: ${phrase}`);
+check(!/https?:\/\//.test(sidelineSource) && !/\bfetch\s*\(|WebSocket|EventSource/.test(sidelineSource), 'Sideline data must not contact an outside service');
+check(app.includes("SIDELINE_KEY='snd-sideline-patterns-v1'"), 'Sideline local storage key is missing');
+check(app.includes("const item={id:`${Date.now()}-${result.ruleId}`,ruleId:result.ruleId,decision:result.decision,check:result.check,route:result.route,savedAt:new Date().toISOString()};"), 'Saved sideline patterns must exclude the raw round account and optional context');
+
+const declaredRoutes = new Set(['home', 'round-read', 'guided', 'quick', 'learn', 'lesson', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
 for (const match of app.matchAll(/data-go="([^"]+)"/g)) {
   if (match[1].includes('${')) continue;
   const route = match[1];
@@ -153,7 +185,7 @@ check(versionMatch, 'VERSION.txt must contain Version');
 check(buildMatch, 'VERSION.txt must contain Build');
 const version = versionMatch?.[1];
 const build = buildMatch?.[1];
-for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')]]) {
+for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['data.js', fs.readFileSync(path.join(appRoot, 'data.js'), 'utf8')], ['learn_data.js', learnSource], ['fights_data.js', fs.readFileSync(path.join(appRoot, 'fights_data.js'), 'utf8')], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')], ['sideline_data.js', sidelineSource], ['polish.js', polish]]) {
   check(text.includes(build), `${name} does not contain build ${build}`);
 }
 check(readme.includes(`Version ${version}`), `README.txt does not contain version ${version}`);
@@ -168,6 +200,7 @@ check(index.includes('property="og:image"') && index.includes('summary_large_ima
 check(index.includes('Content-Security-Policy') && index.includes('strict-origin-when-cross-origin'), 'Full Companion needs static-site security and referrer policies');
 check(index.includes('class="skip-link"') && index.includes('id="main" tabindex="-1"'), 'Full Companion needs a skip link and focusable main region');
 check(index.includes('role="status"') && index.includes('aria-live="polite"'), 'Toast feedback must be announced');
+check(index.includes('S&amp;D Backroom') && index.includes('>Guided</button>') && !index.includes('Tactical Sideline'), 'Full Companion must preserve its Backroom identity and Guided navigation title');
 check(polish.includes('aria-current'), 'Polish layer must expose active navigation state');
 check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
 check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');
@@ -199,4 +232,4 @@ if (failures.length) {
 
 console.log(`PASS: ${Object.keys(questions).length} Guided questions and ${Object.keys(results).length} results are reachable.`);
 console.log(`PASS: ${missions.length} missions, ${lessons.length} lessons, ${fights.length} fights, ${quick.length} quick-help cards, and ${operations.length} operations are internally valid.`);
-console.log(`PASS: dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);
+console.log(`PASS: ${sidelineRules.length} NERV/RECON rules, privacy boundaries, dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);

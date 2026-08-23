@@ -75,7 +75,7 @@ check(await page.getByRole('heading',{name:'Four-finger · 1-tap ADS fire includ
 await page.goto(`${base}#/settings`,{waitUntil:'networkidle'});
 await page.evaluate(()=>navigator.serviceWorker.ready);
 const starterCaches=await page.evaluate(()=>caches.keys());
-check(starterCaches.includes('snd-starter-home-1.5.1-r1'),`Starter cache did not install: ${JSON.stringify(starterCaches)}`);
+check(starterCaches.includes('snd-starter-home-1.5.1-r2'),`Starter cache did not install: ${JSON.stringify(starterCaches)}`);
 await context.setOffline(true);
 await page.reload({waitUntil:'domcontentloaded'}).catch(()=>{});
 check(await page.getByRole('heading',{name:'Start stable. Adjust with a reason.'}).isVisible().catch(()=>false),'Starter settings route did not reopen offline');
@@ -90,6 +90,9 @@ const fullContext=await browser.newContext({viewport:{width:320,height:568},isMo
 const fullPage=await fullContext.newPage();
 await fullPage.goto(`${origin}/full/index.html#/home`,{waitUntil:'networkidle'});
 check(await fullPage.getByText('Here is why that shit worked. Or why it absolutely did not.').isVisible(),'Full Backroom home did not render');
+check(await fullPage.getByText('Bring a confusing round to the Backroom.').isVisible(),'Backroom is missing its round-read bridge');
+check(await fullPage.getByText('S&D Backroom',{exact:true}).isVisible(),'Full Companion identity was replaced instead of extended');
+check(await fullPage.getByRole('button',{name:/Guided/}).isVisible(),'Full Companion did not preserve the Guided navigation title');
 check(!(await fullPage.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)),'Full Companion has horizontal overflow at 320px');
 await fullPage.locator('.starter-link').click();await fullPage.waitForLoadState('domcontentloaded');
 check(new URL(fullPage.url()).pathname.endsWith('/index.html')||new URL(fullPage.url()).pathname.endsWith('/'),'Full Companion does not return to the default Starter');

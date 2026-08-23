@@ -1,5 +1,5 @@
-const CACHE='snd-full-guide-3.6.1-r2';
-const ASSETS=['./','./index.html','./app.css?v=3.6.1-r2','./app.js?v=3.6.1-r2','./polish.js?v=3.6.1-r2','./data.js?v=3.6.1-r2','./learn_data.js?v=3.6.1-r2','./fights_data.js?v=3.6.1-r2','./guided_data.js?v=3.6.1-r2','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
+const CACHE='snd-full-guide-3.7.0-r1';
+const ASSETS=['./','./index.html','./app.css?v=3.7.0-r1','./app.js?v=3.7.0-r1','./polish.js?v=3.7.0-r1','./data.js?v=3.7.0-r1','./learn_data.js?v=3.7.0-r1','./fights_data.js?v=3.7.0-r1','./guided_data.js?v=3.7.0-r1','./sideline_data.js?v=3.7.0-r1','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./README.txt','./VERSION.txt','./COPYRIGHT.txt','./LICENSE.txt'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));

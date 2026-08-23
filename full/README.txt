@@ -1,15 +1,20 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.6.1
+SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.7.0
 
 PURPOSE
 A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
 
 PRIMARY EXPERIENCE
+- Local NERV + RECON post-round coaching from a rough typed fragment
+- NERV separation of the reported account, missing context, and possible inference
+- RECON identification of one decision point and exactly one next-round check
+- Optional links into the evidence-backed lessons, fight corrections, dictionary, and Field Manual
+- Optional local pattern saving that excludes the original typed round account
 - Guided round review that turns two or three answers into one likely explanation
 - Immediate next-round correction before longer teaching
 - Beginner lesson progress and continue-learning support
 - Five-round practice missions with remembered/missed tracking
 - Recent practice history and local notes
-- Twelve short lessons covering the main ins and outs of Search & Destroy
+- Thirteen short lessons covering the main ins and outs of Search & Destroy, including landmark-based A/B orientation
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
 - Global search across lessons, quick help, fight corrections, Guided results, Field Manual operations, and game terms
@@ -24,6 +29,15 @@ The Guided tab begins with what the player noticed: elimination timing, direct g
 - Relevant dictionary terms
 - Related lesson, fight correction, or Field Manual operation
 - A matching five-round practice mission
+
+BACKROOM ROUND READ
+The Guided tab accepts a rough player-written account and optional map, side,
+or objective context. It uses transparent local rules, not an outside AI
+service. NERV states what was reported, what remains missing, and what is only a
+possible inference. RECON identifies one decision point and gives exactly one
+observable next-round check. The typed account is not saved automatically.
+When the player chooses Save, only the generalized pattern, decision, check,
+guide route, and timestamp are stored locally.
 
 PROGRESS AND PRACTICE
 Lesson completion, the most recently opened lesson, active practice missions, five-round results, practice history, and notes are stored locally on the device. Nothing is submitted automatically.
@@ -41,6 +55,7 @@ MOBILE DESIGN
 
 CURRENT ROUTES
 #/home
+#/round-read
 #/guided
 #/guided/q/<question>
 #/guided/result/<result>
@@ -60,11 +75,11 @@ CURRENT ROUTES
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 3.6 keeps search, saved pages, and recent pages available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
+The app uses a versioned network-first service worker. Version 3.7 keeps the Backroom round-read rules, search, saved pages, recent pages, and guide available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
 
 BUILD
-Version 3.6.1
-MB-SNDC-2026-0810-043
+Version 3.7.0
+MB-SNDC-2026-0822-044
 
 SIMPLIFIED STARTER EDITION
 
