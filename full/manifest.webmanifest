@@ -1,5 +1,5 @@
 {
-  "name": "Search & Destroy Companion — Beginner Guide",
+  "name": "Search & Destroy Companion — Full Guide",
   "short_name": "S&D Guide",
   "id": "./",
   "start_url": "./index.html",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "background_color": "#090d0f",
   "theme_color": "#090d0f",
-  "description": "A beginner-first Search & Destroy Backroom with guided round review, focused practice, and a sourced firearm Armory.",
+  "description": "A beginner-first Search & Destroy field guide with Better Judgment round review, focused practice, and a sourced firearm Armory.",
   "icons": [
     {
       "src": "icon-192.png",

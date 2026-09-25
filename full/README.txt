@@ -1,12 +1,17 @@
-SEARCH & DESTROY COMPANION — BEGINNER GUIDE 3.9.0
+SEARCH & DESTROY COMPANION — FULL GUIDE 4.0.0
 
 PURPOSE
-A beginner-first CODM Search & Destroy companion for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
+A beginner-first CODM Search & Destroy field guide for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
 
 PRIMARY EXPERIENCE
-- Local NERV + RECON post-round coaching from a rough typed fragment
-- NERV separation of the reported account, missing context, and possible inference
-- RECON identification of one decision point and exactly one next-round check
+- Better Judgment accepts a rough fragment or direct question
+- One likely cause and exactly one concrete thing to try next
+- Optional common-trap notes when a mistake is frequent and recognizable
+- Optional match details that can be added, edited, or cleared
+- Separate inspectable saved tips, selected sources, and structured match records
+- Optional secure/local AI bridge with AI off by default and no browser-held provider key
+- Foreground-only listen-once voice input and optional spoken next adjustment
+- Explicit image selection and one-request analysis; no hidden screen or folder access
 - Optional links into the evidence-backed lessons, fight corrections, dictionary, and Field Manual
 - Optional local pattern saving that excludes the original typed round account
 - Guided round review that turns two or three answers into one likely explanation
@@ -17,7 +22,7 @@ PRIMARY EXPERIENCE
 - Thirteen short lessons covering the main ins and outs of Search & Destroy, including landmark-based A/B orientation
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
-- Searchable Backroom Armory with 125 current firearm dossiers and one five-part S&D build for every firearm that supports a normal Gunsmith
+- Searchable Full Armory with 125 current firearm dossiers and one five-part S&D build for every firearm that supports a normal Gunsmith
 - Global search across lessons, quick help, fight corrections, Guided results, Field Manual operations, game terms, and firearms
 - Saved pages and a short recently opened list stored locally
 - Thirty-operation Field Manual for deeper practice
@@ -31,16 +36,26 @@ The Guided tab begins with what the player noticed: elimination timing, direct g
 - Related lesson, fight correction, or Field Manual operation
 - A matching five-round practice mission
 
-BACKROOM ROUND READ
-The Guided tab accepts a rough player-written account and optional map, side,
-or objective context. It uses transparent local rules, not an outside AI
-service. NERV states what was reported, what remains missing, and what is only a
-possible inference. RECON identifies one decision point and gives exactly one
-observable next-round check. The typed account is not saved automatically.
-When the player chooses Save, only the generalized pattern, decision, check,
-guide route, and timestamp are stored locally.
+BETTER JUDGMENT
+The Judgment tab accepts a rough player-written account, a direct question,
+or an optional explicitly selected source. Built-in guidance remains the default.
+The main answer shows what probably caused the problem, an optional common trap,
+and one thing to try next. It does not expose the internal evidence labels as
+homework for the player.
 
-BACKROOM ARMORY
+Conversation history stays local and is capped. Saved tips are separate and
+change only when the player saves, edits, or deletes an entry. Match records
+are structured local evidence, not claims about matches that were not recorded.
+Text sources are inspected only after selection. Images remain temporary unless
+preserved locally or explicitly sent to a configured bridge. Full video
+understanding is not claimed.
+
+AI is off by default. The static browser app contains and accepts no provider
+key. Optional OpenAI or Gemini support requires a secure server-side or local
+bridge and runs only after an explicit request. The bridge architecture is a
+capability foundation; no hosted bridge is included in this static release.
+
+FULL ARMORY
 The Armory is generated from current firearm build/stat pages, then checked as
 structured data before release. Normal Gunsmith weapons receive five attachment
 slots; special weapons without a normal Gunsmith are identified instead of
@@ -60,7 +75,7 @@ LANGUAGE RULE
 Use ordinary language first. Preserve established game terminology because players will hear it in matches, videos, and competitive discussion. Define those terms in the dictionary and point readers toward the definition when they appear. Avoid disposable social-media slang and unexplained jargon.
 
 MOBILE DESIGN
-- Five primary tabs: Start, Guided, Learn, Practice, Terms
+- Five primary tabs: Start, Judgment, Learn, Practice, Terms
 - Large question and answer controls
 - Immediate correction shown before detailed explanation
 - One active mission with five visible round markers
@@ -69,7 +84,12 @@ MOBILE DESIGN
 
 CURRENT ROUTES
 #/home
+#/companion
 #/round-read
+#/sources
+#/records
+#/memory
+#/provider
 #/guided
 #/guided/q/<question>
 #/guided/result/<result>
@@ -91,11 +111,11 @@ CURRENT ROUTES
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 3.9 keeps the Backroom round-read rules, complete Armory dossiers, search, saved pages, recent pages, and guide available in the offline app shell. A waiting service worker produces an Update button and takes control only after the user chooses to update.
+The app uses a versioned network-first service worker. Version 4.0 keeps Better Judgment, built-in guidance, complete Armory dossiers, search, saved pages, recent pages, and the field guide available in the offline app shell. Optional AI requests require a reachable configured bridge and are not faked while offline. A waiting service worker produces an Update button and takes control only after the user chooses to update.
 
 BUILD
-Version 3.9.0
-MB-SNDC-2026-0823-046
+Version 4.0.0
+MB-SNDC-2026-0831-047
 
 SIMPLIFIED STARTER EDITION
 

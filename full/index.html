@@ -1,23 +1,23 @@
 <!--
-Search & Destroy Companion — Beginner Guide 3.9.0
+Search & Destroy Companion — Full Guide 4.0.0
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0823-046
+Build MB-SNDC-2026-0831-047
 -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; connect-src 'self' https: http://127.0.0.1:* http://localhost:*; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#090d0f">
 <meta name="author" content="Michael Barnes">
 <meta name="copyright" content="Copyright © 2026 Michael Barnes. All Rights Reserved.">
 <meta name="application-name" content="Search & Destroy Companion">
-<meta name="description" content="A beginner-first COD Mobile Search & Destroy Backroom with guided round review, evidence-backed lessons, and focused practice.">
+<meta name="description" content="A beginner-first COD Mobile Search & Destroy field guide with Better Judgment round review, evidence-backed lessons, and focused practice.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Search & Destroy Companion — Full Guide">
-<meta property="og:description" content="Understand why a Field Order works, review a confusing round, and test one useful correction at a time.">
+<meta property="og:description" content="Tell Better Judgment what happened. Get one likely cause and one useful thing to try next.">
 <meta property="og:url" content="https://mcb0888.github.io/search-and-destroy-companion/full/">
 <meta property="og:image" content="https://mcb0888.github.io/search-and-destroy-companion/social-card.png">
 <meta property="og:image:alt" content="Search & Destroy Companion beginner guide preview">
@@ -28,30 +28,31 @@ Build MB-SNDC-2026-0823-046
 <link rel="canonical" href="https://mcb0888.github.io/search-and-destroy-companion/full/">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg">
-<link rel="stylesheet" href="app.css?v=3.9.0-r1">
+<link rel="stylesheet" href="app.css?v=4.0.0-r1">
 <title>Search & Destroy Companion</title>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 <div class="shell">
-<header><div class="brand"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true">S&amp;D</span><div><strong>S&amp;D Backroom</strong><small>Receipts · why · exceptions</small></div></div><div class="header-actions"><button class="iconbtn" id="searchBtn" aria-label="Search and saved pages">⌕</button><button class="iconbtn" id="updateBtn" hidden>Update</button><button class="iconbtn" id="installBtn" hidden>Install</button><button class="iconbtn" id="aboutBtn" aria-label="About this companion">i</button></div></div></header>
+<header><div class="brand"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true">S&amp;D</span><div><strong>S&amp;D Field Guide</strong><small>Learn · test · adjust</small></div></div><div class="header-actions"><button class="iconbtn" id="searchBtn" aria-label="Search and saved pages">⌕</button><button class="iconbtn" id="updateBtn" hidden>Update</button><button class="iconbtn" id="installBtn" hidden>Install</button><button class="iconbtn" id="aboutBtn" aria-label="About this guide">i</button></div></div></header>
 <main id="main" tabindex="-1"></main>
 </div>
 <nav class="bottom" aria-label="Main navigation"><div class="bottom-inner">
 <button class="nav" data-root="home"><b aria-hidden="true">⌂</b>Start</button>
-<button class="nav" data-root="round-read"><b aria-hidden="true">◎</b>Guided</button>
+<button class="nav" data-root="companion"><b aria-hidden="true">◎</b>Judgment</button>
 <button class="nav" data-root="learn"><b aria-hidden="true">▤</b>Receipts</button>
 <button class="nav" data-root="practice"><b aria-hidden="true">✓</b>Practice</button>
 <button class="nav" data-root="terms"><b aria-hidden="true">?</b>Terms</button>
 </div></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="data.js?v=3.9.0-r1"></script>
-<script src="learn_data.js?v=3.9.0-r1"></script>
-<script src="fights_data.js?v=3.9.0-r1"></script>
-<script src="guided_data.js?v=3.9.0-r1"></script>
-<script src="sideline_data.js?v=3.9.0-r1"></script>
-<script src="armory_data.js?v=3.9.0-r1"></script>
-<script src="app.js?v=3.9.0-r1"></script>
-<script src="polish.js?v=3.9.0-r1"></script>
+<script src="data.js?v=4.0.0-r1"></script>
+<script src="learn_data.js?v=4.0.0-r1"></script>
+<script src="fights_data.js?v=4.0.0-r1"></script>
+<script src="guided_data.js?v=4.0.0-r1"></script>
+<script src="sideline_data.js?v=4.0.0-r1"></script>
+<script src="armory_data.js?v=4.0.0-r1"></script>
+<script src="companion.js?v=4.0.0-r1"></script>
+<script src="app.js?v=4.0.0-r1"></script>
+<script src="polish.js?v=4.0.0-r1"></script>
 </body>
 </html>

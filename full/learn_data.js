@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Beginner learning data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0823-046
+Build MB-SNDC-2026-0831-047
 */
 window.LEARN_DATA = {
   quick: [
@@ -126,6 +126,21 @@ window.LEARN_DATA = {
       terms: ['play your life', 'disengage', 'cover', 'reposition']
     },
     {
+      id: 'decision-not-result',
+      title: 'One good round does not prove a good habit',
+      subtitle: 'Fast reactions can rescue a bad decision once. Search & Destroy asks whether the decision will keep working after the enemy has seen it.',
+      takeaway: 'Judge the information, risk, and repeatability of the decision—not only whether you happened to win the fight.',
+      sections: [
+        ['A result and a decision are different', 'An ace is a great result. It does not automatically make every route, timing, or exposure used during that round a reliable decision. Mechanical skill can rescue a risky choice; it cannot erase the risk that was there.'],
+        ['The enemy learns too', 'After you rush the same lane, appear at the same time, or use the same opening, the other team can pre-aim it. The next attempt is not the same fight because surprise has already been spent.'],
+        ['Check what made it work', 'Ask what you actually had: surprise, useful information, better cover, an isolated opponent, teammate pressure, or simply a difficult shot that you managed to hit. Keep the useful condition instead of copying the whole route automatically.'],
+        ['Change one readable part', 'If the enemy has seen the play, change the lane, timing, height, stopping point, or equipment. You do not need a completely new plan; you need one reason the next exposure is not identical.'],
+        ['Mechanical skill is not complete S&D skill', 'Reaction speed and aim matter. So do the bomb, timer, remaining lives, information, positioning, and adaptation. Winning a tiny-map spawn trap or one isolated duel tests only part of the mode.']
+      ],
+      mistakes: ['Repeating middle every round because it produced one ace', 'Calling an opponent suspicious before checking whether your route and timing became predictable', 'Treating a private one-on-one result as proof of complete Search & Destroy ability'],
+      terms: ['adaptation', 'timing', 'pre-aim', 'autopilot', 'information']
+    },
+    {
       id: 'attacker-job',
       title: 'The attacker’s real job',
       subtitle: 'Create a safe plant without throwing away the bomb.',
@@ -186,11 +201,12 @@ window.LEARN_DATA = {
       id: 'support-and-trades',
       title: 'How teammates support one another',
       subtitle: 'Close enough to help, far enough apart to avoid one shared death.',
-      takeaway: 'Good teamwork is connected spacing, not five players occupying the same doorway.',
+      takeaway: 'Support is one useful option in S&D—not a replacement for checking your own route, information, cover, and objective.',
       sections: [
         ['The first player', 'The first player exposes the nearest danger and creates information.'],
         ['The supporting player', 'The second player watches a different part of the same problem and can immediately respond if the first player is eliminated.'],
         ['Correct spacing', 'Stay close enough to see or reach the fight quickly, but far enough apart that one enemy, grenade, or line of fire cannot defeat both at once.'],
+        ['Your decision is still yours', 'A nearby teammate does not make an unchecked opening safe. Confirm what they are actually watching, then clear your own exposure and keep the objective in mind.'],
         ['After the first fight', 'Do not stop in the same exposed place. Clear the next threat, protect the bomb, or move to cover before reloading.']
       ],
       mistakes: ['Following too far behind to help', 'Standing directly behind a teammate and blocking movement', 'Both players watching the exact same angle'],

@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Guided diagnosis and practice data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0823-046
+Build MB-SNDC-2026-0831-047
 */
 window.GUIDED_DATA = {
   questions: {

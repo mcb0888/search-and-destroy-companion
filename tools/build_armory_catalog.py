@@ -653,7 +653,7 @@ def build_catalog() -> dict:
     return {
         "meta": {
             "version": "2.0.0",
-            "build": "MB-SNDC-2026-0823-046",
+            "build": "MB-SNDC-2026-0831-047",
             "checked": CHECKED,
             "scope": "Current Season 7 firearm roster with one stat-informed S&D recommendation per firearm. Displayed ratings and attachment behavior are used where the linked current page exposes them; every exact part remains subject to the live Global Multiplayer Gunsmith.",
             "excludes": "Launchers and melee weapons do not receive five-attachment firearm builds in this catalog.",
@@ -707,7 +707,7 @@ def enrich_existing_catalog(existing: dict) -> dict:
         "meta": {
             **existing.get("meta", {}),
             "version": "2.0.0",
-            "build": "MB-SNDC-2026-0823-046",
+            "build": "MB-SNDC-2026-0831-047",
             "scope": "Current firearm roster with one S&D recommendation per firearm. The last researched attachment catalog is preserved; this offline enrichment adds role, mobile-control, attachment-purpose, tradeoff, and complete-class analysis without inventing displayed ratings.",
             "ratingBoundary": "Displayed weapon ratings are comparative menu-style numbers, not physical damage, RPM, ADS time, or TTK measurements. Empty rating panels remain empty rather than being estimated.",
             "roles": ROLE,

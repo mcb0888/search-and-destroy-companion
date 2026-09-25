@@ -28,6 +28,7 @@ const sideline = loadData('sideline_data.js', 'SIDELINE_DATA');
 const armory = loadData('armory_data.js', 'ARMORY_DATA');
 const learnSource = fs.readFileSync(path.join(appRoot, 'learn_data.js'), 'utf8');
 const app = fs.readFileSync(path.join(appRoot, 'app.js'), 'utf8');
+const companionSource = fs.readFileSync(path.join(appRoot, 'companion.js'), 'utf8');
 const index = fs.readFileSync(path.join(appRoot, 'index.html'), 'utf8');
 const sw = fs.readFileSync(path.join(appRoot, 'sw.js'), 'utf8');
 const polish = fs.readFileSync(path.join(appRoot, 'polish.js'), 'utf8');
@@ -36,6 +37,19 @@ const readme = fs.readFileSync(path.join(appRoot, 'README.txt'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(appRoot, 'manifest.webmanifest'), 'utf8'));
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 check(!fs.existsSync(path.join(appRoot, 'RESEARCH_NOTES.txt')), 'Rejected map-era research notes must not remain publicly deployable');
+
+// The current product is one visible Companion, not a presentation built around
+// the two retired helper identities. The only permitted matching word is the
+// exact CODM attachment name, which must remain accurate in the Armory.
+const retiredHelperLabels = [['NE','RV'], ['RE','CON']].map(parts => parts.join(''));
+const officialAttachmentName = ['RTC', ['Re','con'].join(''), 'Tac', 'Long'].join(' ');
+const deployableTextFiles = fs.readdirSync(appRoot, { withFileTypes: true })
+  .filter(entry => entry.isFile() && /\.(?:html|css|js|txt|json|webmanifest)$/i.test(entry.name))
+  .map(entry => [entry.name, fs.readFileSync(path.join(appRoot, entry.name), 'utf8')]);
+for (const [name, rawText] of deployableTextFiles) {
+  const text = name === 'armory_data.js' ? rawText.replaceAll(officialAttachmentName, '') : rawText;
+  for (const label of retiredHelperLabels) check(!new RegExp(`\\b${label}\\b`, 'i').test(text), `${name} contains a retired helper label`);
+}
 
 const required = (item, fields, label) => {
   for (const field of fields) check(item?.[field] !== undefined && item?.[field] !== '', `${label} is missing ${field}`);
@@ -145,7 +159,7 @@ for (const operation of operations) {
 }
 
 unique(sidelineRules, 'id', 'Sideline rules');
-check(sidelineRules.length >= 10, 'Sideline needs broad first-version coverage');
+check(sidelineRules.length >= 18, 'Local Companion needs broad first-version coverage');
 check(Array.isArray(sideline.examples) && sideline.examples.length === 4, 'Sideline needs the four low-demand example fragments');
 required(sideline.fallback, ['id', 'missing', 'inference', 'decision', 'check', 'route', 'routeLabel', 'terms'], 'Sideline fallback');
 const validContentRoute = route => {
@@ -166,12 +180,23 @@ for (const rule of [...sidelineRules, sideline.fallback]) {
 }
 check(sidelineRules.some(rule => rule.id === 'site-orientation' && rule.route === 'lesson/orientation'), 'Sideline needs an A/B orientation path');
 check(lessonIds.has('orientation'), 'Full guide needs the landmark orientation lesson');
+check(lessonIds.has('decision-not-result'), 'Full guide needs a result-versus-decision lesson');
+check(sidelineRules.some(rule => rule.id === 'repeat-route' && rule.route === 'lesson/decision-not-result' && rule.commonTrap), 'Repeated-route help must separate one good result from a repeatable decision');
 const sidelineSource = fs.readFileSync(path.join(appRoot, 'sideline_data.js'), 'utf8');
 const bannedInteractionLanguage = ['drink water', 'take a breath', 'stop, breathe', 'visualize', 'picture yourself', 'imagine the scene', 'mentally rehearse', 'future you'];
-for (const phrase of bannedInteractionLanguage) check(!`${sidelineSource}\n${learnSource}`.toLowerCase().includes(phrase), `Sideline or learning content uses banned interaction language: ${phrase}`);
+for (const phrase of bannedInteractionLanguage) check(!`${sidelineSource}\n${learnSource}\n${companionSource}`.toLowerCase().includes(phrase), `Companion or learning content uses banned interaction language: ${phrase}`);
 check(!/https?:\/\//.test(sidelineSource) && !/\bfetch\s*\(|WebSocket|EventSource/.test(sidelineSource), 'Sideline data must not contact an outside service');
-check(app.includes("SIDELINE_KEY='snd-sideline-patterns-v1'"), 'Sideline local storage key is missing');
-check(app.includes("const item={id:`${Date.now()}-${result.ruleId}`,ruleId:result.ruleId,decision:result.decision,check:result.check,route:result.route,savedAt:new Date().toISOString()};"), 'Saved sideline patterns must exclude the raw round account and optional context');
+for (const key of ['snd-match-session-v1','snd-match-chat-v1','snd-active-memory-v1','snd-selected-sources-v1','snd-match-records-v1','snd-companion-settings-v1']) check(companionSource.includes(key), `Companion is missing local store ${key}`);
+check(companionSource.includes("providerMode:'off'"), 'Optional AI must be off by default');
+check(companionSource.includes("maxChat:MAX_CHAT") && companionSource.includes('slice(-MAX_CHAT)'), 'Local chat history must have a visible bound');
+check(companionSource.includes("clean==='/help'||clean==='/tools'"), 'Companion must support /help and /tools');
+check(companionSource.includes("full video analysis is not implemented") || companionSource.includes('Full video analysis is not implemented'), 'Companion must state the full-video boundary');
+check(companionSource.includes('confirmImageSend') && companionSource.includes("task,'image-analysis'") === false, 'Visual analysis must require explicit image confirmation');
+check(companionSource.includes("bridgeRequest('image-analysis'"), 'Explicit visual-analysis bridge path is missing');
+check(!/api[_-]?key|OPENAI_API_KEY|GEMINI_API_KEY|sk-[a-z0-9]/i.test(companionSource), 'Browser Companion must not contain or request a provider key');
+check(!/setInterval\s*\(|getDisplayMedia|mediaDevices\.getUserMedia/.test(companionSource), 'Companion must not add continuous capture or background polling');
+for (const label of ['Better Judgment','What probably got you','Try this next']) check(companionSource.includes(label), `Better Judgment response is missing ${label}`);
+for (const retired of ['Player report','Context on record','Possible explanation · inference','Still unknown','One next adjustment','Local by default','No screen access']) check(!companionSource.includes(retired), `Main Better Judgment source still exposes retired copy: ${retired}`);
 
 unique(weapons, 'id', 'Armory firearms');
 unique(weapons, 'name', 'Armory firearm names');
@@ -211,18 +236,22 @@ check(weapons.filter(weapon=>weapon.sourceKind==='Current stat/build page').leng
 check(weapons.filter(weapon=>weapon.statDeltas.length===6).length>=35,'Armory needs at least 35 exact six-rating build comparisons');
 for(const name of ['M4','RPD']){const weapon=weapons.find(item=>item.name===name);check(weapon?.sourceKind==='Stat-informed S&D adaptation'&&!weapon.statDeltas.length,`${name} manual adaptation must not inherit another attachment set's built ratings`)}
 for (const name of ['M4', 'AK117', 'Locus', 'Cronen Squall', 'FSS Hurricane', 'SO-14', 'Machine Pistol', 'Nail Gun']) check(weapons.some(x => x.name === name), `Armory is missing ${name}`);
-check(armory.meta?.build === 'MB-SNDC-2026-0823-046', 'Armory build number is not synchronized');
+check(armory.meta?.build === 'MB-SNDC-2026-0831-047', 'Armory build number is not synchronized');
 check(armory.meta?.scope?.includes('current page exposes them')&&armory.meta?.scope?.includes('live Global Multiplayer Gunsmith'), 'Armory must state its current-page and live-game verification boundary');
 check(armory.meta?.ratingBoundary?.includes('not physical damage'), 'Armory must distinguish displayed ratings from physical stats');
 check(Object.keys(armory.meta?.roles||{}).length===7,'Armory must define the complete role system');
 
-const declaredRoutes = new Set(['home', 'round-read', 'guided', 'quick', 'learn', 'lesson', 'armory', 'weapon', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
+const declaredRoutes = new Set(['home', 'companion', 'round-read', 'sources', 'records', 'memory', 'provider', 'guided', 'quick', 'learn', 'lesson', 'armory', 'weapon', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
 for (const match of app.matchAll(/data-go="([^"]+)"/g)) {
   if (match[1].includes('${')) continue;
   const route = match[1];
   check(declaredRoutes.has(route.split('/')[0]), `app.js contains unsupported route root: ${match[1]}`);
 }
-for (const rootName of declaredRoutes) check(app.includes(`root==='${rootName}'`) || rootName === 'notes' || rootName === 'about', `Router does not visibly handle ${rootName}`);
+for (const rootName of declaredRoutes) check(app.includes(`root==='${rootName}'`) || ['companion','round-read','sources','records','memory','provider'].includes(rootName) || rootName === 'notes' || rootName === 'about', `Router does not visibly handle ${rootName}`);
+for (const match of companionSource.matchAll(/data-companion-go="([^"]+)"/g)) {
+  if (match[1].includes('${')) continue;
+  check(declaredRoutes.has(match[1].split('/')[0]), `companion.js contains unsupported route root: ${match[1]}`);
+}
 
 const versionMatch = versionText.match(/Version\s+([0-9.]+)/);
 const buildMatch = versionText.match(/Build\s+([A-Z0-9-]+)/);
@@ -230,7 +259,7 @@ check(versionMatch, 'VERSION.txt must contain Version');
 check(buildMatch, 'VERSION.txt must contain Build');
 const version = versionMatch?.[1];
 const build = buildMatch?.[1];
-for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['data.js', fs.readFileSync(path.join(appRoot, 'data.js'), 'utf8')], ['learn_data.js', learnSource], ['fights_data.js', fs.readFileSync(path.join(appRoot, 'fights_data.js'), 'utf8')], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')], ['sideline_data.js', sidelineSource], ['armory_data.js', fs.readFileSync(path.join(appRoot, 'armory_data.js'), 'utf8')], ['polish.js', polish]]) {
+for (const [name, text] of [['README.txt', readme], ['index.html', index], ['app.js', app], ['companion.js', companionSource], ['data.js', fs.readFileSync(path.join(appRoot, 'data.js'), 'utf8')], ['learn_data.js', learnSource], ['fights_data.js', fs.readFileSync(path.join(appRoot, 'fights_data.js'), 'utf8')], ['guided_data.js', fs.readFileSync(path.join(appRoot, 'guided_data.js'), 'utf8')], ['sideline_data.js', sidelineSource], ['armory_data.js', fs.readFileSync(path.join(appRoot, 'armory_data.js'), 'utf8')], ['polish.js', polish]]) {
   check(text.includes(build), `${name} does not contain build ${build}`);
 }
 check(readme.includes(`Version ${version}`), `README.txt does not contain version ${version}`);
@@ -245,7 +274,8 @@ check(index.includes('property="og:image"') && index.includes('summary_large_ima
 check(index.includes('Content-Security-Policy') && index.includes('strict-origin-when-cross-origin'), 'Full Companion needs static-site security and referrer policies');
 check(index.includes('class="skip-link"') && index.includes('id="main" tabindex="-1"'), 'Full Companion needs a skip link and focusable main region');
 check(index.includes('role="status"') && index.includes('aria-live="polite"'), 'Toast feedback must be announced');
-check(index.includes('S&amp;D Backroom') && index.includes('>Guided</button>') && !index.includes('Tactical Sideline'), 'Full Companion must preserve its Backroom identity and Guided navigation title');
+check(index.includes('S&amp;D Field Guide') && index.includes('>Judgment</button>') && !index.includes('S&amp;D Backroom'), 'Full Guide must use its field-guide identity and Better Judgment navigation');
+check(index.includes('companion.js?v=4.0.0-r1'), 'Full Guide must load the versioned Companion engine');
 check(polish.includes('aria-current'), 'Polish layer must expose active navigation state');
 check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
 check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');
@@ -280,4 +310,4 @@ if (failures.length) {
 console.log(`PASS: ${Object.keys(questions).length} Guided questions and ${Object.keys(results).length} results are reachable.`);
 console.log(`PASS: ${missions.length} missions, ${lessons.length} lessons, ${fights.length} fights, ${quick.length} quick-help cards, and ${operations.length} operations are internally valid.`);
 console.log(`PASS: ${weapons.length} firearm records, category counts, five-part builds, sources, and special configurations are valid.`);
-console.log(`PASS: ${sidelineRules.length} NERV/RECON rules, privacy boundaries, dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);
+console.log(`PASS: ${sidelineRules.length} local Companion rules, explicit privacy boundaries, dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);

@@ -27,7 +27,7 @@ check(d?.meta?.reviewed==="August 23, 2026"&&d?.meta?.evidence?.includes("Offici
 const budget=d?.meta?.contentBudget||{};
 check(budget.primarySections===4&&budget.lessons===8&&budget.settings===18&&budget.guideLoadouts===5&&budget.hudPatterns===6,"Starter content budget is missing or incomplete");
 check(budget.maxPrimaryChoicesPerScreen===8&&budget.maxVisibleWordsPerBuildCard===95,"Starter interaction or build-card caps are missing");
-check(String(budget.rule||"").includes("move the depth to the Backroom"),"Starter budget must say where overflow belongs");
+check(String(budget.rule||"").includes("move the depth to the Full Guide"),"Starter budget must say where overflow belongs");
 
 for(const lesson of d?.lessons||[]){
   for(const field of ["id","title","summary","points","terms"])check(lesson[field]?.length,`Lesson ${lesson.id||"unknown"} missing ${field}`);
@@ -74,7 +74,7 @@ check(app.includes('6.7–6.9 inches')&&app.includes('6.1–6.4-inch'),"HUD guid
 check(!app.includes('320 CSS')&&!app.includes('What 320px means'),"Public HUD guidance should not expose the internal pixel-width test");
 check(app.includes('requestAnimationFrame(()=>app.focus'),"Starter routes must move focus to the new main view");
 check(app.includes('aria-label=\"Open ${esc(x.title)} PDF\"'),"Guide links need unique accessible names");
-check(app.includes('D.starterBuilds.map')&&app.includes('Open the Backroom Armory'),"Starter Guides must show five builds and link to the full Armory");
+check(app.includes('D.starterBuilds.map')&&app.includes('Open the Full Armory'),"Starter Guides must show five builds and link to the full Armory");
 check(app.includes('#/armory/role/${esc(x.roleId)}'),"Each Starter weapon must open its Backroom role group");
 check(app.includes('Starter simplicity rule')&&app.includes('Show five-part Gunsmith'),"Starter Guides must keep depth behind a tap and state the simplicity rule");
 check(index.includes('property="og:title"')&&index.includes('rel="canonical"'),"Starter needs social and canonical metadata");
@@ -83,7 +83,8 @@ check(index.includes('Content-Security-Policy')&&index.includes('strict-origin-w
 check(index.includes('class="skip-link"')&&index.includes('id="app" tabindex="-1"'),"Starter needs a skip link and focusable main region");
 check(index.includes('role="status"')&&index.includes('aria-live="polite"'),"Starter update feedback must be announced");
 check(index.includes('Not affiliated with or endorsed by Activision'),"Starter needs an unofficial-project disclaimer");
-check(app.includes('Open the Full Backroom')&&!app.includes('NERV')&&!app.includes('RECON'),'Starter should keep the Backroom bridge subtle and leave helper names inside the Full Companion');
+const retiredHelperLabels=[['NE','RV'],['RE','CON']].map(parts=>parts.join(''));
+check(app.includes('Open the Full Guide')&&retiredHelperLabels.every(label=>!app.includes(label)),'Starter should keep the Full Guide bridge subtle and omit retired helper labels');
 
 for(const asset of ["index.html","app.css?v=1.7.0-r1","app.js?v=1.7.0-r1","starter_data.js?v=1.7.0-r1","manifest.webmanifest","icon.svg","icon-192.png","icon-512.png","social-card.png",...(d?.guides||[]).map(x=>x.file)])check(sw.includes(asset),`Default Starter service worker misses ${asset}`);
 check(sw.includes('snd-starter-home-1.7.0-r1'),"Default Starter cache version is not synchronized");
