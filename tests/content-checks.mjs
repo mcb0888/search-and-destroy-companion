@@ -236,7 +236,7 @@ check(weapons.filter(weapon=>weapon.sourceKind==='Current stat/build page').leng
 check(weapons.filter(weapon=>weapon.statDeltas.length===6).length>=35,'Armory needs at least 35 exact six-rating build comparisons');
 for(const name of ['M4','RPD']){const weapon=weapons.find(item=>item.name===name);check(weapon?.sourceKind==='Stat-informed S&D adaptation'&&!weapon.statDeltas.length,`${name} manual adaptation must not inherit another attachment set's built ratings`)}
 for (const name of ['M4', 'AK117', 'Locus', 'Cronen Squall', 'FSS Hurricane', 'SO-14', 'Machine Pistol', 'Nail Gun']) check(weapons.some(x => x.name === name), `Armory is missing ${name}`);
-check(armory.meta?.build === 'MB-SNDC-2026-0831-047', 'Armory build number is not synchronized');
+check(armory.meta?.build === 'MB-SNDC-2026-1029-048', 'Armory build number is not synchronized');
 check(armory.meta?.scope?.includes('current page exposes them')&&armory.meta?.scope?.includes('live Global Multiplayer Gunsmith'), 'Armory must state its current-page and live-game verification boundary');
 check(armory.meta?.ratingBoundary?.includes('not physical damage'), 'Armory must distinguish displayed ratings from physical stats');
 check(Object.keys(armory.meta?.roles||{}).length===7,'Armory must define the complete role system');
@@ -275,7 +275,7 @@ check(index.includes('Content-Security-Policy') && index.includes('strict-origin
 check(index.includes('class="skip-link"') && index.includes('id="main" tabindex="-1"'), 'Full Companion needs a skip link and focusable main region');
 check(index.includes('role="status"') && index.includes('aria-live="polite"'), 'Toast feedback must be announced');
 check(index.includes('S&amp;D Field Guide') && index.includes('>Judgment</button>') && !index.includes('S&amp;D Backroom'), 'Full Guide must use its field-guide identity and Better Judgment navigation');
-check(index.includes('companion.js?v=4.0.0-r1'), 'Full Guide must load the versioned Companion engine');
+check(index.includes('companion.js?v=4.1.0-r1'), 'Full Guide must load the versioned Companion engine');
 check(polish.includes('aria-current'), 'Polish layer must expose active navigation state');
 check(polish.includes('document.title'), 'Polish layer must create route-specific document titles');
 check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');

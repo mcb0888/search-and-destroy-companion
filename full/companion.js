@@ -1,5 +1,5 @@
 /* Search & Destroy Companion — Better Judgment round review
-   Version 4.0.0 · Build MB-SNDC-2026-0831-047
+   Version 4.1.0 · Build MB-SNDC-2026-1029-048
    AI is off by default. No key is accepted or stored in browser code. */
 (function(){
   'use strict';
@@ -313,5 +313,5 @@
     else renderCompanion(main);
   }
 
-  window.MATCH_COMPANION={render,reentryMarkup,keys:{SESSION_KEY,CHAT_KEY,MEMORY_KEY,SOURCES_KEY,RECORDS_KEY,SETTINGS_KEY},meta:{version:'1.0.0',build:'MB-SNDC-2026-0831-047',aiDefault:'off',maxChat:MAX_CHAT,maxSourceText:MAX_SOURCE_TEXT,maxImageBytes:MAX_IMAGE_BYTES}};
+  window.MATCH_COMPANION={render,reentryMarkup,keys:{SESSION_KEY,CHAT_KEY,MEMORY_KEY,SOURCES_KEY,RECORDS_KEY,SETTINGS_KEY},meta:{version:'1.0.0',build:'MB-SNDC-2026-1029-048',aiDefault:'off',maxChat:MAX_CHAT,maxSourceText:MAX_SOURCE_TEXT,maxImageBytes:MAX_IMAGE_BYTES}};
 })();

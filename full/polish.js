@@ -1,5 +1,5 @@
-/* Presentation and accessibility layer — Version 4.0.0 */
-const POLISH_BUILD="MB-SNDC-2026-0831-047";
+/* Presentation and accessibility layer — Version 4.1.0 */
+const POLISH_BUILD="MB-SNDC-2026-1029-048";
 
 function upgradeHeading(section){
   const old=section?.querySelector(":scope > h2");
@@ -28,12 +28,12 @@ function polishCurrentView(){
   }
 
   if(current==="about"){
-    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 4.0.0";
+    const badge=hero?.querySelector(".badge");if(badge)badge.textContent="VERSION 4.1.0";
     const cards=[...document.querySelectorAll("main .card")];
     const changed=cards.find(card=>card.querySelector("h3")?.textContent.startsWith("What changed"));
-    if(changed)changed.innerHTML=`<h3>What changed in 4.0.0</h3><p>Added Better Judgment: describe one round in your own words, get one likely cause, and leave with one useful thing to try next. Match details, saved tips, selected sources, records, and optional AI controls stay available without crowding the main screen.</p>`;
+    if(changed)changed.innerHTML=`<h3>What changed in 4.1.0</h3><p>Added a three-stage S&amp;D skill path using existing lessons and five-round missions. It moves from round foundations through objective awareness to adaptation under pressure. Stages stay open, and practice check-ins are not a skill rating.</p>`;
     const build=cards.find(card=>card.querySelector("h3")?.textContent==="Build");
-    if(build)build.innerHTML=`<h3>Build</h3><p>Version 4.0.0 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
+    if(build)build.innerHTML=`<h3>Build</h3><p>Version 4.1.0 · ${POLISH_BUILD}</p><p>Copyright © 2026 Michael Barnes. All Rights Reserved.</p>`;
     if(!cards.some(card=>card.querySelector("h3")?.textContent==="Unofficial project")){
       build?.insertAdjacentHTML("beforebegin",`<div class="card"><h3>Unofficial project</h3><p>This is a fan-made learning guide. It is not affiliated with or endorsed by Activision. Call of Duty and related names belong to their respective owners.</p></div>`);
     }

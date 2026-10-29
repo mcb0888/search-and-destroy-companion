@@ -85,3 +85,12 @@ html,body{max-width:100%;overflow-x:hidden}html{scroll-behavior:auto}
 input[type=file]{width:100%;min-height:48px;color:var(--muted);padding:8px 0}code{color:#d9bd82}.danger{color:#ffb1b6!important}.record-form{margin-bottom:12px}
 @media(min-width:640px){.tool-grid{grid-template-columns:1fr 1fr}.context-grid.expanded{grid-template-columns:1fr 1fr}.source-row,.record-row,.memory-row{grid-template-columns:minmax(0,1fr) auto;align-items:center}.provider-form{grid-template-columns:1fr 1fr}.provider-form>.check-option,.provider-form>.primary{grid-column:1/-1}}
 @media(max-width:460px){.match-details-prompt,.session-strip{align-items:flex-start;flex-direction:column}.match-details-prompt button,.session-strip button{width:100%}.player-message,.companion-message{margin-left:0;margin-right:0}.example-fragments{grid-template-columns:1fr}.chat-composer textarea{min-height:86px}.composer-options>*{width:100%}.companion-dialog{padding:13px}.source-row .quick-actions,.record-row .quick-actions,.memory-row .quick-actions{display:grid;grid-template-columns:1fr 1fr}.next-adjustment p{font-size:17px}}
+.skill-path-entry{margin:14px 0;border-color:#45644d;background:linear-gradient(140deg,#13231a,#0d1711)}
+.skill-stage{border:1px solid var(--line);background:linear-gradient(145deg,#101a14,#0c130f);border-radius:17px;padding:15px;margin:14px 0;scroll-margin-top:18px}
+.skill-stage-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.skill-stage-status{color:var(--green2);font-size:12px;font-weight:800}
+.skill-stage h2{font-size:22px;line-height:1.2;margin:13px 0 6px}
+.skill-stage>p{color:var(--muted);line-height:1.5;margin:0}
+.skill-stage .section-label{margin:16px 0 8px}
+.skill-path-lesson,.skill-path-mission{min-height:64px}
+@media(max-width:460px){.skill-stage{padding:12px}.skill-stage h2{font-size:20px}.skill-stage-status{font-size:11px}}

@@ -12,10 +12,10 @@ The normal site address opens the simplified Starter Edition. It is deliberately
 The Starter Edition has no Guided Help, practice tracker, field notes, or large Field Manual. Its purpose is to give a beginner one calm place to start without presenting every tool at once. Its lessons emphasize the unwritten habits that experienced S&D players often learn through trial and error: emotional discipline, useful communication, teammate support, objective-first decisions, and responding to provocation without becoming predictable. Terms and their definitions stay visible at the bottom of each lesson. The Guides section is governed by a fixed content budget: four primary sections, eight lessons, eighteen settings, five loadouts, six HUD patterns, no more than eight primary choices per screen, and compact build-card copy. New depth moves to the Full Guide or replaces weaker Starter material rather than accumulating.
 
 FULL COMPANION
-The Full Companion 4.0.0 remains available at:
+The Full Companion 4.1.0 remains available at:
 ./full/
 
-A quiet link appears at the bottom of the Starter learning screen. The Full Guide adds Better Judgment for a short post-round check while retaining Guided Help, lesson progress, practice missions, fight corrections, saved pages, notes, the dictionary, the Field Manual, and a searchable 125-firearm Armory. Better Judgment accepts a fragment, names one likely cause without pretending it watched the match, and returns one concrete thing to try next.
+A quiet link appears at the bottom of the Starter learning screen. The Full Guide adds a three-stage beginner-to-advanced skill path using existing lessons and five-round missions, plus Better Judgment for a short post-round check. It retains Guided Help, lesson progress, fight corrections, saved pages, notes, the dictionary, the Field Manual, and a searchable 125-firearm Armory. Better Judgment accepts a fragment, names one likely cause without pretending it watched the match, and returns one concrete thing to try next.
 
 Conversation history, saved tips, selected sources, and structured match records are separate local stores with inspect and delete controls. AI is off by default. The browser accepts no provider key; an optional AI request requires an explicitly configured secure server-side or local bridge. Voice listens once only after a button press. Images, clips, and text files are never scanned automatically.
 

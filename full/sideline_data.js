@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Better Judgment built-in rules
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0831-047
+Build MB-SNDC-2026-1029-048
 
 This file contains local, deterministic coaching rules. It does not call an AI
 service, inspect the game, or send the player's account anywhere. Optional AI
@@ -10,7 +10,7 @@ requests are handled separately by companion.js and require an explicit bridge.
 window.SIDELINE_DATA = {
   meta: {
     version: '2.0.0',
-    build: 'MB-SNDC-2026-0831-047',
+    build: 'MB-SNDC-2026-1029-048',
     privacy: 'Conversation and session continuity stay in this browser. Nothing is sent to an AI provider automatically.'
   },
   examples: [

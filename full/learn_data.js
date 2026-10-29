@@ -1,7 +1,7 @@
 /*
 Search & Destroy Companion — Beginner learning data
 Copyright © 2026 Michael Barnes. All Rights Reserved.
-Build MB-SNDC-2026-0831-047
+Build MB-SNDC-2026-1029-048
 */
 window.LEARN_DATA = {
   quick: [
@@ -337,3 +337,27 @@ window.LEARN_DATA = {
     ['field note', 'Field note', 'A short observation recorded after a round or match so a mistake can become a specific adjustment.']
   ].map(([id, term, definition]) => ({id, term, definition}))
 };
+
+window.LEARN_DATA.skillPath = [
+  {
+    id: 'foundation',
+    title: 'Build the round foundation',
+    focus: 'Know how a round is won, what one life contributes, and what each side needs from you.',
+    lessons: ['mode-basics', 'one-life', 'attacker-job', 'defender-job'],
+    missions: ['ready-before-contact', 'one-useful-call']
+  },
+  {
+    id: 'round-reading',
+    title: 'Read and manage the round',
+    focus: 'Connect information, teammate support, the bomb, and the timer to your next decision.',
+    lessons: ['information', 'orientation', 'support-and-trades', 'bomb-and-time', 'post-plant', 'retake'],
+    missions: ['round-state-reset', 'connected-spacing', 'objective-after-safety']
+  },
+  {
+    id: 'adaptation',
+    title: 'Adapt under pressure',
+    focus: 'Judge decisions by the information you had, change a repeated response, and reduce a clutch to its next useful action.',
+    lessons: ['decision-not-result', 'last-alive', 'adapt-between-rounds', 'learning-without-abuse'],
+    missions: ['change-one-variable', 'next-useful-action', 'isolate-one']
+  }
+];

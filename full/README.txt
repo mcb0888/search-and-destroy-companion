@@ -1,4 +1,4 @@
-SEARCH & DESTROY COMPANION — FULL GUIDE 4.0.0
+SEARCH & DESTROY COMPANION — FULL GUIDE 4.1.0
 
 PURPOSE
 A beginner-first CODM Search & Destroy field guide for players who want to learn the mode without relying on trial, error, and abuse from random teammates.
@@ -16,10 +16,11 @@ PRIMARY EXPERIENCE
 - Optional local pattern saving that excludes the original typed round account
 - Guided round review that turns two or three answers into one likely explanation
 - Immediate next-round correction before longer teaching
-- Beginner lesson progress and continue-learning support
+- Beginner lesson progress and a three-stage path from round fundamentals to advanced adaptation
+- Stage progress based on completed lessons and at least one saved five-round practice mission
 - Five-round practice missions with remembered/missed tracking
 - Recent practice history and local notes
-- Thirteen short lessons covering the main ins and outs of Search & Destroy, including landmark-based A/B orientation
+- Fourteen short lessons covering the main ins and outs of Search & Destroy, including landmark-based A/B orientation
 - Ten fight corrections with established game terms explained
 - Searchable game-term dictionary
 - Searchable Full Armory with 125 current firearm dossiers and one five-part S&D build for every firearm that supports a normal Gunsmith
@@ -96,6 +97,7 @@ CURRENT ROUTES
 #/quick
 #/quick/<situation>
 #/learn
+#/path
 #/lesson/<lesson>
 #/armory
 #/weapon/<firearm>
@@ -111,11 +113,11 @@ CURRENT ROUTES
 #/about
 
 OFFLINE UPDATES
-The app uses a versioned network-first service worker. Version 4.0 keeps Better Judgment, built-in guidance, complete Armory dossiers, search, saved pages, recent pages, and the field guide available in the offline app shell. Optional AI requests require a reachable configured bridge and are not faked while offline. A waiting service worker produces an Update button and takes control only after the user chooses to update.
+The app uses a versioned network-first service worker. Version 4.1 keeps the skill path, Better Judgment, built-in guidance, complete Armory dossiers, search, saved pages, recent pages, and the field guide available in the offline app shell. Optional AI requests require a reachable configured bridge and are not faked while offline. A waiting service worker produces an Update button and takes control only after the user chooses to update.
 
 BUILD
-Version 4.0.0
-MB-SNDC-2026-0831-047
+Version 4.1.0
+MB-SNDC-2026-1029-048
 
 SIMPLIFIED STARTER EDITION
 
