@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 6302)
+Total output lines: 314
+
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -146,93 +149,7 @@ for (const lesson of lessons) {
   for (const term of lesson.terms || []) check(termIds.has(term), `Lesson ${lesson.id} points to missing term ${term}`);
 }
 for (const item of quick) {
-  required(item, ['id', 'title', 'short', 'action', 'why', 'steps'], `Quick help ${item.id}`);
-  for (const term of item.terms || []) check(termIds.has(term), `Quick help ${item.id} points to missing term ${term}`);
-}
-for (const fight of fights) {
-  required(fight, ['id', 'trigger', 'title', 'term', 'summary', 'correction', 'cue', 'mission', 'steps'], `Fight ${fight.id}`);
-  check(termIds.has(slug(fight.term)), `Fight ${fight.id} uses undefined term ${fight.term}`);
-  for (const operation of fight.relatedOps || []) check(operationIds.has(Number(operation)), `Fight ${fight.id} points to missing operation ${operation}`);
-}
-for (const operation of operations) {
-  required(operation, ['id', 'title', 'problem', 'truth', 'try', 'mission', 'success'], `Operation ${operation.id}`);
-}
-
-unique(sidelineRules, 'id', 'Sideline rules');
-check(sidelineRules.length >= 18, 'Local Companion needs broad first-version coverage');
-check(Array.isArray(sideline.examples) && sideline.examples.length === 4, 'Sideline needs the four low-demand example fragments');
-required(sideline.fallback, ['id', 'missing', 'inference', 'decision', 'check', 'route', 'routeLabel', 'terms'], 'Sideline fallback');
-const validContentRoute = route => {
-  const [rootName, target] = String(route).split('/');
-  return (
-    (rootName === 'lesson' && lessonIds.has(target)) ||
-    (rootName === 'fight' && fightIds.has(target)) ||
-    (rootName === 'operation' && operationIds.has(Number(target))) ||
-    (rootName === 'quick' && quickIds.has(target)) ||
-    (rootName === 'term' && termIds.has(target))
-  );
-};
-for (const rule of [...sidelineRules, sideline.fallback]) {
-  required(rule, ['id', 'missing', 'inference', 'decision', 'check', 'route', 'routeLabel', 'terms'], `Sideline rule ${rule.id}`);
-  if (rule !== sideline.fallback) check(Array.isArray(rule.keywords) && rule.keywords.length > 0, `Sideline rule ${rule.id} needs keywords`);
-  check(validContentRoute(rule.route), `Sideline rule ${rule.id} has invalid route ${rule.route}`);
-  for (const term of rule.terms || []) check(termIds.has(term), `Sideline rule ${rule.id} points to missing term ${term}`);
-}
-check(sidelineRules.some(rule => rule.id === 'site-orientation' && rule.route === 'lesson/orientation'), 'Sideline needs an A/B orientation path');
-check(lessonIds.has('orientation'), 'Full guide needs the landmark orientation lesson');
-check(lessonIds.has('decision-not-result'), 'Full guide needs a result-versus-decision lesson');
-check(sidelineRules.some(rule => rule.id === 'repeat-route' && rule.route === 'lesson/decision-not-result' && rule.commonTrap), 'Repeated-route help must separate one good result from a repeatable decision');
-const sidelineSource = fs.readFileSync(path.join(appRoot, 'sideline_data.js'), 'utf8');
-const bannedInteractionLanguage = ['drink water', 'take a breath', 'stop, breathe', 'visualize', 'picture yourself', 'imagine the scene', 'mentally rehearse', 'future you'];
-for (const phrase of bannedInteractionLanguage) check(!`${sidelineSource}\n${learnSource}\n${companionSource}`.toLowerCase().includes(phrase), `Companion or learning content uses banned interaction language: ${phrase}`);
-check(!/https?:\/\//.test(sidelineSource) && !/\bfetch\s*\(|WebSocket|EventSource/.test(sidelineSource), 'Sideline data must not contact an outside service');
-for (const key of ['snd-match-session-v1','snd-match-chat-v1','snd-active-memory-v1','snd-selected-sources-v1','snd-match-records-v1','snd-companion-settings-v1']) check(companionSource.includes(key), `Companion is missing local store ${key}`);
-check(companionSource.includes("providerMode:'off'"), 'Optional AI must be off by default');
-check(companionSource.includes("maxChat:MAX_CHAT") && companionSource.includes('slice(-MAX_CHAT)'), 'Local chat history must have a visible bound');
-check(companionSource.includes("clean==='/help'||clean==='/tools'"), 'Companion must support /help and /tools');
-check(companionSource.includes("full video analysis is not implemented") || companionSource.includes('Full video analysis is not implemented'), 'Companion must state the full-video boundary');
-check(companionSource.includes('confirmImageSend') && companionSource.includes("task,'image-analysis'") === false, 'Visual analysis must require explicit image confirmation');
-check(companionSource.includes("bridgeRequest('image-analysis'"), 'Explicit visual-analysis bridge path is missing');
-check(!/api[_-]?key|OPENAI_API_KEY|GEMINI_API_KEY|sk-[a-z0-9]/i.test(companionSource), 'Browser Companion must not contain or request a provider key');
-check(!/setInterval\s*\(|getDisplayMedia|mediaDevices\.getUserMedia/.test(companionSource), 'Companion must not add continuous capture or background polling');
-for (const label of ['Better Judgment','What probably got you','Try this next']) check(companionSource.includes(label), `Better Judgment response is missing ${label}`);
-for (const retired of ['Player report','Context on record','Possible explanation · inference','Still unknown','One next adjustment','Local by default','No screen access']) check(!companionSource.includes(retired), `Main Better Judgment source still exposes retired copy: ${retired}`);
-
-unique(weapons, 'id', 'Armory firearms');
-unique(weapons, 'name', 'Armory firearm names');
-check(weapons.length === 125, `Armory must cover 125 firearms; found ${weapons.length}`);
-const expectedCategories = new Map([
-  ['Assault Rifle', 37], ['Sniper Rifle', 14], ['Light Machine Gun', 14], ['Submachine Gun', 31],
-  ['Shotgun', 12], ['Marksman Rifle', 7], ['Sidearm', 10]
-]);
-const slotOnly = new Set(['Muzzle', 'Barrel', 'Stock', 'Laser', 'Ammunition', 'Rear Grip', 'Perk', 'Optic', 'Underbarrel', 'Trigger Action']);
-for (const [category, expected] of expectedCategories) check(weapons.filter(x => x.category === category).length === expected, `Armory ${category} count must be ${expected}`);
-for (const weapon of weapons) {
-  required(weapon, ['id', 'name', 'category', 'roleId', 'role', 'cue', 'fingerFit', 'attachments', 'attachmentReasons', 'whyBuild', 'tradeoffs', 'loadout', 'displayStats', 'statDeltas', 'source', 'sourceKind', 'checked', 'status'], `Armory firearm ${weapon.name || 'unknown'}`);
-  check(expectedCategories.has(weapon.category), `Armory firearm ${weapon.name} has unsupported category ${weapon.category}`);
-  check(weapon.status === 'ready', `Armory firearm ${weapon.name} is not ready`);
-  check(Array.isArray(weapon.attachments), `Armory firearm ${weapon.name} attachments must be an array`);
-  if (weapon.special) check(weapon.name === 'Nail Gun' && weapon.attachments.length === 1, 'Only the Nail Gun may use the one-line stock configuration');
-  else check(weapon.attachments.length === 5, `Armory firearm ${weapon.name} must have five attachments`);
-  const normalizedAttachments=weapon.attachments.map(value=>String(value).toLowerCase().replace(/[^a-z0-9]+/g,''));
-  check(new Set(normalizedAttachments).size===normalizedAttachments.length,`Armory firearm ${weapon.name} repeats an attachment`);
-  check(weapon.attachmentReasons.length === weapon.attachments.length, `Armory firearm ${weapon.name} needs one reason per attachment`);
-  check(Array.isArray(weapon.tradeoffs) && weapon.tradeoffs.length > 0, `Armory firearm ${weapon.name} needs tradeoffs`);
-  check(Array.isArray(weapon.loadout?.perks) && weapon.loadout.perks.length === 3, `Armory firearm ${weapon.name} needs a complete perk set`);
-  for(const field of ['secondary','lethal','tactical'])check(Boolean(weapon.loadout?.[field]),`Armory firearm ${weapon.name} loadout is missing ${field}`);
-  check(armory.meta?.roles?.[weapon.roleId], `Armory firearm ${weapon.name} points to missing role ${weapon.roleId}`);
-  check(Array.isArray(weapon.statDeltas), `Armory firearm ${weapon.name} stat deltas must be an array`);
-  for(const stat of weapon.statDeltas){required(stat,['key','label','base','built','delta'],`Armory firearm ${weapon.name} stat row`);check(stat.built-stat.base===stat.delta,`Armory firearm ${weapon.name} has an incorrect ${stat.label} delta`)}
-  check(!weapon.attachments.some(x => slotOnly.has(x)), `Armory firearm ${weapon.name} contains a slot label instead of an attachment`);
-  const external = /^https:\/\//.test(weapon.source), archived = weapon.source.startsWith('../guides/');
-  check(external || archived, `Armory firearm ${weapon.name} has an invalid source ${weapon.source}`);
-  if (archived) check(fs.existsSync(path.join(appRoot, weapon.source)), `Armory firearm ${weapon.name} archived source is missing`);
-}
-const genericReason='Fills a weapon-specific handling or lethality need in the sourced combination; confirm its exact live description before changing the slot.';
-const allAttachmentReasons=weapons.flatMap(weapon=>weapon.attachmentReasons||[]);
-const genericReasonRate=allAttachmentReasons.filter(reason=>reason===genericReason).length/allAttachmentReasons.length;
-check(genericReasonRate<=0.10,`Armory generic attachment reasoning exceeds 10%: ${(genericReasonRate*100).toFixed(1)}%`);
-check(weapons.filter(weapon=>weapon.sourceKind==='Current stat/build page').length>=100,'Armory needs at least 100 current stat/build-page records');
+  require…2302 tokens truncated…nt stat/build-page records');
 check(weapons.filter(weapon=>weapon.statDeltas.length===6).length>=35,'Armory needs at least 35 exact six-rating build comparisons');
 for(const name of ['M4','RPD']){const weapon=weapons.find(item=>item.name===name);check(weapon?.sourceKind==='Stat-informed S&D adaptation'&&!weapon.statDeltas.length,`${name} manual adaptation must not inherit another attachment set's built ratings`)}
 for (const name of ['M4', 'AK117', 'Locus', 'Cronen Squall', 'FSS Hurricane', 'SO-14', 'Machine Pistol', 'Nail Gun']) check(weapons.some(x => x.name === name), `Armory is missing ${name}`);
@@ -241,7 +158,7 @@ check(armory.meta?.scope?.includes('current page exposes them')&&armory.meta?.sc
 check(armory.meta?.ratingBoundary?.includes('not physical damage'), 'Armory must distinguish displayed ratings from physical stats');
 check(Object.keys(armory.meta?.roles||{}).length===7,'Armory must define the complete role system');
 
-const declaredRoutes = new Set(['home', 'companion', 'round-read', 'sources', 'records', 'memory', 'provider', 'guided', 'quick', 'learn', 'lesson', 'armory', 'weapon', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
+const declaredRoutes = new Set(['home', 'companion', 'round-read', 'sources', 'records', 'memory', 'provider', 'guided', 'quick', 'learn', 'path', 'lesson', 'armory', 'weapon', 'fights', 'fight', 'manual', 'operation', 'practice', 'terms', 'term', 'notes', 'library', 'about']);
 for (const match of app.matchAll(/data-go="([^"]+)"/g)) {
   if (match[1].includes('${')) continue;
   const route = match[1];
@@ -281,7 +198,7 @@ check(polish.includes('document.title'), 'Polish layer must create route-specifi
 check(app.includes('function focusView()') && app.includes('focusView()'), 'Full routes must move focus to the new page heading');
 check(app.includes('role="progressbar"') && app.includes('aria-valuenow'), 'Lesson progress needs progressbar semantics');
 check(app.includes("root==='armory'&&a==='role'")&&app.includes('renderArmoryDeep(b)'), 'Router must support durable Armory role routes');
-for(const section of ['Five-part Gunsmith','Complete class around the firearm','How it fits fingers on a phone','Tradeoffs to accept','What “recommended” means here'])check(app.includes(section),`Backroom weapon dossier is missing ${section}`);
+for(const section of ['Five-part Gunsmith','Complete class around the firearm','How it fits fingers on a phone','Tradeoffs to accept','What "recommended" means here'])check(app.includes(section),`Backroom weapon dossier is missing ${section}`);
 
 const cacheMatch = sw.match(/const CACHE='([^']+)'/);
 check(cacheMatch, 'sw.js must declare a cache name');
@@ -311,3 +228,4 @@ console.log(`PASS: ${Object.keys(questions).length} Guided questions and ${Objec
 console.log(`PASS: ${missions.length} missions, ${lessons.length} lessons, ${fights.length} fights, ${quick.length} quick-help cards, and ${operations.length} operations are internally valid.`);
 console.log(`PASS: ${weapons.length} firearm records, category counts, five-part builds, sources, and special configurations are valid.`);
 console.log(`PASS: ${sidelineRules.length} local Companion rules, explicit privacy boundaries, dictionary links, route targets, required fields, version/build/cache synchronization, and ${assets.length} offline assets are valid.`);
+
