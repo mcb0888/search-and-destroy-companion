@@ -4,11 +4,11 @@
   "version": "4.1.0",
   "type": "module",
   "scripts": {
-    "check:static": "node tests/starter-checks.mjs && node tests/content-checks.mjs",
+    "check:static": "node tests/starter-checks.mjs && node tests/content-checks.mjs && node tests/fieldcraft-flows.cjs && node tests/fieldcraft-pwa.cjs",
     "check:all": "npm run check:static && npm run check:starter-browser && npm run check:browser",
     "check:content": "node tests/content-checks.mjs",
     "serve:test": "node tests/serve.mjs",
-    "check:browser": "node tests/browser-checks.mjs",
+    "check:browser": "node tests/browser-checks.mjs && node tests/fieldcraft-browser-checks.mjs",
     "check:starter": "node tests/starter-checks.mjs",
     "check:starter-browser": "node tests/starter-browser-checks.mjs"
   },
