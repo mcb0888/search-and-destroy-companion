@@ -16,8 +16,9 @@ for(const width of [320,390,1280]){
  await page.goto(base+'#maps');await page.waitForFunction(()=>!!navigator.serviceWorker.controller);await page.waitForFunction(()=>document.querySelector('#cache-state').textContent==='Offline pack ready on this device');
  const scope=await page.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration('./');return r.scope});assert(scope.endsWith('/fieldcraft/'));
  await page.evaluate(async()=>{const cache=await caches.open('snd-starter-home-test-preserve');await cache.put('/test-preserve',new Response('keep'))});
- await ctx.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{level:1,name:'Know the ground. Choose your move.'}).waitFor();await page.getByRole('link',{name:/Field notes/}).first().click();assert(await page.getByText('Check the pool-side exposure.',{exact:true}).isVisible());assert((await page.evaluate(()=>caches.keys())).includes('snd-starter-home-test-preserve'));
+ await ctx.setOffline(true);await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{level:1,name:'Know the ground. Choose your move.'}).waitFor();await page.getByRole('link',{name:/Field notes/}).first().click();await page.getByRole('heading',{level:1,name:'Your notes. Your evidence.'}).waitFor();await page.getByText('Check the pool-side exposure.',{exact:true}).waitFor();assert(await page.getByText('Check the pool-side exposure.',{exact:true}).isVisible());assert((await page.evaluate(()=>caches.keys())).includes('snd-starter-home-test-preserve'));
  assert.deepEqual(errors,[],`Runtime errors at ${width}px`);await ctx.close();
 }
 console.log('PASS: Fieldcraft rendered at 320/390/1280px; routes fit; notes, pins, drills and history work; dedicated service worker and offline reopening preserve data and sibling caches.');
 }finally{await browser.close()}
+
